@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "619477680429",
+    "project_id": "country-bank-4527c",
+    "storage_bucket": "country-bank-4527c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619477680429:android:ce40bbce41c08341ff93a4",
+        "android_client_info": {
+          "package_name": "com.example.multi_bank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619477680429-9skel7bu3fnc52661odvnkum7607n8ng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIKYeXSUjfCxfUnvM_5LAr_6wQZSCcVaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619477680429-9skel7bu3fnc52661odvnkum7607n8ng.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
