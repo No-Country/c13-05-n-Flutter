@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:multi_bank/modules/login/login_view/login_view.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
+import 'config/theme/app_theme.dart';
+
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -16,11 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: AppTheme().getTheme(),
       title: 'Multi Bank',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
       home: const Scaffold(
         body: Center(
           child: LoginView(),
