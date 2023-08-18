@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:multi_bank/modules/login/login_view/login_view.dart';
+import 'package:multi_bank/modules/main/view/main_view.dart';
 
 class AppRepository {
   void firebaseInit() async {
@@ -9,7 +12,7 @@ class AppRepository {
   }
 }
 
-class Auth {
+class FireBaseServices {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   User? get currentUser => _firebaseAuth.currentUser;
@@ -19,11 +22,21 @@ class Auth {
   Future<void> singInWithEmailPassword({
     required String email,
     required String password,
+    required context,
   }) async {
-    await _firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    try {
+      await _firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      if (currentUser != null) {
+        print("Logged in");
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => const MainView()));
+      }
+    } catch (err) {
+      print(err);
+    }
   }
 
   Future<void> createUserWithEmailPassword({
@@ -36,7 +49,10 @@ class Auth {
     );
   }
 
-  Future<void> singOut() async {
+  Future<void> singOut(context) async {
     await _firebaseAuth.signOut();
+    print("Logged out");
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => const LoginView()));
   }
 }

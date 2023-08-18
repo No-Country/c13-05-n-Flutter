@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:multi_bank/modules/login/login_view/login_view.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
-void main() async {
-  AppRepository().firebaseInit();
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
