@@ -1,10 +1,13 @@
 part of 'main_bloc.dart';
 
-abstract class MainState extends Equatable {
-  const MainState();
-}
+class MainState extends Equatable {
+  final UserModel? user;
 
-class MainInitial extends MainState {
+  const MainState(this.user);
+
   @override
   List<Object> get props => [];
+  MainState copyWith({required UserModel? user}) {
+    return MainState(user);
+  }
 }

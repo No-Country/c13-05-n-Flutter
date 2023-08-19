@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/user_model.dart';
 import 'package:multi_bank/modules/login/login_view/login_view.dart';
 import 'package:multi_bank/modules/main/view/main_view.dart';
 
@@ -13,6 +14,9 @@ class AppRepository {
 }
 
 class FireBaseServices {
+  final UserModel? user;
+  FireBaseServices(this.user);
+
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   User? get currentUser => _firebaseAuth.currentUser;
@@ -30,9 +34,11 @@ class FireBaseServices {
         password: password,
       );
       if (currentUser != null) {
-        print("Logged in");
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const MainView()));
+        print("Logged in as : $currentUser");
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => MainView(
+                  user: user,
+                )));
       }
     } catch (err) {
       print(err);
@@ -53,6 +59,6 @@ class FireBaseServices {
     await _firebaseAuth.signOut();
     print("Logged out");
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginView()));
+        .push(MaterialPageRoute(builder: (context) => LoginView(user)));
   }
 }

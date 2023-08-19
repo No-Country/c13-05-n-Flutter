@@ -1,10 +1,13 @@
 part of 'login_bloc.dart';
 
-abstract class LoginState extends Equatable {
-  const LoginState();
-}
+class LoginState extends Equatable {
+  final UserModel? user;
 
-class LoginInitial extends LoginState {
+  const LoginState({required this.user});
+
   @override
   List<Object> get props => [];
+  LoginState copyWith({required UserModel user}) {
+    return LoginState(user: user);
+  }
 }
