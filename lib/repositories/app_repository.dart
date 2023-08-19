@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_bank/modules/login/login_view/login_view.dart';
-import 'package:multi_bank/modules/main/view/main_view.dart';
+import 'package:multi_bank/presentation/views/login_view/login_view.dart';
+
+import '../infrastructure/modules/main/view/main_view.dart';
 
 class AppRepository {
   void firebaseInit() async {
