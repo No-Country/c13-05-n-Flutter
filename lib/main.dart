@@ -4,6 +4,7 @@ import 'package:multi_bank/modules/login/login_view/login_view.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
 import 'config/theme/app_theme.dart';
+import 'presentation/widgets/card_view.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       home: const Scaffold(
         body: Center(
           child: LoginView(),
+          // child: CardView()
         ),
       ),
     );
