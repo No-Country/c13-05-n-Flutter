@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:multi_bank/infrastructure/helpers/helpers.dart';
-import 'package:multi_bank/repositories/app_repository.dart';
 
 part 'login_state.dart';
 
@@ -18,10 +17,6 @@ class LoginCubit extends Cubit<LoginFormState> {
           state.email,
           state.password,
         ])));
-    FireBaseServices().singInWithEmailPassword(
-        email: (state.email.value).toString(),
-        password: (state.password.value).toString(),
-        context: context);
     print('Cubit submit: $state');
   }
 

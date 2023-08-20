@@ -12,6 +12,8 @@ class LoginView extends StatelessWidget {
     final loginCubit = context.watch<LoginCubit>();
     final email = loginCubit.state.email;
     final password = loginCubit.state.password;
+    // TextEditingController emailController = TextEditingController();
+    // TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
       body: SafeArea(
@@ -44,13 +46,28 @@ class LoginView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                FilledButton.tonalIcon(
-                  onPressed: () {
-                    loginCubit.onSubmit();
-                  },
-                  label: const Text("Login"),
-                  icon: const Icon(Icons.login_outlined),
-                ),
+                // FilledButton.tonalIcon(
+                //   onPressed: () {
+                //     try {
+                //       loginCubit.onSubmit();
+                //     } catch (e) {}
+                //   },
+                //   label: const Text("Login"),
+                //   icon: const Icon(Icons.login_outlined),
+                // ),
+                ElevatedButton(
+                    onPressed: () {
+                      print(email.value);
+                      if (email.value.isNotEmpty && password.value.length > 6) {
+                        FireBaseServices().singInWithEmailPassword(
+                            email: email.value,
+                            password: password.value,
+                            context: context);
+                      } else {
+                        debugPrint("Email is empty or password is invalid");
+                      }
+                    },
+                    child: const Text("Login"))
               ],
             ),
           ),
