@@ -9,6 +9,13 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (BuildContext context) => LoginCubit(),
+      child: Builder(builder: (context) => _buildView(context)),
+    );
+  }
+
+  Widget _buildView(BuildContext context) {
     final loginCubit = context.watch<LoginCubit>();
     final email = loginCubit.state.email;
     final password = loginCubit.state.password;
