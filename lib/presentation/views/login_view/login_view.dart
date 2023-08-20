@@ -26,7 +26,20 @@ class LoginView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const FlutterLogo(size: 200),
+                const Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      FlutterLogo(size: 200),
+                      Text('Bienvenido!',
+                          style: TextStyle(
+                              fontSize: 35, fontWeight: FontWeight.w700)),
+                      Text('ingresa tu mail y password',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w200)),
+                    ]),
+                const SizedBox(
+                  height: 20,
+                ),
                 CustomTextFormField(
                   label: 'Email',
                   hint: 'Ingresa un email',
@@ -56,17 +69,18 @@ class LoginView extends StatelessWidget {
                 //   icon: const Icon(Icons.login_outlined),
                 // ),
                 ElevatedButton(
-                    onPressed: () {
-                      print(email.value);
-                      if (email.value.isNotEmpty && password.value.length > 6) {
-                        FireBaseServices().singInWithEmailPassword(
-                            email: email.value,
-                            password: password.value,
-                            context: context);
-                      } else {
-                        debugPrint("Email is empty or password is invalid");
-                      }
-                    },
+                    onPressed: loginCubit.state.isValid == false
+                        ? null
+                        : () {
+                            try {
+                              FireBaseServices().singInWithEmailPassword(
+                                  email: email.value,
+                                  password: password.value,
+                                  context: context);
+                            } catch (e) {
+                              debugPrint('error: $e');
+                            }
+                          },
                     child: const Text("Login"))
               ],
             ),
