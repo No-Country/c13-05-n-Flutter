@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
-import 'package:multi_bank/repositories/app_repository.dart';
+// import 'package:multi_bank/repositories/app_repository.dart';
 
 import 'config/theme/app_theme.dart';
-import 'presentation/views/card_view/card_view.dart';
+import 'infrastructure/modules/login/login_cubit.dart';
+// import 'presentation/views/card_view/card_view.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +23,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme().getTheme(),
       title: 'Multi Bank',
-      home: const Scaffold(
+      home: Scaffold(
         body: Center(
-          child: LoginView(),
+          child: BlocProvider(
+            create: (context) => LoginCubit(),
+            child: const LoginView(),
+          ),
           // child: CardView()
         ),
       ),

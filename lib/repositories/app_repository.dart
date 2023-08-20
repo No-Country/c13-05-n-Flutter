@@ -49,6 +49,7 @@ class FireBaseServices {
     );
   }
 
+// TODO contex de logout da error noc como solucionarlo aun
   Future<void> singOut(context) async {
     await _firebaseAuth.signOut();
     print("Logged out");
