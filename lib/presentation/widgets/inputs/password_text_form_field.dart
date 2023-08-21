@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class PasswordTextFormField extends StatefulWidget {
   final String? label;
   final String? hint;
   final String? errorMessage;
+  final bool obscure;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
 
-  const CustomTextFormField({
+  const PasswordTextFormField({
     super.key,
     this.label,
     this.hint,
     this.errorMessage,
     this.onChanged,
     this.validator,
+    this.obscure = false,
     this.controller,
   });
+
+  @override
+  State<PasswordTextFormField> createState() => _PasswordTextFormFieldState();
+}
+
+class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
+  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,17 +34,28 @@ class CustomTextFormField extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
     );
     return TextFormField(
-      onChanged: onChanged,
-      validator: validator,
-      controller: controller,
+      onChanged: widget.onChanged,
+      validator: widget.validator,
+      controller: widget.controller,
+      obscureText: _showPassword,
       decoration: InputDecoration(
+        suffixIcon: GestureDetector(
+          child: Icon(
+            _showPassword ? Icons.visibility : Icons.visibility_off,
+          ),
+          onTap: () {
+            setState(() {
+              _showPassword = !_showPassword;
+            });
+          },
+        ),
         enabledBorder: border,
         focusedBorder:
             border.copyWith(borderSide: BorderSide(color: color.primary)),
         isDense: true,
-        label: label != null ? Text(label!) : null,
-        hintText: hint,
-        errorText: errorMessage,
+        label: widget.label != null ? Text(widget.label!) : null,
+        hintText: widget.hint,
+        errorText: widget.errorMessage,
         errorBorder:
             border.copyWith(borderSide: BorderSide(color: color.error)),
         focusedErrorBorder:
