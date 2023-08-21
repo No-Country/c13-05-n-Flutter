@@ -45,10 +45,10 @@ class LoginView extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.w200)),
                     ]),
                 const SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 CustomTextFormField(
-                  label: 'Email',
+                  label: 'Email:',
                   hint: 'Ingresa un email',
                   onChanged: loginCubit.emailChanged,
                   errorMessage: email.errorMessage,
@@ -57,24 +57,14 @@ class LoginView extends StatelessWidget {
                   height: 20,
                 ),
                 PasswordTextFormField(
-                  label: 'Password: ${password.value}',
+                  label: 'Password:',
                   hint: 'Ingresa tu password',
-                  obscure: true,
                   onChanged: loginCubit.passwordChanged,
                   errorMessage: password.errorMessage,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                // FilledButton.tonalIcon(
-                //   onPressed: () {
-                //     try {
-                //       loginCubit.onSubmit();
-                //     } catch (e) {}
-                //   },
-                //   label: const Text("Login"),
-                //   icon: const Icon(Icons.login_outlined),
-                // ),
                 ElevatedButton(
                     onPressed: loginCubit.state.isValid == false
                         ? null
@@ -85,7 +75,7 @@ class LoginView extends StatelessWidget {
                                   password: password.value,
                                   context: context);
                             } catch (e) {
-                              debugPrint('error: $e');
+                              debugPrint('Error: $e');
                             }
                           },
                     child: const Text("Login"))
@@ -97,34 +87,3 @@ class LoginView extends StatelessWidget {
     );
   }
 }
-
-// class _ButtonValidator extends StatelessWidget {
-//   const _ButtonValidator({
-//     required this.emailController,
-//     required this.passwordController,
-//   });
-
-//   final TextEditingController emailController;
-//   final TextEditingController passwordController;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return FilledButton.tonalIcon(
-//       onPressed: () {
-//         if (emailController.text.isNotEmpty &&
-//             passwordController.text.length > 6) {
-//           try {
-//             FireBaseServices().singInWithEmailPassword(
-//                 email: emailController.text.trim(),
-//                 password: passwordController.text,
-//                 context: context);
-//           } catch (e) {
-//             debugPrint('error is: $e');
-//           }
-//         }
-//       },
-//       label: const Text("Login"),
-//       icon: const Icon(Icons.login_outlined),
-//     );
-//   }
-// }

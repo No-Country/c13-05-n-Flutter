@@ -4,7 +4,6 @@ class PasswordTextFormField extends StatefulWidget {
   final String? label;
   final String? hint;
   final String? errorMessage;
-  final bool obscure;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -16,7 +15,6 @@ class PasswordTextFormField extends StatefulWidget {
     this.errorMessage,
     this.onChanged,
     this.validator,
-    this.obscure = false,
     this.controller,
   });
 
@@ -25,7 +23,7 @@ class PasswordTextFormField extends StatefulWidget {
 }
 
 class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
-  bool _showPassword = false;
+  bool _showPassword = true;
 
   @override
   Widget build(BuildContext context) {
