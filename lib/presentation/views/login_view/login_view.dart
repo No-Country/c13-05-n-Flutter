@@ -52,7 +52,6 @@ class LoginView extends StatelessWidget {
                 PasswordTextFormField(
                   label: 'Password:',
                   hint: 'Ingresa tu password',
-                  obscure: true,
                   onChanged: loginCubit.passwordChanged,
                   errorMessage: password.errorMessage,
                 ),
@@ -69,7 +68,7 @@ class LoginView extends StatelessWidget {
                                   password: password.value,
                                   context: context);
                             } catch (e) {
-                              debugPrint('error: $e');
+                              debugPrint('Error: $e');
                             }
                           },
                     child: const Text("Login"))
