@@ -18,10 +18,10 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         top: true,
-        child: Form(
+        child: SingleChildScrollView(
             child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SingleChildScrollView(
+          padding: const EdgeInsets.all(10),
+          child: Form(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +29,7 @@ class LoginView extends StatelessWidget {
                 const Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      FlutterLogo(size: 200),
+                      FlutterLogo(size: 150),
                       Text('Bienvenido!',
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w700)),
@@ -49,7 +49,7 @@ class LoginView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                CustomTextFormField(
+                PasswordTextFormField(
                   label: 'Password: ${password.value}',
                   hint: 'Ingresa tu password',
                   obscure: true,
