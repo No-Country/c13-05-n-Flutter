@@ -38,7 +38,7 @@ class LoginView extends StatelessWidget {
                               fontSize: 20, fontWeight: FontWeight.w200)),
                     ]),
                 const SizedBox(
-                  height: 10,
+                  height: 15,
                 ),
                 CustomTextFormField(
                   label: 'Email:',
