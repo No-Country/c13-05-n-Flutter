@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
+import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
-import '../signup_view/signup_vie.dart';
-
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class SignupView extends StatelessWidget {
+  const SignupView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +38,8 @@ class LoginView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       FlutterLogo(size: 150),
-                      Text('Bienvenido!',
+                      Text(
+                          'Bienvenido!\n Ingresa los datos para crear una nueca cuenta',
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w700)),
                       Text('ingresa tu mail y password',
@@ -72,23 +72,24 @@ class LoginView extends StatelessWidget {
                       ? null
                       : () {
                           try {
-                            FireBaseServices().singInWithEmailPassword(
-                                email: email.value,
-                                password: password.value,
-                                context: context);
+                            FireBaseServices().createUserWithEmailPassword(
+                              email: email.value,
+                              password: password.value,
+                            );
                           } catch (e) {
                             debugPrint('Error: $e');
                           }
                         },
-                  child: const Text("Login"),
+                  child: const Text("Singup"),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const SignupView()));
+                          builder: (context) => const LoginView()));
                     },
-                    child: Text("No tienes cuenta? Click aca para crear una"))
+                    child: const Text(
+                        "Ya tienes una cuenta? Click aqui para login"))
               ],
             ),
           ),

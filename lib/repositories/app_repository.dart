@@ -30,9 +30,33 @@ class FireBaseServices {
         password: password,
       );
       if (currentUser != null) {
-        print("Logged in");
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const MainView()));
+        print("Logged in: $currentUser");
+        if (currentUser?.emailVerified == true) {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => const MainView()));
+        } else {
+          showModalBottomSheet<void>(
+            context: context,
+            builder: (BuildContext context) {
+              return SizedBox(
+                height: 200,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const Text('Por favor verifique su email'),
+                      ElevatedButton(
+                        child: const Text('Cerrar'),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        }
       }
     } catch (err) {
       print(err);
@@ -47,9 +71,9 @@ class FireBaseServices {
       email: email,
       password: password,
     );
+    await _firebaseAuth.currentUser?.sendEmailVerification();
   }
 
-// TODO contex de logout da error noc como solucionarlo aun
   Future<void> singOut(context) async {
     await _firebaseAuth.signOut();
     print("Logged out");
