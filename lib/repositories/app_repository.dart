@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_bank/apis/api_rest.dart';
+import 'package:go_router/go_router.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 
 import '../infrastructure/modules/main/view/main_view.dart';
@@ -57,7 +58,9 @@ class AppRepository {
                       const Text('Por favor verifique su email'),
                       ElevatedButton(
                         child: const Text('Cerrar'),
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
                       ),
                     ],
                   ),

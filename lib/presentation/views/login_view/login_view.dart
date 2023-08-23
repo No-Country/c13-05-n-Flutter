@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:multi_bank/apis/api_rest.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
@@ -9,6 +10,7 @@ import 'package:multi_bank/repositories/app_repository.dart';
 import '../signup_view/signup_vie.dart';
 
 class LoginView extends StatelessWidget {
+  static const name = 'login-view';
   const LoginView({super.key, this.user});
   final UserModel? user;
 
@@ -86,7 +88,7 @@ class LoginView extends StatelessWidget {
                         },
                   child: const Text("Login"),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
@@ -7,6 +8,7 @@ import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
 class SignupView extends StatelessWidget {
+  static const name = 'signup';
   const SignupView({super.key, required this.user});
   final UserModel? user;
 
@@ -41,7 +43,7 @@ class SignupView extends StatelessWidget {
                     children: [
                       FlutterLogo(size: 150),
                       Text(
-                          'Bienvenido!\n Ingresa los datos para crear una nueca cuenta',
+                          'Bienvenido!\n Ingresa los datos para crear una nueva cuenta',
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w700)),
                       Text('ingresa tu mail y password',
@@ -74,7 +76,8 @@ class SignupView extends StatelessWidget {
                       ? null
                       : () {
                           try {
-                            AppRepository(user: user).createUserWithEmailPassword(
+                            AppRepository(user: user)
+                                .createUserWithEmailPassword(
                               email: email.value,
                               password: password.value,
                             );
@@ -88,7 +91,9 @@ class SignupView extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => LoginView(user: user,)));
+                          builder: (context) => LoginView(
+                                user: user,
+                              )));
                     },
                     child: const Text(
                         "Ya tienes una cuenta? Click aqui para login"))
