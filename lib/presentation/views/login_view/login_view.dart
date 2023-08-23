@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_bank/apis/api_rest.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
@@ -24,6 +25,7 @@ class LoginView extends StatelessWidget {
     // TextEditingController emailController = TextEditingController();
     // TextEditingController passwordController = TextEditingController();
 
+    ApiCalls().getApiInformation("64e01cabfe3cbcb9022e8947");
     return Scaffold(
       body: SafeArea(
         top: true,
