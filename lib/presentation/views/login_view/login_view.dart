@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bank/apis/api_rest.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
+import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
 import '../signup_view/signup_vie.dart';
 
 class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+  const LoginView({super.key, this.user});
+  final UserModel? user;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +26,8 @@ class LoginView extends StatelessWidget {
     final password = loginCubit.state.password;
     // TextEditingController emailController = TextEditingController();
     // TextEditingController passwordController = TextEditingController();
+    // AppRepository(user: user).getUser("email@email.com");
 
-    ApiCalls().getApiInformation("64e01cabfe3cbcb9022e8947");
     return Scaffold(
       body: SafeArea(
         top: true,
@@ -74,7 +76,7 @@ class LoginView extends StatelessWidget {
                       ? null
                       : () {
                           try {
-                            FireBaseServices().singInWithEmailPassword(
+                            AppRepository(user: user).singInWithEmailPassword(
                                 email: email.value,
                                 password: password.value,
                                 context: context);
@@ -88,7 +90,7 @@ class LoginView extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const SignupView()));
+                          builder: (context) => SignupView(user: user)));
                     },
                     child: Text("No tienes cuenta? Click aca para crear una"))
               ],

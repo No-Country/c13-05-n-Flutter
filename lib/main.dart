@@ -6,6 +6,7 @@ import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 
 import 'config/theme/app_theme.dart';
 import 'infrastructure/modules/login/login_cubit.dart';
+import 'models/user_models.dart';
 // import 'presentation/views/card_view/card_view.dart';
 
 Future main() async {
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UserModel user;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme().getTheme(),

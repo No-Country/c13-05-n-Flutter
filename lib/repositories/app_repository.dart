@@ -1,19 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:multi_bank/apis/api_rest.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 
 import '../infrastructure/modules/main/view/main_view.dart';
+import '../models/user_models.dart';
 
 class AppRepository {
+  final UserModel? user;
+
+  AppRepository({this.user});
+
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   void firebaseInit() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
   }
-}
-
-class FireBaseServices {
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   User? get currentUser => _firebaseAuth.currentUser;
 
@@ -24,16 +27,22 @@ class FireBaseServices {
     required String password,
     required context,
   }) async {
+    UserModel user = await getUser(email);
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+
       if (currentUser != null) {
         print("Logged in: $currentUser");
+
         if (currentUser?.emailVerified == true) {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const MainView()));
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => MainView(
+                    userEmail: currentUser?.email,
+                    user: user,
+                  )));
         } else {
           showModalBottomSheet<void>(
             context: context,
@@ -77,7 +86,33 @@ class FireBaseServices {
   Future<void> singOut(context) async {
     await _firebaseAuth.signOut();
     print("Logged out");
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const LoginView()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => LoginView(
+              user: user,
+            )));
   }
 }
+
+Future<UserModel> getUser(String userEmail) async {
+  List<UserModel> usersList = [];
+  var usersData = await ApiCalls().getApiInformation();
+
+  for (var user in usersData) {
+    usersList.add(UserModel(
+      user["_id"],
+      user['name'],
+      user['age'],
+      user['email'],
+      user['address'],
+      user['secretPin'],
+      user['phone'],
+      user['type'],
+      user['profileStatus'],
+      user['products'] ?? [],
+    ));
+  }
+  UserModel mainUser = usersList.where((user) => user.email == userEmail).first;
+  return mainUser;
+}
+
+class FireBaseServices {}

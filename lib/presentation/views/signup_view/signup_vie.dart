@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
+import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
 class SignupView extends StatelessWidget {
-  const SignupView({super.key});
+  const SignupView({super.key, required this.user});
+  final UserModel? user;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class SignupView extends StatelessWidget {
                       ? null
                       : () {
                           try {
-                            FireBaseServices().createUserWithEmailPassword(
+                            AppRepository(user: user).createUserWithEmailPassword(
                               email: email.value,
                               password: password.value,
                             );
@@ -86,7 +88,7 @@ class SignupView extends StatelessWidget {
                 TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const LoginView()));
+                          builder: (context) => LoginView(user: user,)));
                     },
                     child: const Text(
                         "Ya tienes una cuenta? Click aqui para login"))
