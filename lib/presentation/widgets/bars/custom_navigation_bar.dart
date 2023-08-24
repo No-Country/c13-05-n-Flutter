@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multi_bank/presentation/views/settings_view/settingns_view.dart';
-
-import '../views/profile_view/profile_view.dart';
-import '../views/views.dart';
+import 'package:multi_bank/presentation/views/views.dart';
 
 class CustomNavigationBar extends StatelessWidget {
   const CustomNavigationBar({

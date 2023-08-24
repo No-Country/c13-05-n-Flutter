@@ -22,13 +22,16 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme;
     final border = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(8),
     );
+    const colorHint = Color.fromRGBO(102, 112, 133, 1);
+
     return TextFormField(
       onChanged: onChanged,
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.mail_rounded, color: colorHint),
         enabledBorder: border,
         focusedBorder:
             border.copyWith(borderSide: BorderSide(color: color.primary)),

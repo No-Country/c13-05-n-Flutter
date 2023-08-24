@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:multi_bank/apis/api_rest.dart';
+import 'package:multi_bank/infrastructure/helpers/inputs/email.dart';
+import 'package:multi_bank/infrastructure/helpers/inputs/password.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
+import 'package:multi_bank/presentation/widgets/inputs/general_button.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
@@ -26,38 +29,28 @@ class LoginView extends StatelessWidget {
     final loginCubit = context.watch<LoginCubit>();
     final email = loginCubit.state.email;
     final password = loginCubit.state.password;
-    // TextEditingController emailController = TextEditingController();
-    // TextEditingController passwordController = TextEditingController();
-    // AppRepository(user: user).getUser("email@email.com");
 
     return Scaffold(
       body: SafeArea(
         top: true,
         child: SingleChildScrollView(
             child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.fromLTRB(10, 40, 10, 10),
           child: Form(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      FlutterLogo(size: 150),
-                      Text('Bienvenido!',
-                          style: TextStyle(
-                              fontSize: 35, fontWeight: FontWeight.w700)),
-                      Text('ingresa tu mail y password',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w200)),
-                    ]),
+                const HeadingMessage(
+                  message: 'Iniciar sesión!',
+                ),
                 const SizedBox(
-                  height: 15,
+                  height: 25,
                 ),
                 CustomTextFormField(
                   label: 'Email:',
-                  hint: 'Ingresa un email',
+                  hint: 'ejemplo@mail.com',
                   onChanged: loginCubit.emailChanged,
                   errorMessage: email.errorMessage,
                 ),
@@ -66,27 +59,19 @@ class LoginView extends StatelessWidget {
                 ),
                 PasswordTextFormField(
                   label: 'Password:',
-                  hint: 'Ingresa tu password',
+                  hint: 'Ingresa tu contraseña',
                   onChanged: loginCubit.passwordChanged,
                   errorMessage: password.errorMessage,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: loginCubit.state.isValid == false
-                      ? null
-                      : () {
-                          try {
-                            AppRepository(user: user).singInWithEmailPassword(
-                                email: email.value,
-                                password: password.value,
-                                context: context);
-                          } catch (e) {
-                            debugPrint('Error: $e');
-                          }
-                        },
-                  child: const Text("Login"),
+                LoginBottom(
+                  loginCubit: loginCubit,
+                  user: user,
+                  email: email,
+                  password: password,
+                  messageButton: 'Iniciar',
                 ),
                 const SizedBox(height: 20),
                 TextButton(
@@ -94,12 +79,42 @@ class LoginView extends StatelessWidget {
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => SignupView(user: user)));
                     },
-                    child: Text("No tienes cuenta? Click aca para crear una"))
+                    child: const Text(
+                        "No tienes cuenta? Click aca para crear una"))
               ],
             ),
           ),
         )),
       ),
     );
+  }
+}
+
+class HeadingMessage extends StatelessWidget {
+  final String message;
+  const HeadingMessage({
+    super.key,
+    required this.message,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text(message,
+            style: const TextStyle(fontSize: 35, fontWeight: FontWeight.w700)),
+
+        // Text('Bienvenido!',
+        //     style: TextStyle(
+        //         fontSize: 35, fontWeight: FontWeight.w700)),
+        // Text('ingresa tu mail y password',
+        //     style: TextStyle(
+        //         fontSize: 20, fontWeight: FontWeight.w200)),
+      ],
+    ));
   }
 }
