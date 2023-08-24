@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../widgets/cards/cards_active.dart';
+import 'package:multi_bank/presentation/widgets/widgets.dart';
 
 class CardView extends StatelessWidget {
   const CardView({super.key});

@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/user_models.dart';
-import 'package:multi_bank/presentation/views/settings_view/settingns_view.dart';
-
-import '../help_view/help_view.dart';
-import '../personal_info_view/personal_info_view.dart';
+import 'package:multi_bank/presentation/views/views.dart';
 
 class ProfileView extends StatelessWidget {
   static const name = 'Perfil';

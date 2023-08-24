@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../widgets/cards/cards_active.dart';
-import '../../widgets/custom_navigation_bar.dart';
+import 'package:multi_bank/presentation/widgets/widgets.dart';
 
 class CardsView extends StatefulWidget {
   static const name = 'menu';
@@ -52,6 +50,7 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                   );
                 }))),
         TabPageSelector(
+          indicatorSize: 6,
           controller: TabController(
             length: color.length,
             vsync: this,

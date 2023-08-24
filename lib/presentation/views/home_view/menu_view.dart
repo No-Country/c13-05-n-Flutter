@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/cards/cards_active.dart';
-import '../../widgets/custom_navigation_bar.dart';
-
 class MenuView extends StatefulWidget {
   static const name = 'menu';
   const MenuView({super.key});

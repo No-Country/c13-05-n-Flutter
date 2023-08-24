@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:multi_bank/infrastructure/helpers/inputs/email.dart';
+import 'package:multi_bank/infrastructure/helpers/inputs/password.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
+
+import '../../widgets/inputs/general_button.dart';
 
 class SignupView extends StatelessWidget {
   static const name = 'signup';
@@ -24,8 +28,8 @@ class SignupView extends StatelessWidget {
     final loginCubit = context.watch<LoginCubit>();
     final email = loginCubit.state.email;
     final password = loginCubit.state.password;
-    // TextEditingController emailController = TextEditingController();
-    // TextEditingController passwordController = TextEditingController();
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SafeArea(
@@ -42,11 +46,10 @@ class SignupView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       FlutterLogo(size: 150),
-                      Text(
-                          'Bienvenido!\n Ingresa los datos para crear una nueva cuenta',
+                      Text('Bienvenido!',
                           style: TextStyle(
                               fontSize: 35, fontWeight: FontWeight.w700)),
-                      Text('ingresa tu mail y password',
+                      Text('Ingresa los datos para crear una nueva cuenta',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.w200)),
                     ]),
@@ -71,21 +74,12 @@ class SignupView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                ElevatedButton(
-                  onPressed: loginCubit.state.isValid == false
-                      ? null
-                      : () {
-                          try {
-                            AppRepository(user: user)
-                                .createUserWithEmailPassword(
-                              email: email.value,
-                              password: password.value,
-                            );
-                          } catch (e) {
-                            debugPrint('Error: $e');
-                          }
-                        },
-                  child: const Text("Singup"),
+                SingupButton(
+                  loginCubit: loginCubit,
+                  user: user,
+                  email: email,
+                  password: password,
+                  messageButton: 'Continuar',
                 ),
                 const SizedBox(height: 20),
                 TextButton(

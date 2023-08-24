@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/user_models.dart';
-import 'package:multi_bank/presentation/views/home_view/cards_view.dart';
-import 'package:multi_bank/presentation/views/profile_view/profile_view.dart';
 import 'package:multi_bank/presentation/views/views.dart';
-import 'package:multi_bank/presentation/widgets/custom_navigation_bar.dart';
+import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
+
+import 'cards_view.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key, required this.userEmail, this.user});
@@ -31,8 +31,9 @@ class MainView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const CardsView(),
-              const Text("Main page"),
+              // const Text("Main page"),
               const MenuView(),
+              const Placeholder(fallbackHeight: 200),
               ElevatedButton(
                   onPressed: () {
                     AppRepository().singOut(context);

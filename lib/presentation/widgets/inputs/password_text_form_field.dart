@@ -29,14 +29,17 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme;
     final border = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(8),
     );
+    const colorHint = Color.fromRGBO(102, 112, 133, 1);
+
     return TextFormField(
       onChanged: widget.onChanged,
       validator: widget.validator,
       controller: widget.controller,
       obscureText: _showPassword,
       decoration: InputDecoration(
+        prefixIcon: const Icon(Icons.lock_rounded, color: colorHint),
         suffixIcon: GestureDetector(
           child: Icon(
             _showPassword ? Icons.visibility : Icons.visibility_off,
