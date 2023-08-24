@@ -7,6 +7,7 @@ import '../help_view/help_view.dart';
 import '../personal_info_view/personal_info_view.dart';
 
 class ProfileView extends StatelessWidget {
+  static const name = 'Perfil';
   const ProfileView({super.key, required this.user});
   final UserModel? user;
   @override
