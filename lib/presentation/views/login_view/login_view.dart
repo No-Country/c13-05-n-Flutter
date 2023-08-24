@@ -10,7 +10,7 @@ import 'package:multi_bank/repositories/app_repository.dart';
 import '../signup_view/signup_vie.dart';
 
 class LoginView extends StatelessWidget {
-  static const name = 'login-view';
+  static const name = 'login';
   const LoginView({super.key, this.user});
   final UserModel? user;
 

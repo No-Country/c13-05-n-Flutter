@@ -9,7 +9,7 @@ import 'package:multi_bank/repositories/app_repository.dart';
 
 class SignupView extends StatelessWidget {
   static const name = 'signup';
-  const SignupView({super.key, required this.user});
+  const SignupView({super.key, this.user});
   final UserModel? user;
 
   @override

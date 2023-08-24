@@ -20,11 +20,11 @@ final appRouter = GoRouter(
         name: LoginView.name,
         builder: (context, state) => createLoginCubit(context),
       ),
-      GoRoute(
-        path: '/home',
-        name: HomeView.name,
-        builder: (context, state) => createLoginCubit(context),
-      ),
+      // GoRoute(
+      //   path: '/home',
+      //   name: HomeView.name,
+      //   builder: (context, state) => createLoginCubit(context),
+      // ),
       GoRoute(
         path: '/signup',
         name: SignupView.name,

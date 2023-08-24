@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsView extends StatelessWidget {
+  static const name = 'Setting';
   const SettingsView({super.key});
 
   @override
