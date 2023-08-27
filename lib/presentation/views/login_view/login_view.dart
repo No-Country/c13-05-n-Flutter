@@ -62,7 +62,7 @@ class _LoginViewState extends State<LoginView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const HeadingMessage(
-                      message: 'Iniciar sesión!',
+                      message: 'Iniciar sesión! ',
                     ),
                     const SizedBox(
                       height: 25,
