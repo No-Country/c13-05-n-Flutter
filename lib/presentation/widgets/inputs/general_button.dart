@@ -7,6 +7,8 @@ import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/views.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
+import '../modals/alert.dart';
+
 class LoginBottom extends StatelessWidget {
   const LoginBottom({
     super.key,
@@ -37,7 +39,6 @@ class LoginBottom extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
-    print(height);
     return Container(
       height: height * 0.06,
       width: width * 0.95,
@@ -50,8 +51,21 @@ class LoginBottom extends StatelessWidget {
         onPressed: loginCubit.state.isValid == false
             ? null
             : () {
-                BlocProvider.of<LoginBloc>(context).add(Login(
-                    user, savedSession, email.value, password.value, context));
+                try {
+                  if (validatePassword(password.value) &&
+                      password.value.length >= 6) {
+                    BlocProvider.of<LoginBloc>(context).add(Login(user,
+                        savedSession, email.value, password.value, context));
+                  } else {
+                    Alert.runAlert(
+                        "Por favor introduzca una contraseña que "
+                        "incluya mayuscula 'A,B' .. "
+                        "y algun caracter especial '@,-...'",
+                        context);
+                  }
+                } catch (e) {
+                  debugPrint('Error: $e');
+                }
               },
         child: Text(messageButton,
             style: const TextStyle(
@@ -94,10 +108,19 @@ class SingupButton extends StatelessWidget {
             ? null
             : () {
                 try {
-                  AppRepository(user: user).createUserWithEmailPassword(
-                    email: email.value,
-                    password: password.value,
-                  );
+                  if (validatePassword(password.value) &&
+                      password.value.length >= 6) {
+                    AppRepository(user: user).createUserWithEmailPassword(
+                      email: email.value,
+                      password: password.value,
+                    );
+                  } else {
+                    Alert.runAlert(
+                        "Por favor introduzca una contraseña que "
+                        "incluya mayuscula 'A,B' .. "
+                        "y algun caracter especial '@,-...'",
+                        context);
+                  }
                 } catch (e) {
                   debugPrint('Error: $e');
                 }
@@ -107,5 +130,17 @@ class SingupButton extends StatelessWidget {
                 fontSize: 18, color: Colors.white, fontFamily: 'Roboto')),
       ),
     );
+  }
+}
+
+// regular expression to check if string
+RegExp pass_valid = RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)");
+//A function that validate user entered password
+bool validatePassword(String pass) {
+  String _password = pass.trim();
+  if (pass_valid.hasMatch(_password)) {
+    return true;
+  } else {
+    return false;
   }
 }

@@ -127,7 +127,6 @@ class _LoginViewState extends State<LoginView> {
         onChanged: (bool? value) {
           setState(() {
             savedSession = value!;
-            print(savedSession);
           });
         });
   }
