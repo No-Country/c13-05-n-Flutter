@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bank/infrastructure/helpers/helpers.dart';
+import 'package:multi_bank/infrastructure/modules/login/login_bloc/login_bloc.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/views.dart';
@@ -8,6 +10,7 @@ import 'package:multi_bank/repositories/app_repository.dart';
 class LoginBottom extends StatelessWidget {
   const LoginBottom({
     super.key,
+    required this.savedSession,
     required this.loginCubit,
     required this.user,
     required this.email,
@@ -15,6 +18,7 @@ class LoginBottom extends StatelessWidget {
     required this.messageButton,
   });
 
+  final bool savedSession;
   final LoginCubit loginCubit;
   final UserModel? user;
   final Email email;
@@ -23,6 +27,13 @@ class LoginBottom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (BuildContext context) => LoginBloc(user),
+      child: Builder(builder: (context) => _buildView(context)),
+    );
+  }
+
+  Widget _buildView(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
@@ -39,14 +50,8 @@ class LoginBottom extends StatelessWidget {
         onPressed: loginCubit.state.isValid == false
             ? null
             : () {
-                try {
-                  AppRepository(user: user).singInWithEmailPassword(
-                      email: email.value,
-                      password: password.value,
-                      context: context);
-                } catch (e) {
-                  debugPrint('Error: $e');
-                }
+                BlocProvider.of<LoginBloc>(context).add(Login(
+                    user, savedSession, email.value, password.value, context));
               },
         child: Text(messageButton,
             style: const TextStyle(

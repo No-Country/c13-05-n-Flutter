@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/card_model.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 
 class CardView extends StatelessWidget {
-  const CardView({super.key});
+  CardView({super.key, required this.card});
+  CardModel card;
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class CardView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Cards Screen'),
       ),
-      body: const CardsActive(),
+      // body:  CardsActive(),
     );
   }
 }

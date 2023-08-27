@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/card_model.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
+
+import '../../../models/user_models.dart';
 
 class CardsView extends StatefulWidget {
   static const name = 'menu';
-  const CardsView({super.key});
+  const CardsView({super.key, this.user});
+  final UserModel? user;
 
   @override
-  State<CardsView> createState() => _CardsViewState();
+  State<CardsView> createState() => _CardsViewState(user);
 }
 
 class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
+  final UserModel? user;
   final color = [
     Colors.red,
     Colors.green,
@@ -18,6 +23,9 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
     Colors.purple,
   ];
   int currentIndex = 0;
+
+  _CardsViewState(this.user);
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -36,8 +44,35 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                 padEnds: false,
                 pageSnapping: false,
                 physics: const BouncingScrollPhysics(),
-                itemCount: color.length,
+                itemCount: user?.products.length,
                 itemBuilder: ((context, index) {
+                  var product = user?.products[index];
+
+                  CardModel cardData() {
+                    if (product["product_type"] == "visaCard" ||
+                        product["product_type"] == "MasterCard") {
+                      return CardModel(
+                        product["product_name"],
+                        product["balance"],
+                        product["status"],
+                        product["product_type"],
+                        product["product_number"],
+                        product["expirationDate"],
+                        "",
+                      );
+                    } else {
+                      return CardModel(
+                        product["product_name"],
+                        product["balance"],
+                        product["status"],
+                        product["product_type"],
+                        product["product_number"],
+                        product["openDate"],
+                        "",
+                      );
+                    }
+                  }
+
                   return Container(
                     margin: const EdgeInsets.all(8),
                     clipBehavior: Clip.antiAlias,
@@ -46,7 +81,10 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                       // shape: BoxShape.circle,
                       color: color[index],
                     ),
-                    child: const CardsActive(),
+                    child: CardsActive(
+                      cardData: cardData(),
+                      owner: user?.name,
+                    ),
                   );
                 }))),
         TabPageSelector(

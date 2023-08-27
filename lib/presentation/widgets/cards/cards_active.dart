@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/card_model.dart';
 
 class CardsActive extends StatelessWidget {
-  const CardsActive({
-    super.key,
-  });
+  CardsActive({super.key, required this.cardData, this.owner});
+
+  dynamic cardData;
+  String? owner;
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +54,9 @@ class CardsActive extends StatelessWidget {
                     //   child: IconButton(
                     //       onPressed: () {}, icon: const Icon(Icons.abc)),
                     // ),
-                    const Text(
-                      '4111-xxxx-xxxx-1445',
-                      style: TextStyle(
+                    Text(
+                      '${cardData?.productNumber}',
+                      style: const TextStyle(
                           color: Colors.white,
                           fontFamily: "monospace",
                           fontSize: 15),
@@ -62,42 +64,49 @@ class CardsActive extends StatelessWidget {
                     const SizedBox(height: 5),
                     Row(
                       children: [
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("EXPIRE",
-                                style: TextStyle(
+                            Text(
+                                cardData.productType == "visaCard" ||
+                                        cardData.productType == "MasterCard"
+                                    ? "EXPIRE"
+                                    : "Fecha de apertura",
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontFamily: "monospace",
                                     fontSize: 9)),
-                            SizedBox(height: 5),
-                            Text("11/29",
-                                style: TextStyle(
+                            const SizedBox(height: 5),
+                            Text('${cardData?.expirationDate}',
+                                style: const TextStyle(
                                     color: Colors.white,
                                     fontFamily: "monospace")),
                           ],
                         ),
                         Container(width: 20),
-                        const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("CVV",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "monospace",
-                                    fontSize: 9)),
-                            SizedBox(height: 5),
-                            Text("568",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: "monospace")),
-                          ],
-                        ),
+                        cardData.productType == "visaCard" ||
+                                cardData.productType == "MasterCard"
+                            ? const Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("CVV",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: "monospace",
+                                          fontSize: 9)),
+                                  SizedBox(height: 5),
+                                  Text("568",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontFamily: "monospace")),
+                                ],
+                              )
+                            : Container(),
                       ],
                     ),
                     const SizedBox(height: 5),
-                    const Text("mi nombre",
-                        style: TextStyle(
+                    Text(owner!,
+                        style: const TextStyle(
                             color: Colors.white, fontFamily: "monospace")),
                   ],
                 ),

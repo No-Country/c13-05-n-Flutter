@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_bank/presentation/views/splash_view/splash_view.dart';
 import 'config/routes/app_router.dart';
 // import 'package:multi_bank/repositories/app_repository.dart';
 
@@ -22,7 +23,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UserModel user;
-    return MaterialApp.router(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme().getTheme(),
+      home: SplashView(),
+    );
+
+    MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
       theme: AppTheme().getTheme(),

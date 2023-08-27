@@ -1,12 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_bank/apis/api_rest.dart';
-import 'package:go_router/go_router.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
-
 import '../presentation/views/home_view/main_view.dart';
 import '../models/user_models.dart';
+import '../presentation/widgets/modals/alert.dart';
+import 'package:localstorage/localstorage.dart';
 
 class AppRepository {
   final UserModel? user;
@@ -24,54 +25,39 @@ class AppRepository {
   Stream<User?> get authStateChange => _firebaseAuth.authStateChanges();
 
   Future<void> singInWithEmailPassword({
+    required bool savedSession,
     required String email,
     required String password,
     required context,
   }) async {
     UserModel user = await getUser(email);
+
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-
       if (currentUser != null) {
         print("Logged in: $currentUser");
-
         if (currentUser?.emailVerified == true) {
-          Navigator.of(context).push(MaterialPageRoute(
+          savedSession ? setUserLocalStorage(email, password) : null;
+          Navigator.of(context).push(
+            MaterialPageRoute(
               builder: (context) => MainView(
-                    userEmail: currentUser?.email,
-                    user: user,
-                  )));
-        } else {
-          showModalBottomSheet<void>(
-            context: context,
-            builder: (BuildContext context) {
-              return SizedBox(
-                height: 200,
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const Text('Por favor verifique su email'),
-                      ElevatedButton(
-                        child: const Text('Cerrar'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
+                userEmail: currentUser?.email,
+                user: user,
+              ),
+            ),
           );
+        } else {
+          Alert.runAlert('Por favor verifique su email', context);
         }
       }
     } catch (err) {
-      print(err);
+      if (kDebugMode) {
+        print("Catcher error: $err");
+        Alert.runAlert('Por favor revise su email o contraseña', context);
+      }
     }
   }
 
@@ -87,12 +73,23 @@ class AppRepository {
   }
 
   Future<void> singOut(context) async {
+    final LocalStorage storage = LocalStorage('bank_app.json');
+    storage.clear();
     await _firebaseAuth.signOut();
     print("Logged out");
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => LoginView(
-              user: user,
-            )));
+      builder: (context) => LoginView(
+        user: user,
+      ),
+    ));
+  }
+
+  void setUserLocalStorage(String email, String password) {
+    final LocalStorage storage = LocalStorage('bank_app.json');
+
+    storage.setItem("user", {"email": email, "password": password});
+
+    storage.getItem('user');
   }
 }
 

@@ -18,9 +18,10 @@ class MainView extends StatelessWidget {
           title: TextButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProfileView(
-                        user: user!,
-                      )));
+                builder: (context) => ProfileView(
+                  user: user!,
+                ),
+              ));
             },
             child: Text("Hola, ${user?.name}"),
           ),
@@ -30,7 +31,7 @@ class MainView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const CardsView(),
+              CardsView(user: user),
               // const Text("Main page"),
               const MenuView(),
               const Placeholder(fallbackHeight: 200),

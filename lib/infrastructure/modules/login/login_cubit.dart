@@ -8,6 +8,7 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginFormState> {
   LoginCubit() : super(const LoginFormState());
 
+  void onFirstRunning() {}
   void onSubmit() {
     emit(state.copyWith(
         formStatus: FormStatus.validating,
