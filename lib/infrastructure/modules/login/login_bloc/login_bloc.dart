@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localstorage/localstorage.dart';
 
 import '../../../../models/user_models.dart';
-import '../../../../presentation/views/home_view/main_view.dart';
 import '../../../../repositories/app_repository.dart';
 
 part 'login_event.dart';

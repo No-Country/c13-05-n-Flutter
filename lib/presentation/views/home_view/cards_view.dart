@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/card_model.dart';
+import 'package:multi_bank/presentation/views/activities_view/activities_view.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 
 import '../../../models/user_models.dart';
@@ -59,6 +60,7 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                         product["product_number"],
                         product["expirationDate"],
                         "",
+                        product["activities"],
                       );
                     } else {
                       return CardModel(
@@ -69,6 +71,7 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                         product["product_number"],
                         product["openDate"],
                         "",
+                        product["activities"],
                       );
                     }
                   }

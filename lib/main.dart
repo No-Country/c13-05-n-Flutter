@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bank/presentation/views/splash_view/splash_view.dart';
 import 'config/routes/app_router.dart';
 // import 'package:multi_bank/repositories/app_repository.dart';
 
 import 'config/theme/app_theme.dart';
-import 'package:multi_bank/presentation/views/views.dart';
-import 'infrastructure/modules/login/login_cubit.dart';
 import 'models/user_models.dart';
 // import 'presentation/views/card_view/card_view.dart';
 
@@ -26,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme().getTheme(),
-      home: SplashView(),
+      home: const SplashView(),
     );
 
     MaterialApp.router(

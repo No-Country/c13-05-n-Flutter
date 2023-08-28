@@ -6,9 +6,18 @@ class CardModel {
   final int productNumber;
   final String expirationDate;
   final String openDate;
+  final List<dynamic> activities;
 
-  CardModel(this.productName, this.balance, this.status, this.productType,
-      this.productNumber, this.expirationDate, this.openDate);
+  CardModel(
+    this.productName,
+    this.balance,
+    this.status,
+    this.productType,
+    this.productNumber,
+    this.expirationDate,
+    this.openDate,
+    this.activities,
+  );
 
   factory CardModel.fromJson(Map<String, dynamic> json) {
     return CardModel(
@@ -19,6 +28,7 @@ class CardModel {
       json['productNumber'],
       json['expirationDate'] ?? "",
       json['openDate'] ?? "",
+      json["activities"] ?? [],
     );
   }
 }

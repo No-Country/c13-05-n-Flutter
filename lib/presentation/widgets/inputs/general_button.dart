@@ -4,7 +4,6 @@ import 'package:multi_bank/infrastructure/helpers/helpers.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_bloc/login_bloc.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
-import 'package:multi_bank/presentation/views/views.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
 import '../modals/alert.dart';
@@ -137,8 +136,8 @@ class SingupButton extends StatelessWidget {
 RegExp pass_valid = RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)");
 //A function that validate user entered password
 bool validatePassword(String pass) {
-  String _password = pass.trim();
-  if (pass_valid.hasMatch(_password)) {
+  String password = pass.trim();
+  if (pass_valid.hasMatch(password)) {
     return true;
   } else {
     return false;

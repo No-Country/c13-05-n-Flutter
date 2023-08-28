@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'package:multi_bank/infrastructure/helpers/inputs/email.dart';
-import 'package:multi_bank/infrastructure/helpers/inputs/password.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
-import 'package:multi_bank/repositories/app_repository.dart';
 
 import '../../widgets/inputs/general_button.dart';
 
