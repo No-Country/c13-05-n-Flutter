@@ -43,8 +43,8 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
             height: 210,
             width: double.infinity,
             child: Swiper(
-                scale: 0.85,
-                viewportFraction: 0.8,
+                scale: 0.9,
+                viewportFraction: 0.9,
                 // autoplay: true,
                 // pagination: SwiperPagination(
                 //     margin: const EdgeInsets.only(top: 0),

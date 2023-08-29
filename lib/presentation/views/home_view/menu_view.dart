@@ -18,22 +18,22 @@ class _MenuViewState extends State<MenuView> {
     final width = MediaQuery.of(context).size.width;
     final containerWidth = width / 3;
     return SizedBox(
-        height: 200,
+        height: 100,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: GridView(
               physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, // Mostrar tres elementos por fila
+                crossAxisCount: 5, // Mostrar elementos por fila
                 mainAxisSpacing: 10, // Espacio vertical entre elementos
-                crossAxisSpacing: 10, // Espacio horizontal entre elementos
-                childAspectRatio: 1.5, // tamano del boton
+                // crossAxisSpacing: 10, // Espacio horizontal entre elementos
+                childAspectRatio: 1, // tamano del boton
               ),
               children: [
                 CustomMenu(
                   containerWidth: containerWidth,
-                  buttonName: 'personal info',
+                  buttonName: 'personal',
                   icono: Icons.abc,
                   route: const PersonalInfoView(),
                 ),
@@ -55,18 +55,12 @@ class _MenuViewState extends State<MenuView> {
                   icono: Icons.person_2_rounded,
                   route: ProfileView(user: user),
                 ),
-                //    CustomMenu(
-                //   containerWidth: containerWidth,
-                //   buttonName: '',
-                //   icono:  const Icon(Icons.abc),
-                //   route: const PersonalInfoView(),
-                // ),
-                //    CustomMenu(
-                //   containerWidth: containerWidth,
-                //   buttonName: '',
-                //   icono:  const Icon(Icons.abc),
-                //   route: const PersonalInfoView(),
-                // ),
+                CustomMenu(
+                  containerWidth: containerWidth,
+                  buttonName: 'mas',
+                  icono: Icons.telegram_rounded,
+                  route: const HelpView(),
+                ),
               ]
               // },
               ),
@@ -91,33 +85,45 @@ class CustomMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: containerWidth,
-      height: 20,
-      child: TextButton(
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(
-              const Color.fromARGB(255, 210, 227, 235)),
-        ),
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => route,
+      height: 150,
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: TextButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(
+                const Color.fromARGB(255, 210, 227, 235)),
+            shape: MaterialStateProperty.all<OutlinedBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                    10), // Ajusta el valor según tu preferencia
+              ),
             ),
-          );
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              icono,
-              size: 30,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => route,
+              ),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(2.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  icono,
+                  size: 30,
+                ),
+                Text(
+                  buttonName,
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 0.7,
+                ),
+              ],
             ),
-            Text(
-              buttonName,
-              textAlign: TextAlign.center,
-              textScaleFactor: 0.7,
-            ),
-          ],
+          ),
         ),
       ),
     );

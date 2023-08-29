@@ -30,7 +30,7 @@ class _CardsActiveState extends State<CardsActive> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 // elevation: ,
-                color: Colors.black,
+                color: Colors.grey,
                 child: Stack(fit: StackFit.expand, children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
