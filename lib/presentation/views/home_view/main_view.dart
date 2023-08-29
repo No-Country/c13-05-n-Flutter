@@ -7,7 +7,8 @@ import 'package:multi_bank/repositories/app_repository.dart';
 import 'cards_view.dart';
 
 class MainView extends StatelessWidget {
-  const MainView({super.key, required this.userEmail, this.user});
+  static const name = 'main';
+  const MainView({super.key, this.userEmail, this.user});
   final UserModel? user;
   final String? userEmail;
 
@@ -29,12 +30,11 @@ class MainView extends StatelessWidget {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CardsView(user: user),
-              // const Text("Main page"),
-              const MenuView(),
-              const Placeholder(fallbackHeight: 200),
+              MenuView(user: user),
+              const Placeholder(fallbackHeight: 150),
               ElevatedButton(
                   onPressed: () {
                     AppRepository().singOut(context);
@@ -43,20 +43,6 @@ class MainView extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: const CustomNavigationBar()
-        // BottomNavigationBar(
-        //   type: BottomNavigationBarType.fixed,
-        //   currentIndex: 0,
-        //   items: const [
-        //     BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(Icons.wallet_rounded), label: 'Actividad'),
-        //     BottomNavigationBarItem(
-        //         icon: Icon(Icons.supervised_user_circle_rounded),
-        //         label: 'Perfil'),
-        //     BottomNavigationBarItem(icon: Icon(Icons.abc), label: 'Balances'),
-        //   ],
-        // ),
-        );
+        bottomNavigationBar: const CustomNavigationBar());
   }
 }

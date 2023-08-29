@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HelpView extends StatelessWidget {
+  static const name = 'hepl';
   const HelpView({super.key});
 
   @override

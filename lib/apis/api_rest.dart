@@ -12,7 +12,7 @@ class ApiCalls {
       var jsonResponse = convert.jsonDecode(response.body);
       // var itemCount = jsonResponse['totalItems'];
       // print('Number of books about http: $itemCount.');
-      // print(jsonResponse);
+      print('esta es la respuesta exitosa: $jsonResponse');
       return jsonResponse;
     } else {
       print('Request failed with status: ${response.statusCode}.');
