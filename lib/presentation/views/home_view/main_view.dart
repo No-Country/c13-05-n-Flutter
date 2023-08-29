@@ -54,7 +54,7 @@ class MainView extends StatelessWidget {
                 ),
                 child: MaterialButton(
                   onPressed: () {},
-                  child: const Text('messageButton',
+                  child: const Text('+ Asociar un nuevo producto',
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,

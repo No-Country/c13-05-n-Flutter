@@ -62,6 +62,7 @@ class _LoginViewState extends State<LoginView> {
                       height: 25,
                     ),
                     CustomTextFormField(
+                      icon: Icons.mail_rounded,
                       label: 'Email:',
                       hint: 'ejemplo@mail.com',
                       onChanged: loginCubit.emailChanged,
