@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SettingsView extends StatelessWidget {
-  static const name = 'Setting';
+  static const name = 'settings';
   const SettingsView({super.key});
 
   @override

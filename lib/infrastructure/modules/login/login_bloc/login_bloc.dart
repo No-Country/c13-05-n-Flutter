@@ -33,7 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<void> _onFirstRunning(
-      LoginFirstRunningEvent event, Emitter<LoginState> cemit) async {
+      LoginFirstRunningEvent event, Emitter<LoginState> emit) async {
     final LocalStorage storage = LocalStorage('bank_app.json');
     var loggedUser = await storage.getItem('user');
     bool loggedIn = false;

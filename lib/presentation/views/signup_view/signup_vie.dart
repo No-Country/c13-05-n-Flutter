@@ -24,8 +24,6 @@ class SignupView extends StatelessWidget {
     final loginCubit = context.watch<LoginCubit>();
     final email = loginCubit.state.email;
     final password = loginCubit.state.password;
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: SafeArea(

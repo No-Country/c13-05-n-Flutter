@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PersonalInfoView extends StatelessWidget {
+  static const name = 'personal-info';
   const PersonalInfoView({super.key});
 
   @override

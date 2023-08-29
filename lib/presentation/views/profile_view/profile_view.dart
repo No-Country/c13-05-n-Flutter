@@ -3,7 +3,7 @@ import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/views.dart';
 
 class ProfileView extends StatelessWidget {
-  static const name = 'Perfil';
+  static const name = 'perfil';
   const ProfileView({super.key, required this.user});
   final UserModel? user;
   @override

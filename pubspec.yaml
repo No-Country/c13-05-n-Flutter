@@ -43,6 +43,8 @@ dependencies:
   go_router: ^10.1.0
   http: ^1.1.0
   localstorage: ^4.0.1+4
+  animate_do: ^3.0.2
+  card_swiper: ^3.0.1
 
 dev_dependencies:
   flutter_test:
