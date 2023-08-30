@@ -1,4 +1,4 @@
-export 'signup_view/signup_vie.dart';
+export 'register_view/register_view.dart';
 export 'help_view/help_view.dart';
 export 'home_view/menu_view.dart';
 export 'login_view/login_view.dart';

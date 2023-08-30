@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
+  final IconData? icon;
 
   const CustomTextFormField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextFormField extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.controller,
+    this.icon,
   });
 
   @override
@@ -31,7 +33,7 @@ class CustomTextFormField extends StatelessWidget {
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
-        prefixIcon: const Icon(Icons.mail_rounded, color: colorHint),
+        prefixIcon: Icon(icon, color: colorHint),
         enabledBorder: border,
         focusedBorder:
             border.copyWith(borderSide: BorderSide(color: color.primary)),

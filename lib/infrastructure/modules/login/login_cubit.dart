@@ -33,4 +33,10 @@ class LoginCubit extends Cubit<LoginFormState> {
     emit(state.copyWith(
         password: password, isValid: Formz.validate([password, state.email])));
   }
+
+  //   void pinChanged(String value) {
+  //   final pin = Pin.dirty(value);
+  //   emit(state.copyWith(
+  //       pin: pin, isValid: Formz.validate([pin, state.email, state.password])));
+  // }
 }
