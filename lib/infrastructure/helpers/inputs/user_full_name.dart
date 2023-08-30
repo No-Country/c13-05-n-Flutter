@@ -15,7 +15,7 @@ class Name extends FormzInput<String, NameError> {
     if (isValid || isPure) return null;
     if (displayError == NameError.empty) return 'El campo es requerido';
     if (displayError == NameError.length)
-      return 'Ingresa un nombre con mas de 4 letras';
+      return 'Ingresa un nombre con mas de 6 letras';
     return null;
   }
 
@@ -23,7 +23,7 @@ class Name extends FormzInput<String, NameError> {
   @override
   NameError? validator(String value) {
     if (value.isEmpty || value.trim().isEmpty) return NameError.empty;
-    if (value.length < 4) return NameError.length;
+    if (value.length < 6) return NameError.length;
 
     return null;
   }

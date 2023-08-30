@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:multi_bank/infrastructure/helpers/helpers.dart';
-import 'package:multi_bank/infrastructure/helpers/inputs/pin.dart';
 
 part 'login_state.dart';
 

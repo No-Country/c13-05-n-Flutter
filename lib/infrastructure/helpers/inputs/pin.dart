@@ -13,7 +13,7 @@ class Pin extends FormzInput<String, PinError> {
 
   String? get errorMessage {
     if (isValid || isPure) return null;
-    if (displayError == PinError.empty) return 'El campo es requerido';
+    if (displayError == PinError.empty) return 'Este campo es requerido';
     if (displayError == PinError.length) return 'Ingresa cuatro numeros';
     return null;
   }
@@ -22,7 +22,7 @@ class Pin extends FormzInput<String, PinError> {
   @override
   PinError? validator(String value) {
     if (value.isEmpty || value.trim().isEmpty) return PinError.empty;
-    if (value.length == 4) return PinError.length;
+    if (value.toString().length < 3 && value.length > 5) return PinError.length;
 
     return null;
   }

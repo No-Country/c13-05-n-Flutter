@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 class ApiCalls {
-  String apiHeader = "blue-green-catfish-cuff.cyclic.cloud";
+  String apiHeader = "blue-naughty-chimpanzee.cyclic.app";
   Future<List<dynamic>> getApiInformation() async {
     var url = Uri.https(apiHeader, '/api/customers', {'q': '{http}'});
 

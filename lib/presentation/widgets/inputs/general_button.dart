@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bank/infrastructure/helpers/helpers.dart';
+import 'package:multi_bank/infrastructure/helpers/inputs/pin.dart';
+import 'package:multi_bank/infrastructure/helpers/inputs/user_full_name.dart';
+import 'package:multi_bank/infrastructure/modules/cubit/register_cubit.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_bloc/login_bloc.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
@@ -77,17 +80,19 @@ class LoginBottom extends StatelessWidget {
 class SingupButton extends StatelessWidget {
   const SingupButton({
     super.key,
-    required this.loginCubit,
+    required this.registerCubit,
     required this.user,
     required this.email,
     required this.password,
     required this.messageButton,
+    required this.pin,
   });
 
-  final LoginCubit loginCubit;
-  final UserModel? user;
+  final RegisterCubit registerCubit;
+  final Name? user;
   final Email email;
   final Password password;
+  final Pin pin;
   final String messageButton;
 
   @override
@@ -99,17 +104,18 @@ class SingupButton extends StatelessWidget {
       height: height * 0.06,
       width: width * 0.95,
       decoration: BoxDecoration(
-        color: loginCubit.state.isValid ? const Color(0xFF113CB1) : Colors.grey,
+        color:
+            registerCubit.state.isValid ? const Color(0xFF113CB1) : Colors.grey,
         borderRadius: BorderRadius.circular(8),
       ),
       child: MaterialButton(
-        onPressed: loginCubit.state.isValid == false
+        onPressed: registerCubit.state.isValid == false
             ? null
             : () {
                 try {
                   if (validatePassword(password.value) &&
                       password.value.length >= 6) {
-                    AppRepository(user: user).createUserWithEmailPassword(
+                    AppRepository().createUserWithEmailPassword(
                       email: email.value,
                       password: password.value,
                     );

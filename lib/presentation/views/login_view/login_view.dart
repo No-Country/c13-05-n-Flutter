@@ -6,7 +6,7 @@ import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/widgets/inputs/general_button.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 
-import '../signup_view/signup_vie.dart';
+import '../register_view/register_view.dart';
 
 class LoginView extends StatefulWidget {
   static const name = 'login';
@@ -101,8 +101,7 @@ class _LoginViewState extends State<LoginView> {
                     TextButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  SignupView(user: widget.user)));
+                              builder: (context) => const RegisterView()));
                         },
                         child: const Text(
                             "No tienes cuenta? Click aca para crear una"))
