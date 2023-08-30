@@ -15,6 +15,9 @@ class RegisterCubit extends Cubit<RegisterFormState> {
     emit(state.copyWith(
         formStatus: FormStatus.validating,
         username: Name.dirty(state.username.value),
+        address: Address.dirty(state.address.value),
+        age: Age.dirty(state.age.value),
+        phone: Phone.dirty(state.phone.value),
         password: Password.dirty(state.password.value),
         email: Email.dirty(state.email.value),
         pin: Pin.dirty(state.pin.value),
@@ -22,6 +25,9 @@ class RegisterCubit extends Cubit<RegisterFormState> {
           state.username,
           state.password,
           state.email,
+          state.age,
+          state.address,
+          state.phone,
           state.pin,
         ])));
 
@@ -32,31 +38,59 @@ class RegisterCubit extends Cubit<RegisterFormState> {
     final username = Name.dirty(value);
     emit(state.copyWith(
         username: username,
-        isValid: Formz.validate(
-            [username, state.password, state.email, state.pin])));
+        isValid: Formz.validate([
+          username,
+          state.password,
+          state.email,
+          state.age,
+          state.address,
+          state.phone,
+          state.pin,
+        ])));
   }
 
   void emailChanged(String value) {
     final email = Email.dirty(value);
     emit(state.copyWith(
         email: email,
-        isValid: Formz.validate(
-            [email, state.password, state.username, state.pin])));
+        isValid: Formz.validate([
+          email,
+          state.username,
+          state.password,
+          state.age,
+          state.address,
+          state.phone,
+          state.pin,
+        ])));
   }
 
   void passwordChanged(String value) {
     final password = Password.dirty(value);
     emit(state.copyWith(
         password: password,
-        isValid: Formz.validate(
-            [password, state.username, state.email, state.pin])));
+        isValid: Formz.validate([
+          password,
+          state.username,
+          state.email,
+          state.age,
+          state.address,
+          state.phone,
+          state.pin,
+        ])));
   }
 
   void pinChanged(String value) {
     final pin = Pin.dirty(value);
     emit(state.copyWith(
         pin: pin,
-        isValid: Formz.validate(
-            [pin, state.password, state.username, state.email])));
+        isValid: Formz.validate([
+          pin,
+          state.password,
+          state.email,
+          state.age,
+          state.address,
+          state.phone,
+          state.username,
+        ])));
   }
 }

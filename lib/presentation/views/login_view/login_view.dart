@@ -63,7 +63,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     CustomTextFormField(
                       icon: Icons.mail_rounded,
-                      label: 'Email:',
+                      // label: 'Email:',
                       hint: 'ejemplo@mail.com',
                       onChanged: loginCubit.emailChanged,
                       errorMessage: email.errorMessage,
@@ -71,8 +71,9 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(
                       height: 20,
                     ),
+                    Text('Password:'),
                     PasswordTextFormField(
-                      label: 'Password:',
+                      // label: 'Password:',
                       hint: 'Ingresa tu contraseña',
                       onChanged: loginCubit.passwordChanged,
                       errorMessage: password.errorMessage,
