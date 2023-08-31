@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_bank/apis/api_rest.dart';
+import 'package:multi_bank/models/card_model.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 import '../presentation/views/home_view/main_view.dart';
 import '../models/user_models.dart';
@@ -31,7 +32,7 @@ class AppRepository {
     required context,
   }) async {
     UserModel user = await getUser(email);
-
+    List<CardModel> productsList = await productList(user.id);
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
@@ -46,6 +47,7 @@ class AppRepository {
               builder: (context) => MainView(
                 userEmail: currentUser?.email,
                 user: user,
+                productList: productsList,
               ),
             ),
           );
@@ -91,6 +93,28 @@ class AppRepository {
 
     storage.getItem('user');
   }
+}
+
+Future<List<CardModel>> productList(String customerId) async{
+  List<CardModel> products = [];
+
+  var productsData = await ApiCalls().getProductList(customerId);
+
+  for(var product in productsData){
+
+    products.add(
+        CardModel(
+          product["_id"],
+            product["product_name"],
+            product["balance"],
+            product["status"],
+            product["product_type"],
+            product["product_number"],
+            product["expirationDate"],
+            product["activities"],
+        ));
+  }
+  return products;
 }
 
 Future<UserModel> getUser(String userEmail) async {

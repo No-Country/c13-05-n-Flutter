@@ -8,18 +8,22 @@ import '../../../models/user_models.dart';
 
 class CardsView extends StatefulWidget {
   static const name = 'menu';
-  const CardsView({super.key, this.user});
+  const CardsView({super.key, this.user, this.productList});
   final UserModel? user;
+  final List<CardModel>? productList;
 
   @override
-  State<CardsView> createState() => _CardsViewState(user);
+  State<CardsView> createState() => _CardsViewState(user, productList);
 }
 
 class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
+  _CardsViewState(this.user, this.productList);
+
   final UserModel? user;
+  final List<CardModel>? productList;
   int currentIndex = 0;
 
-  _CardsViewState(this.user);
+
 
   @override
   Widget build(BuildContext context) {
@@ -52,36 +56,11 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                 //         activeColor: colors.primary,
                 //         color: colors.secondary,
                 //         space: 2.0)),
-                itemCount: user!.products.length,
+                itemCount: productList!.length,
                 itemBuilder: ((context, index) {
-                  var product = user?.products[index];
+                  CardModel product = productList![index];
 
-                  CardModel cardData() {
-                    if (product["product_type"] == "visaCard" ||
-                        product["product_type"] == "MasterCard") {
-                      return CardModel(
-                        product["product_name"],
-                        product["balance"],
-                        product["status"],
-                        product["product_type"],
-                        product["product_number"],
-                        product["expirationDate"],
-                        "",
-                        product["activities"],
-                      );
-                    } else {
-                      return CardModel(
-                        product["product_name"],
-                        product["balance"],
-                        product["status"],
-                        product["product_type"],
-                        product["product_number"],
-                        product["openDate"],
-                        "",
-                        product["activities"],
-                      );
-                    }
-                  }
+
 
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -98,7 +77,7 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: CardsActive(
-                        cardData: cardData(),
+                        cardData: product,
                         owner: user?.name,
                       ),
                     ),

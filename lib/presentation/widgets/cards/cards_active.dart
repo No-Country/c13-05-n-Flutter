@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/card_model.dart';
 
 import '../../views/activities_view/activities_view.dart';
 
 class CardsActive extends StatefulWidget {
   CardsActive({super.key, required this.cardData, this.owner});
 
-  dynamic cardData;
+  CardModel cardData;
   String? owner;
 
   @override
@@ -47,8 +48,10 @@ class _CardsActiveState extends State<CardsActive> {
                             },
                             child: Row(
                               children: [
+                                const Text("Balance:"),
+                                const SizedBox(width: 10),
                                 Text(showBalance
-                                    ? '${widget.cardData?.balance}'
+                                    ? '\$${widget.cardData?.balance}'
                                     : 'X X X X'),
                                 const SizedBox(
                                   width: 30,
@@ -64,7 +67,7 @@ class _CardsActiveState extends State<CardsActive> {
                         ),
                         const SizedBox(height: 30),
                         Text(
-                          insertDashesInNumber(widget.cardData?.productNumber),
+                          insertDashesInNumber(widget.cardData!.productNumber),
                           style: const TextStyle(
                               color: Colors.white,
                               fontFamily: "monospace",
