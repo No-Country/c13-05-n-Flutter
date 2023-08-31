@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../models/activities_model.dart';
+import '../../../widgets/modals/payment_bill.dart';
 
 enum PaymentFilter { QR, MasterCard, visaCard }
 
@@ -141,41 +142,48 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                       return SizedBox(
                         width: 286,
                         height: 50,
-                        child: Card(
-                          surfaceTintColor: Colors.white,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.shopping_bag_rounded,
-                                      color: Color(0xff323232),
-                                      size: 26,
-                                    ),
-                                    const SizedBox(width: 20),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(singleActivity!.transactionType),
-                                        Text(singleActivity.paymentName),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(width: 50),
-                                Column(
-                                  children: [
-                                    Text(singleActivity.amount),
-                                    Text(singleActivity.paymentDate),
-                                  ],
-                                )
-                              ],
+                        child: InkWell(
+                          onTap: () {
+                            PaymentBill.showBill(
+                                context, widget.allActivities![index]);
+                          },
+                          child: Card(
+                            surfaceTintColor: Colors.white,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.shopping_bag_rounded,
+                                        color: Color(0xff323232),
+                                        size: 26,
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(singleActivity!.transactionType),
+                                          Text(singleActivity.paymentName),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Column(
+                                    children: [
+                                      Text(singleActivity.amount),
+                                      Text(singleActivity.paymentDate),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -215,48 +223,54 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                             SizedBox(
                               width: 400,
                               height: 50,
-                              child: Card(
-                                surfaceTintColor: Colors.white,
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.zero),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 8, right: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.shopping_bag_rounded,
-                                            color: Color(0xff323232),
-                                            size: 26,
-                                          ),
-                                          const SizedBox(width: 20),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(singleActivity
-                                                      ?.transactionType ??
-                                                  ""),
-                                              Text(
-                                                  singleActivity?.paymentName ??
-                                                      ""),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 50),
-                                      Column(
-                                        children: [
-                                          Text(singleActivity?.amount ?? ""),
-                                          Text(singleActivity?.paymentDate ??
-                                              ""),
-                                        ],
-                                      )
-                                    ],
+                              child: InkWell(
+                                onTap: () {
+                                  PaymentBill.showBill(
+                                      context, widget.allActivities![index]);
+                                },
+                                child: Card(
+                                  surfaceTintColor: Colors.white,
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.shopping_bag_rounded,
+                                              color: Color(0xff323232),
+                                              size: 26,
+                                            ),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(singleActivity
+                                                        ?.transactionType ??
+                                                    ""),
+                                                Text(singleActivity
+                                                        ?.paymentName ??
+                                                    ""),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(width: 50),
+                                        Column(
+                                          children: [
+                                            Text(singleActivity?.amount ?? ""),
+                                            Text(singleActivity?.paymentDate ??
+                                                ""),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -264,48 +278,54 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                             SizedBox(
                               width: 400,
                               height: 50,
-                              child: Card(
-                                surfaceTintColor: Colors.white,
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.zero),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 8, right: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.shopping_bag_rounded,
-                                            color: Color(0xff323232),
-                                            size: 26,
-                                          ),
-                                          const SizedBox(width: 20),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(singleActivity
-                                                      ?.transactionType ??
-                                                  ""),
-                                              Text(
-                                                  singleActivity?.paymentName ??
-                                                      ""),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 50),
-                                      Column(
-                                        children: [
-                                          Text(singleActivity?.amount ?? ""),
-                                          Text(singleActivity?.paymentDate ??
-                                              ""),
-                                        ],
-                                      )
-                                    ],
+                              child: InkWell(
+                                onTap: () {
+                                  PaymentBill.showBill(
+                                      context, widget.allActivities![index]);
+                                },
+                                child: Card(
+                                  surfaceTintColor: Colors.white,
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.shopping_bag_rounded,
+                                              color: Color(0xff323232),
+                                              size: 26,
+                                            ),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(singleActivity
+                                                        ?.transactionType ??
+                                                    ""),
+                                                Text(singleActivity
+                                                        ?.paymentName ??
+                                                    ""),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(width: 50),
+                                        Column(
+                                          children: [
+                                            Text(singleActivity?.amount ?? ""),
+                                            Text(singleActivity?.paymentDate ??
+                                                ""),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -313,48 +333,54 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                             SizedBox(
                               width: 400,
                               height: 50,
-                              child: Card(
-                                surfaceTintColor: Colors.white,
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.zero),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 8, right: 8),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          const Icon(
-                                            Icons.shopping_bag_rounded,
-                                            color: Color(0xff323232),
-                                            size: 26,
-                                          ),
-                                          const SizedBox(width: 20),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(singleActivity
-                                                      ?.transactionType ??
-                                                  ""),
-                                              Text(
-                                                  singleActivity?.paymentName ??
-                                                      ""),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(width: 50),
-                                      Column(
-                                        children: [
-                                          Text(singleActivity?.amount ?? ""),
-                                          Text(singleActivity?.paymentDate ??
-                                              ""),
-                                        ],
-                                      )
-                                    ],
+                              child: InkWell(
+                                onTap: () {
+                                  PaymentBill.showBill(
+                                      context, widget.allActivities![index]);
+                                },
+                                child: Card(
+                                  surfaceTintColor: Colors.white,
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.zero),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.shopping_bag_rounded,
+                                              color: Color(0xff323232),
+                                              size: 26,
+                                            ),
+                                            const SizedBox(width: 20),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(singleActivity
+                                                        ?.transactionType ??
+                                                    ""),
+                                                Text(singleActivity
+                                                        ?.paymentName ??
+                                                    ""),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(width: 50),
+                                        Column(
+                                          children: [
+                                            Text(singleActivity?.amount ?? ""),
+                                            Text(singleActivity?.paymentDate ??
+                                                ""),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/activities_model.dart';
 
+import '../../widgets/modals/payment_bill.dart';
+
 class ActivitiesView extends StatelessWidget {
   ActivitiesView(this.activities, this.cardData, {super.key});
 
@@ -42,6 +44,7 @@ class NewActivities extends StatelessWidget {
             children: [
               Text("Numero de producto: ${cardData?.productNumber}"),
               Text("Balance actual: \$${cardData?.balance}"),
+              const SizedBox(height: 20),
               const Text("Actividades"),
               const SizedBox(height: 20),
               Container(
@@ -66,41 +69,47 @@ class NewActivities extends StatelessWidget {
                       return SizedBox(
                         width: 286,
                         height: 50,
-                        child: Card(
-                          surfaceTintColor: Colors.white,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero),
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 8, right: 8),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Icon(
-                                      Icons.shopping_bag_rounded,
-                                      color: Color(0xff323232),
-                                      size: 26,
-                                    ),
-                                    const SizedBox(width: 20),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(activity.transactionType),
-                                        Text(activity.paymentName),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(width: 50),
-                                Column(
-                                  children: [
-                                    Text(activity.amount),
-                                    Text(activity.paymentDate),
-                                  ],
-                                )
-                              ],
+                        child: InkWell(
+                          onTap: () {
+                            PaymentBill.showBill(context, singleActivity);
+                          },
+                          child: Card(
+                            surfaceTintColor: Colors.white,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.zero),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.shopping_bag_rounded,
+                                        color: Color(0xff323232),
+                                        size: 26,
+                                      ),
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(activity.transactionType),
+                                          Text(activity.paymentName),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(width: 50),
+                                  Column(
+                                    children: [
+                                      Text(activity.amount),
+                                      Text(activity.paymentDate),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
