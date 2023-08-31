@@ -38,6 +38,7 @@ class _MainViewState extends State<MainView> {
       GeneralActivitiesView(
         allActivities: widget.allActivities,
       ),
+      ProfileView(user: widget.user)
     ];
 
     return Scaffold(
