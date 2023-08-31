@@ -1,78 +1,73 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_bank/models/activities_model.dart';
-import 'package:multi_bank/models/user_models.dart';
-import 'package:multi_bank/presentation/views/add_product_view/add_product_view.dart';
-import 'package:multi_bank/presentation/views/views.dart';
-import 'package:multi_bank/presentation/widgets/widgets.dart';
-import 'package:multi_bank/repositories/app_repository.dart';
-import 'package:multi_bank/models/card_model.dart';
-import 'cards_view.dart';
+import 'package:multi_bank/presentation/views/home_view/sub_screens/general_activities_view.dart';
+import 'package:multi_bank/presentation/views/home_view/sub_screens/home_tab_view.dart';
 
-class MainView extends StatelessWidget {
-  static const name = 'main';
-  const MainView({super.key, this.userEmail, this.user, this.activities,this.productList});
+import '../../../models/card_model.dart';
+import '../../../models/user_models.dart';
+import '../profile_view/profile_view.dart';
+import '../settings_view/settings_view.dart';
+
+class MainView extends StatefulWidget {
+  const MainView({super.key, this.user, this.productList});
+
   final UserModel? user;
-  final String? userEmail;
-  final ActivitiesModel? activities;
   final List<CardModel>? productList;
 
   @override
+  State<MainView> createState() => _MainViewState();
+}
+
+class _MainViewState extends State<MainView> {
+  int currentIndex = 0;
+  void onItemTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final List<Widget> mainTabs = [
+      HomeTabView(
+        user: widget.user,
+        productList: widget.productList,
+      ),
+      const GeneralActivitiesView(),
+    ];
+
     return Scaffold(
-        appBar: AppBar(
-          title: TextButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ProfileView(
-                  user: user!,
-                ),
-              ));
-            },
-            child: Text("Hola, ${user?.name}"),
+      body: mainTabs.elementAt(currentIndex),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color(0xff8F0000),
+        currentIndex: currentIndex,
+        onTap: onItemTapped,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_filled,
+            ),
+            label: 'Home',
           ),
-          actions: [
-            ElevatedButton(
-                onPressed: () {
-                  AppRepository().singOut(context);
-                },
-                child: const Text("Logout")),
-          ],
-          automaticallyImplyLeading: false,
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CardsView(
-                user: user,
-                productList: productList,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const AddProductView(),
-                      ),
-                    );
-                  },
-                  child: const Text('+ Asociar un nuevo producto',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontFamily: 'Roboto')),
-              ),
-              MenuView(user: user),
-              // ActivitiesView(user?.products, activities),
-              // ElevatedButton(
-              //     onPressed: () {
-              //       AppRepository().singOut(context);
-              //     },
-              //     child: const Text("Logout")),
-            ],
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.wallet_rounded,
+            ),
+            label: 'Actividad',
           ),
-        ),
-        bottomNavigationBar: const CustomNavigationBar());
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.supervised_user_circle_rounded,
+            ),
+            label: ProfileView.name,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.abc),
+            label: SettingsView.name,
+          ),
+        ],
+      ),
+    );
   }
 }

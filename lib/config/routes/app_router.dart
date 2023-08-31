@@ -2,7 +2,7 @@
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:go_router/go_router.dart';
 // import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
-// import 'package:multi_bank/presentation/views/home_view/main_view.dart';
+// import 'package:multi_bank/presentation/views/home_view/home_tab_view.dart';
 // import 'package:multi_bank/presentation/views/views.dart';
 
 // BlocProvider<LoginCubit> createLoginCubit(BuildContext context) {

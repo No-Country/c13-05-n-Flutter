@@ -1,16 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/presentation/views/views.dart';
 
-class CustomNavigationBar extends StatelessWidget {
+import '../../views/home_view/sub_screens/home_tab_view.dart';
+import '../../views/home_view/sub_screens/general_activities_view.dart';
+
+class CustomNavigationBar extends StatefulWidget {
   const CustomNavigationBar({
     super.key,
   });
 
   @override
+  State<CustomNavigationBar> createState() => _CustomNavigationBarState();
+}
+
+class _CustomNavigationBarState extends State<CustomNavigationBar> {
+  int currentIndex = 0;
+  static const List<Widget> mainTabs = [
+    HomeTabView(),
+    GeneralActivitiesView(),
+  ];
+
+  void onItemTapped(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      currentIndex: 0,
+      selectedItemColor: const Color(0xff8F0000),
+      currentIndex: currentIndex,
+      onTap: onItemTapped,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
         BottomNavigationBarItem(

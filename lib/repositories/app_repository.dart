@@ -6,6 +6,7 @@ import 'package:multi_bank/apis/api_rest.dart';
 import 'package:multi_bank/models/card_model.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 import '../presentation/views/home_view/main_view.dart';
+import '../presentation/views/home_view/sub_screens/home_tab_view.dart';
 import '../models/user_models.dart';
 import '../presentation/widgets/modals/alert.dart';
 import 'package:localstorage/localstorage.dart';
@@ -45,7 +46,6 @@ class AppRepository {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => MainView(
-                userEmail: currentUser?.email,
                 user: user,
                 productList: productsList,
               ),
@@ -95,24 +95,22 @@ class AppRepository {
   }
 }
 
-Future<List<CardModel>> productList(String customerId) async{
+Future<List<CardModel>> productList(String customerId) async {
   List<CardModel> products = [];
 
   var productsData = await ApiCalls().getProductList(customerId);
 
-  for(var product in productsData){
-
-    products.add(
-        CardModel(
-          product["_id"],
-            product["product_name"],
-            product["balance"],
-            product["status"],
-            product["product_type"],
-            product["product_number"],
-            product["expirationDate"],
-            product["activities"],
-        ));
+  for (var product in productsData) {
+    products.add(CardModel(
+      product["_id"],
+      product["product_name"],
+      product["balance"],
+      product["status"],
+      product["product_type"],
+      product["product_number"],
+      product["expirationDate"],
+      product["activities"],
+    ));
   }
   return products;
 }

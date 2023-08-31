@@ -4,7 +4,7 @@ import 'package:multi_bank/presentation/views/activities_view/activities_view.da
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:card_swiper/card_swiper.dart';
-import '../../../models/user_models.dart';
+import '../../../../models/user_models.dart';
 
 class CardsView extends StatefulWidget {
   static const name = 'menu';
@@ -22,8 +22,6 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
   final UserModel? user;
   final List<CardModel>? productList;
   int currentIndex = 0;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +57,6 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                 itemCount: productList!.length,
                 itemBuilder: ((context, index) {
                   CardModel product = productList![index];
-
-
 
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
