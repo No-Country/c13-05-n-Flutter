@@ -79,7 +79,7 @@ class NewActivities extends StatelessWidget {
                                   children: [
                                     const Icon(
                                       Icons.shopping_bag_rounded,
-                                      color: Colors.black45,
+                                      color: Color(0xff323232),
                                       size: 26,
                                     ),
                                     const SizedBox(width: 20),

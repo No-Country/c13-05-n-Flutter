@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_bank/apis/api_rest.dart';
+import 'package:multi_bank/models/activities_model.dart';
 import 'package:multi_bank/models/card_model.dart';
 import 'package:multi_bank/presentation/views/login_view/login_view.dart';
 import '../presentation/views/home_view/main_view.dart';
@@ -34,6 +35,23 @@ class AppRepository {
   }) async {
     UserModel user = await getUser(email);
     List<CardModel> productsList = await productList(user.id);
+
+    List<ActivitiesModel> allActivities = [];
+
+    for (var product in productsList) {
+      for (var activity in product.activities) {
+        allActivities.add(
+          ActivitiesModel(
+            activity["payment_name"],
+            activity["amount"],
+            activity["transaction_type"],
+            activity["product_numer"],
+            activity["payment_date"],
+          ),
+        );
+      }
+    }
+
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
@@ -48,6 +66,7 @@ class AppRepository {
               builder: (context) => MainView(
                 user: user,
                 productList: productsList,
+                allActivities: allActivities,
               ),
             ),
           );

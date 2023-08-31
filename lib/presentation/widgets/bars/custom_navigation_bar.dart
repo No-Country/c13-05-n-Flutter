@@ -15,10 +15,10 @@ class CustomNavigationBar extends StatefulWidget {
 
 class _CustomNavigationBarState extends State<CustomNavigationBar> {
   int currentIndex = 0;
-  static const List<Widget> mainTabs = [
-    HomeTabView(),
-    GeneralActivitiesView(),
-  ];
+  // static const List<Widget> mainTabs = [
+  //   HomeTabView(),
+  //   GeneralActivitiesView(),
+  // ];
 
   void onItemTapped(int index) {
     setState(() {

@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:multi_bank/presentation/views/home_view/sub_screens/general_activities_view.dart';
 import 'package:multi_bank/presentation/views/home_view/sub_screens/home_tab_view.dart';
 
+import '../../../models/activities_model.dart';
 import '../../../models/card_model.dart';
 import '../../../models/user_models.dart';
 import '../profile_view/profile_view.dart';
 import '../settings_view/settings_view.dart';
 
 class MainView extends StatefulWidget {
-  const MainView({super.key, this.user, this.productList});
+  const MainView({super.key, this.user, this.productList, this.allActivities});
 
   final UserModel? user;
   final List<CardModel>? productList;
+  final List<ActivitiesModel>? allActivities;
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -33,7 +35,9 @@ class _MainViewState extends State<MainView> {
         user: widget.user,
         productList: widget.productList,
       ),
-      const GeneralActivitiesView(),
+      GeneralActivitiesView(
+        allActivities: widget.allActivities,
+      ),
     ];
 
     return Scaffold(
