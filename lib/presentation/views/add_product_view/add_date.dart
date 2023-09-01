@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/presentation/views/add_product_view/add_name.dart';
 import 'package:multi_bank/presentation/views/add_product_view/add_person_id.dart';
 
-class AddProductView extends StatelessWidget {
-  const AddProductView({super.key});
+class AddDateView extends StatelessWidget {
+  const AddDateView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class AddProductView extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    "Numero de tarjeta",
+                    "vencimiento",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -54,6 +55,24 @@ class AddProductView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 30),
+
+                  const Text(
+                    "codigo de seguridad",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  // Note: Same code is applied for the TextFormField as well
+                  TextField(
+                    controller: controller,
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(width: 2, color: Colors.grey),
+                      ),
+                    ),
+                  ),
+
                   Container(
                     height: height * 0.06,
                     width: width * 0.95,
@@ -70,7 +89,7 @@ class AddProductView extends StatelessWidget {
                           ),
                         );
                       },
-                      child: const Text('+ Asociar un nuevo producto',
+                      child: const Text('Siguiente',
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,

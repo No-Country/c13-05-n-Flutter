@@ -35,17 +35,18 @@ class _MainViewState extends State<MainView> {
         user: widget.user,
         productList: widget.productList,
       ),
+      ProfileView(user: widget.user),
       GeneralActivitiesView(
         allActivities: widget.allActivities,
       ),
-      ProfileView(user: widget.user)
+      const SettingsView()
     ];
 
     return Scaffold(
       body: mainTabs.elementAt(currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: const Color(0xff8F0000),
+        // selectedItemColor: const Color(0xff8F0000),
         currentIndex: currentIndex,
         onTap: onItemTapped,
         items: const [
@@ -53,23 +54,23 @@ class _MainViewState extends State<MainView> {
             icon: Icon(
               Icons.home_filled,
             ),
-            label: 'Home',
+            label: 'Inicio',
           ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.wallet_rounded,
             ),
-            label: 'Actividad',
+            label: 'Billetera',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.supervised_user_circle_rounded,
+              Icons.trending_up_outlined,
             ),
-            label: ProfileView.name,
+            label: 'Actividad',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.abc),
-            label: SettingsView.name,
+            icon: Icon(Icons.menu),
+            label: 'Mas',
           ),
         ],
       ),

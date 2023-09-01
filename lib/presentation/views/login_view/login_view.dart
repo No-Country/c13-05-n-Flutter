@@ -61,6 +61,11 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(
                       height: 25,
                     ),
+                    const Text('Correo electronico',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        )),
                     CustomTextFormField(
                       icon: Icons.mail_rounded,
                       // label: 'Email:',
@@ -71,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Text('Password:'),
+                    const Text('Password'),
                     PasswordTextFormField(
                       // label: 'Password:',
                       hint: 'Ingresa tu contraseña',
@@ -91,7 +96,19 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     const SizedBox(height: 20),
                     CheckboxListTile(
-                      title: const Text('Guardar seion'),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: -10, vertical: 0),
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Recordarme', textAlign: TextAlign.start),
+                          TextButton(
+                            onPressed: () {},
+                            child: const Text('Forgot Password?'),
+                          ),
+                        ],
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
                       value: savedSession,
                       onChanged: (bool? value) {
                         setState(() {
@@ -99,13 +116,18 @@ class _LoginViewState extends State<LoginView> {
                         });
                       },
                     ),
-                    TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const RegisterView()));
-                        },
-                        child: const Text(
-                            "No tienes cuenta? Click aca para crear una"))
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('No tienes una cuenta? '),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const RegisterView()));
+                            },
+                            child: const Text("Registrate")),
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -67,47 +67,6 @@ class _MenuViewState extends State<MenuView> {
               },
             ),
           ),
-          // child: GridView(
-
-          //     padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-          //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //       crossAxisCount: 5, // Mostrar elementos por fila
-          //       mainAxisSpacing: 8, // Espacio vertical entre elementos
-
-          //       childAspectRatio: 1, // tamano del boton
-          //     ),
-          //     children: [
-          //       CustomMenu(
-          //         containerWidth: containerWidth,
-          //         buttonName: 'Recarga\n Celular',
-          //         icono: Icons.abc,
-          //         route: const PersonalInfoView(),
-          //       ),
-          //       CustomMenu(
-          //         containerWidth: containerWidth,
-          //         buttonName: 'Pagar\n cuentas',
-          //         icono: Icons.app_registration_rounded,
-          //         route: const SettingsView(),
-          //       ),
-          //       CustomMenu(
-          //         containerWidth: containerWidth,
-          //         buttonName: 'Transferencia\n de dinero ',
-          //         icono: Icons.telegram_rounded,
-          //         route: const HelpView(),
-          //       ),
-          //       CustomMenu(
-          //         containerWidth: containerWidth,
-          //         buttonName: 'Pedir\n dinero',
-          //         icono: Icons.person_2_rounded,
-          //         route: ProfileView(user: user),
-          //       ),
-          //       CustomMenu(
-          //         containerWidth: containerWidth,
-          //         buttonName: 'Historial\n financiero',
-          //         icono: Icons.telegram_rounded,
-          //         route: const HelpView(),
-          //       ),
-          //     ]),
         ));
   }
 }
@@ -151,10 +110,7 @@ class CustomMenu extends StatelessWidget {
             backgroundColor: MaterialStateProperty.all(
                 const Color.fromARGB(255, 210, 227, 235)),
             shape: MaterialStateProperty.all<OutlinedBorder>(
-              CircleBorder(
-                  // borderRadius: BorderRadius.circular(
-                  //     10), // Ajusta el valor según tu preferencia
-                  ),
+              const CircleBorder(),
             ),
           ),
           onPressed: () {

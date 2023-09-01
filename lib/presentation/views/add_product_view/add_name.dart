@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:multi_bank/presentation/views/add_product_view/add_person_id.dart';
 
 class AddProductView extends StatelessWidget {
   const AddProductView({super.key});
@@ -38,7 +37,7 @@ class AddProductView extends StatelessWidget {
                 children: [
                   const SizedBox(height: 20),
                   const Text(
-                    "Numero de tarjeta",
+                    "Nombre del titular",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
@@ -66,11 +65,11 @@ class AddProductView extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const AddPersonIDView(),
+                            builder: (context) => const AddProductView(),
                           ),
                         );
                       },
-                      child: const Text('+ Asociar un nuevo producto',
+                      child: const Text('Siguiente',
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,

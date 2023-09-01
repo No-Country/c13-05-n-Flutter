@@ -40,12 +40,12 @@ class LoginBottom extends StatelessWidget {
   Widget _buildView(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-
+    final color = Theme.of(context).colorScheme.primary;
     return Container(
       height: height * 0.06,
       width: width * 0.95,
       decoration: BoxDecoration(
-        color: loginCubit.state.isValid ? const Color(0xFF113CB1) : Colors.grey,
+        color: loginCubit.state.isValid ? color : Colors.grey,
         borderRadius:
             BorderRadius.circular(8), // Ajusta el valor según tus preferencias
       ),

@@ -31,53 +31,22 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
         child: SingleChildScrollView(
       child: Column(children: [
         SizedBox(
-            // height: 250,
-            // width: width,
-            // child: PageView.builder(
-            //     controller: PageController(initialPage: 0),
-            //     onPageChanged: (value) {
-            //       currentIndex = value;
-            //       setState(() {});
-            //     },
-            //     padEnds: false,
-            //     pageSnapping: false,
-            //     physics: const BouncingScrollPhysics(),
             height: 210,
             width: double.infinity,
             child: Swiper(
-                scale: 0.9,
+                scale: 1,
+                loop: false,
                 viewportFraction: 0.9,
-                // autoplay: true,
-                // pagination: SwiperPagination(
-                //     margin: const EdgeInsets.only(top: 0),
-                //     builder: DotSwiperPaginationBuilder(
-                //         activeColor: colors.primary,
-                //         color: colors.secondary,
-                //         space: 2.0)),
                 itemCount: productList!.length,
                 itemBuilder: ((context, index) {
                   CardModel product = productList![index];
 
                   return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    // child: DecoratedBox(
-                    //   decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(20),
-                    //       boxShadow: const [
-                    //         BoxShadow(
-                    //           color: Colors.black87,
-                    //           blurRadius: 5,
-                    //           offset: Offset(2, 5),
-                    //         )
-                    //       ]),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: CardsActive(
-                        cardData: product,
-                        owner: user?.name,
-                      ),
+                    padding: const EdgeInsets.all(.0),
+                    child: CardsActive(
+                      cardData: product,
+                      owner: user?.name,
                     ),
-                    // ),
                   );
                 }))),
       ]),
