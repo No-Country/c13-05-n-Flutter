@@ -52,7 +52,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
         ),
         enabledBorder: border,
         focusedBorder:
-            border.copyWith(borderSide: BorderSide(color: color.primary)),
+            border.copyWith(borderSide: BorderSide(color: color.secondary)),
         isDense: true,
         label: widget.label != null ? Text(widget.label!) : null,
         hintText: widget.hint,
@@ -61,7 +61,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
             border.copyWith(borderSide: BorderSide(color: color.error)),
         focusedErrorBorder:
             border.copyWith(borderSide: BorderSide(color: color.error)),
-        focusColor: color.primary,
+        focusColor: color.secondary,
       ),
     );
   }

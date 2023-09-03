@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/views.dart';
+import 'package:multi_bank/repositories/app_repository.dart';
 
 class ProfileView extends StatelessWidget {
   static const name = 'perfil';
@@ -11,9 +12,16 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        title: const Text("Mi perfil"),
-        backgroundColor: Colors.white,
-      ),
+          title: const Text("Mi perfil"),
+          backgroundColor: Colors.white,
+          actions: [
+            IconButton(
+              onPressed: () {
+                AppRepository().singOut(context);
+              },
+              icon: const Icon(Icons.exit_to_app_rounded),
+            )
+          ]),
       body: Center(
         child: Center(
           child: Column(
