@@ -69,7 +69,7 @@ class HomeTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final color = Theme.of(context).colorScheme.primary;
+    final color = Theme.of(context).colorScheme;
 
     return Scaffold(
         appBar: AppBar(
@@ -114,7 +114,7 @@ class HomeTabView extends StatelessWidget {
                   height: height * 0.06,
                   width: width * 0.95,
                   decoration: BoxDecoration(
-                    color: color,
+                    color: color.secondary,
                     borderRadius: BorderRadius.circular(
                         8), // Ajusta el valor según tus preferencias
                   ),
