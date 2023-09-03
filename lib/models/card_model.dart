@@ -1,15 +1,15 @@
 class CardModel {
   final String productId;
-  final String productName;
+  late final String productName;
   final int balance;
   final bool status;
-  final String productType;
+  late final String productType;
   final int productNumber;
   final String expirationDate;
   final List<dynamic> activities;
 
   CardModel(
-      this.productId,
+    this.productId,
     this.productName,
     this.balance,
     this.status,

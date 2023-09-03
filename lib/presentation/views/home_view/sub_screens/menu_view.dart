@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/views.dart';
 
+import '../../../../models/card_model.dart';
+import '../../../../repositories/app_repository.dart';
+
 class MenuView extends StatefulWidget {
   static const name = 'menu';
-  const MenuView({super.key, this.user});
+  const MenuView({super.key, this.user, this.productList});
   final UserModel? user;
+  final List<CardModel>? productList;
   @override
-  State<MenuView> createState() => _MenuViewState(user);
+  State<MenuView> createState() => _MenuViewState();
 }
 
 class _MenuViewState extends State<MenuView> {
-  final UserModel? user;
-  _MenuViewState(this.user);
-
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -30,20 +31,23 @@ class _MenuViewState extends State<MenuView> {
         icono: Icons.app_registration_rounded,
         route: SettingsView(),
       ),
-      const MenuData(
+      MenuData(
         buttonName: 'Transferencia\n de dinero ',
         icono: Icons.telegram_rounded,
-        route: HelpView(),
+        route: TransferenceView(
+          user: widget.user,
+          productList: widget.productList,
+        ),
       ),
       MenuData(
         buttonName: 'Pedir\n dinero',
         icono: Icons.person_2_rounded,
-        route: ProfileView(user: user),
+        route: ProfileView(user: widget.user),
       ),
-      const MenuData(
+      MenuData(
         buttonName: 'Historial\n financiero',
         icono: Icons.telegram_rounded,
-        route: HelpView(),
+        route: TransferenceView(user: widget.user),
       ),
     ];
 

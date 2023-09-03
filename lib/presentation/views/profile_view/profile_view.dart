@@ -136,7 +136,7 @@ class ProfileView extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const HelpView(),
+                      builder: (context) => const TransferenceView(),
                     ),
                   );
                 },

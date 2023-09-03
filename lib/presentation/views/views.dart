@@ -1,5 +1,5 @@
 export 'register_view/register_view.dart';
-export 'help_view/help_view.dart';
+export 'transference_view/transference_view.dart';
 export 'home_view/sub_screens/menu_view.dart';
 export 'login_view/login_view.dart';
 export 'personal_info_view/personal_info_view.dart';
