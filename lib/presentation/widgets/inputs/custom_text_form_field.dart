@@ -35,8 +35,10 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: colorHint),
         enabledBorder: border,
-        focusedBorder:
-            border.copyWith(borderSide: BorderSide(color: color.primary)),
+        focusedBorder: border.copyWith(
+            borderSide: BorderSide(
+          color: color.secondary,
+        )),
         isDense: true,
         label: label != null ? Text(label!) : null,
         hintText: hint,
@@ -45,7 +47,7 @@ class CustomTextFormField extends StatelessWidget {
             border.copyWith(borderSide: BorderSide(color: color.error)),
         focusedErrorBorder:
             border.copyWith(borderSide: BorderSide(color: color.error)),
-        focusColor: color.primary,
+        focusColor: color.secondary,
       ),
     );
   }
