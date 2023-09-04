@@ -31,27 +31,20 @@ class _MenuViewState extends State<MenuView> {
         icono: Icons.credit_card_outlined,
         route: SettingsView(),
       ),
-      MenuData(
+      const MenuData(
         buttonName: 'Transferencia\n de dinero ',
-
         icono: Icons.send,
-        route: HelpView(),
+        route: SettingsView(),
       ),
       MenuData(
         buttonName: 'Pedir\n dinero',
         icono: Icons.monetization_on_outlined,
-        route: ProfileView(user: user),
-
+        route: ProfileView(user: widget.user),
       ),
-   
       MenuData(
         buttonName: 'Historial\n financiero',
-
         icono: Icons.bar_chart_rounded,
-
-
         route: TransferenceView(user: widget.user),
-
       ),
     ];
 
@@ -137,7 +130,7 @@ class CustomMenu extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             child: Icon(
               icono,
-              color: Color.fromARGB(137, 0, 0, 0),
+              color: const Color.fromARGB(137, 0, 0, 0),
               size: 30,
             ),
           ),
