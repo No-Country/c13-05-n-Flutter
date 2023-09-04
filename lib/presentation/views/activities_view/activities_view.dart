@@ -15,7 +15,7 @@ class ActivitiesView extends StatelessWidget {
       child: Scaffold(
           backgroundColor: Colors.grey[200],
           appBar: AppBar(
-            title: const Text("Actividades"),
+            title: const Text("Actividad"),
           ),
           body: NewActivities(cardData: cardData, activities: activities)),
     );

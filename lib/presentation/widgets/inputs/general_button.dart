@@ -99,13 +99,13 @@ class SingupButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+    final color = Theme.of(context).colorScheme;
 
     return Container(
       height: height * 0.06,
       width: width * 0.95,
       decoration: BoxDecoration(
-        color:
-            registerCubit.state.isValid ? const Color(0xFF113CB1) : Colors.grey,
+        color: registerCubit.state.isValid ? color.primary : Colors.grey,
         borderRadius: BorderRadius.circular(8),
       ),
       child: MaterialButton(

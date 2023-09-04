@@ -23,53 +23,54 @@ class _MenuViewState extends State<MenuView> {
     final List<MenuData> menuItems = [
       const MenuData(
         buttonName: 'Recarga\n Celular',
-        icono: Icons.abc,
+        icono: Icons.phone,
         route: PersonalInfoView(),
       ),
       const MenuData(
         buttonName: 'Pagar\n cuentas',
-        icono: Icons.app_registration_rounded,
+        icono: Icons.credit_card_outlined,
         route: SettingsView(),
       ),
       MenuData(
         buttonName: 'Transferencia\n de dinero ',
-        icono: Icons.telegram_rounded,
-        route: TransferenceView(
-          user: widget.user,
-          productList: widget.productList,
-        ),
+
+        icono: Icons.send,
+        route: HelpView(),
       ),
       MenuData(
         buttonName: 'Pedir\n dinero',
-        icono: Icons.person_2_rounded,
-        route: ProfileView(user: widget.user),
+        icono: Icons.monetization_on_outlined,
+        route: ProfileView(user: user),
+
       ),
+   
       MenuData(
         buttonName: 'Historial\n financiero',
-        icono: Icons.telegram_rounded,
+
+        icono: Icons.bar_chart_rounded,
+
+
         route: TransferenceView(user: widget.user),
+
       ),
     ];
 
     return SizedBox(
-        height: 100,
+        height: 120,
         child: Padding(
           padding: const EdgeInsets.all(2.0),
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: menuItems.length,
-              itemBuilder: (context, index) {
-                final menuItem = menuItems[index];
-                return CustomMenu(
-                  containerWidth: containerWidth,
-                  buttonName: menuItem.buttonName,
-                  icono: menuItem.icono,
-                  route: menuItem.route,
-                );
-              },
-            ),
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: menuItems.length,
+            itemBuilder: (context, index) {
+              final menuItem = menuItems[index];
+              return CustomMenu(
+                containerWidth: containerWidth,
+                buttonName: menuItem.buttonName,
+                icono: menuItem.icono,
+                route: menuItem.route,
+              );
+            },
           ),
         ));
   }
@@ -104,45 +105,52 @@ class CustomMenu extends StatelessWidget {
   final IconData icono;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 90,
-      height: 140,
-      child: Padding(
-        padding: const EdgeInsets.all(6.0),
-        child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-                const Color.fromARGB(255, 210, 227, 235)),
-            shape: MaterialStateProperty.all<OutlinedBorder>(
-              const CircleBorder(),
-            ),
+    return TextButton(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all<OutlinedBorder>(
+            const BeveledRectangleBorder()),
+      ),
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => route,
           ),
-          onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => route,
-              ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(0.5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(
-                  icono,
-                  size: 30,
-                ),
-                Text(
-                  buttonName,
-                  textAlign: TextAlign.center,
-                  textScaleFactor: 0.6,
+        );
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2), // Color de la sombra
+                  spreadRadius: 1, // Extensión de la sombra
+                  blurRadius: 3, // Difuminación de la sombra
+                  offset: const Offset(0, 3), // Desplazamiento de la sombra
                 ),
               ],
             ),
+            padding: const EdgeInsets.all(5),
+            child: Icon(
+              icono,
+              color: Color.fromARGB(137, 0, 0, 0),
+              size: 30,
+            ),
           ),
-        ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            buttonName,
+            textAlign: TextAlign.center,
+            textScaleFactor: 0.75,
+            style: const TextStyle(color: Colors.grey),
+          ),
+        ],
       ),
     );
   }

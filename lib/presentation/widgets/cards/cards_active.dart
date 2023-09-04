@@ -33,46 +33,64 @@ class _CardsActiveState extends State<CardsActive> {
               scale: 0.5,
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          showBalance = !showBalance;
-                        });
-                      },
-                      child: Row(
-                        children: [
-                          const Text("Saldo:"),
-                          const SizedBox(width: 10),
-                          Text(showBalance
-                              ? '\$ ${widget.cardData?.balance}'
-                              : 'X X X X'),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Icon(
-                            showBalance
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          )
-                        ],
-                      ),
+                  TextButton(
+                    style: ButtonStyle(
+                      overlayColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      fixedSize:
+                          MaterialStateProperty.all(const Size.fromWidth(130)),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        showBalance = !showBalance;
+                      });
+                    },
+                    child: Column(
+                      children: [
+                        const Row(
+                          children: [
+                            Text("Saldo :",
+                                style: TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.black,
+                                )),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                                style: const TextStyle(
+                                  fontSize: 19,
+                                  color: Colors.black,
+                                ),
+                                showBalance
+                                    ? '\$ ${widget.cardData?.balance}'
+                                    : 'X X X X'),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Icon(
+                              color: const Color.fromRGBO(33, 33, 33, 1),
+                              showBalance
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Text(
                     insertDashesInNumber(widget.cardData!.productNumber),
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontFamily: "monospace",
-                        fontSize: 20),
+                    style:
+                        const TextStyle(fontFamily: "monospace", fontSize: 20),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -86,14 +104,10 @@ class _CardsActiveState extends State<CardsActive> {
                                   ? "EXPIRE"
                                   : "Fecha de apertura",
                               style: const TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "monospace",
-                                  fontSize: 9)),
+                                  fontFamily: "monospace", fontSize: 9)),
                           const SizedBox(height: 5),
                           Text('${widget.cardData?.expirationDate}',
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: "monospace")),
+                              style: const TextStyle(fontFamily: "monospace")),
                         ],
                       ),
                     ],
