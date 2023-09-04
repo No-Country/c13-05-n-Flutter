@@ -6,6 +6,7 @@ import 'package:multi_bank/presentation/views/views.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 import 'package:multi_bank/models/card_model.dart';
+import '../../../../apis/api_rest.dart';
 import 'cards_view.dart';
 
 const movimientosCards = <Map<String, dynamic>>[
@@ -153,7 +154,10 @@ class HomeTabView extends StatelessWidget {
                             fontFamily: 'Roboto')),
                   ),
                 ),
-                MenuView(user: user),
+                MenuView(
+                  user: user,
+                  productList: productList,
+                ),
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
