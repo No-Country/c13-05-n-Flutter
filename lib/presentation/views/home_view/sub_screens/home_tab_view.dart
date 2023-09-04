@@ -76,7 +76,7 @@ class HomeTabView extends StatelessWidget {
           leading: Padding(
             padding: const EdgeInsets.all(4.0),
             child: IconButton(
-              icon: const Icon(Icons.person_outline),
+              icon: const Icon(Icons.person_outline, color: Colors.white),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProfileView(
@@ -86,6 +86,7 @@ class HomeTabView extends StatelessWidget {
               },
             ),
           ),
+          backgroundColor: color.primary,
           title:
               // TextButton(
               //   onPressed: () {
@@ -96,20 +97,39 @@ class HomeTabView extends StatelessWidget {
               //     ));
               //   },
               //   child:
-              Text(user?.name != null ? "Hola, ${user?.name}" : 'Bienvenido'),
+              Text(user?.name != null ? "Hola, ${user?.name}" : 'Bienvenido',
+                  style: const TextStyle(color: Colors.white)),
           // ),
           centerTitle: false,
-          // automaticallyImplyLeading: false,
         ),
         body: SafeArea(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                CardsView(
-                  user: user,
-                  productList: productList,
-                ),
+                Stack(children: [
+                  Container(
+                    width: width,
+                    height: height * 0.15,
+                    color: color.primary,
+                    child: const Padding(
+                      padding: EdgeInsets.fromLTRB(20, 8, 0, 0),
+                      child: Text("Mis tarjetas",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    child: CardsView(
+                      user: user,
+                      productList: productList,
+                    ),
+                  ),
+                ]),
                 Container(
                   height: height * 0.06,
                   width: width * 0.95,

@@ -19,6 +19,10 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+    final color = Theme.of(context).colorScheme;
+
     List<String> paymentMethods = [];
     int filteredAmount = 0;
     List<String> filteredPaymentMethods = [];
@@ -44,53 +48,68 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        title: const Text("Todas las actividades"),
+        backgroundColor: color.primary,
+        title: const Text("Actividad",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            )),
       ),
       body: Column(
         children: [
-          const SizedBox(height: 20),
-          SearchAnchor(
-              builder: (BuildContext context, SearchController controller) {
-            return SearchBar(
-              controller: controller,
-              padding: const MaterialStatePropertyAll<EdgeInsets>(
-                  EdgeInsets.symmetric(horizontal: 16.0)),
-              onTap: () {
-                controller.openView();
-              },
-              onChanged: (_) {
-                controller.openView();
-              },
-              leading: const Icon(Icons.search),
-              trailing: <Widget>[
-                Tooltip(
-                  message: 'Change brightness mode',
-                  child: IconButton(
-                    isSelected: null,
-                    onPressed: () {
-                      setState(() {});
+          Stack(
+            children: [
+              Container(
+                width: width,
+                height: height * 0.05,
+                color: color.primary,
+                child: const Padding(
+                  padding: EdgeInsets.fromLTRB(20, 8, 0, 0),
+                ),
+              ),
+              SearchAnchor(
+                  builder: (BuildContext context, SearchController controller) {
+                return SearchBar(
+                  controller: controller,
+                  padding: const MaterialStatePropertyAll<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 16.0)),
+                  onTap: () {
+                    controller.openView();
+                  },
+                  onChanged: (_) {
+                    controller.openView();
+                  },
+                  leading: const Icon(Icons.search),
+                  trailing: <Widget>[
+                    Tooltip(
+                      message: 'Change brightness mode',
+                      child: IconButton(
+                        isSelected: null,
+                        onPressed: () {
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.wb_sunny_outlined),
+                        selectedIcon: const Icon(Icons.brightness_2_outlined),
+                      ),
+                    )
+                  ],
+                );
+              }, suggestionsBuilder:
+                      (BuildContext context, SearchController controller) {
+                return List<ListTile>.generate(5, (int index) {
+                  final String item = 'item $index';
+                  return ListTile(
+                    title: Text(item),
+                    onTap: () {
+                      setState(() {
+                        controller.closeView(item);
+                      });
                     },
-                    icon: const Icon(Icons.wb_sunny_outlined),
-                    selectedIcon: const Icon(Icons.brightness_2_outlined),
-                  ),
-                )
-              ],
-            );
-          }, suggestionsBuilder:
-                  (BuildContext context, SearchController controller) {
-            return List<ListTile>.generate(5, (int index) {
-              final String item = 'item $index';
-              return ListTile(
-                title: Text(item),
-                onTap: () {
-                  setState(() {
-                    controller.closeView(item);
-                  });
-                },
-              );
-            });
-          }),
+                  );
+                });
+              })
+            ],
+          ),
           const SizedBox(height: 20),
           const Text(
             "Filtrar pago por: ",

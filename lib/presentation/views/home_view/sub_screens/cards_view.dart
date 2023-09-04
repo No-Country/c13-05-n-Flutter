@@ -25,8 +25,6 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
-    final colors = Theme.of(context).colorScheme;
     return Center(
         child: SingleChildScrollView(
       child: Column(children: [

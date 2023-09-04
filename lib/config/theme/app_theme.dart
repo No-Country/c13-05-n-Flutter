@@ -5,7 +5,7 @@ class AppTheme {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
             seedColor: const Color(0xff8f0000),
-            primary: const Color(0xff8f0000),
-            secondary: const Color.fromARGB(204, 175, 102, 1)),
+            primary: Color.fromRGBO(143, 0, 0, 1),
+            secondary: const Color.fromRGBO(226, 133, 0, 1)),
       );
 }
