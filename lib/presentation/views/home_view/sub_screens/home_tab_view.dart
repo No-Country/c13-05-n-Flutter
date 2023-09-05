@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:multi_bank/models/activities_model.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/add_product_view/add_product_view.dart';
+import 'package:multi_bank/presentation/views/home_view/sub_screens/general_activities_view.dart';
 import 'package:multi_bank/presentation/views/views.dart';
 import 'package:multi_bank/presentation/widgets/widgets.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
@@ -62,9 +63,11 @@ const movimientosCards = <Map<String, dynamic>>[
 
 class HomeTabView extends StatelessWidget {
   static const name = 'main';
-  const HomeTabView({super.key, this.user, this.productList});
+  const HomeTabView(
+      {super.key, this.user, this.productList, this.cardActivity});
   final UserModel? user;
   final List<CardModel>? productList;
+  final List<GeneralActivitiesView>? cardActivity;
 
   @override
   Widget build(BuildContext context) {
@@ -194,14 +197,34 @@ class HomeTabView extends StatelessWidget {
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ...movimientosCards.map((card) => _CardType1(
-                              elevation: 0,
-                              label: card['label'],
-                              paymentName: card['paymentName'],
-                              date: card['date'],
-                              entidad: card['entidad'])),
-                        ],
+                        children: cardActivity != null
+                            ? cardActivity!.map((card) {
+                                final activities = card
+                                    .allActivities; // Supongo que allActivities es la lista de actividades en el objeto CardModel
+                                return Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: activities!
+                                      .map((activity) => _CardType1(
+                                            elevation: 0,
+                                            label: activity.transactionType,
+                                            paymentName: activity.paymentName,
+                                            date: activity.paymentDate,
+                                            entidad: activity.transactionType,
+                                          ))
+                                      .toList(),
+                                );
+                              }).toList()
+                            : [
+                                const Center(
+                                  child: Text(
+                                    'Sin actividad',
+                                    style: TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                ),
+                              ],
                       ),
                     ),
                   ),

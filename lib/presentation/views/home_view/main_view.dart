@@ -10,11 +10,17 @@ import '../profile_view/profile_view.dart';
 import '../settings_view/settings_view.dart';
 
 class MainView extends StatefulWidget {
-  const MainView({super.key, this.user, this.productList, this.allActivities});
+  const MainView(
+      {super.key,
+      this.user,
+      this.productList,
+      this.allActivities,
+      this.cardActivity});
 
   final UserModel? user;
   final List<CardModel>? productList;
   final List<ActivitiesModel>? allActivities;
+  final List<GeneralActivitiesView>? cardActivity;
 
   @override
   State<MainView> createState() => _MainViewState();
@@ -34,6 +40,7 @@ class _MainViewState extends State<MainView> {
       HomeTabView(
         user: widget.user,
         productList: widget.productList,
+        cardActivity: widget.cardActivity,
       ),
       ProfileView(user: widget.user),
       GeneralActivitiesView(
