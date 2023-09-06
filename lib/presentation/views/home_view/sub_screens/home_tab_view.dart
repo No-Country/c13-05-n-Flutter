@@ -71,7 +71,7 @@ class HomeTabView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final color = Theme.of(context).colorScheme;
-
+    print(productList);
     return Scaffold(
         appBar: AppBar(
           leading: Padding(
@@ -182,13 +182,13 @@ class HomeTabView extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(12.0),
-                        boxShadow: const [
+                        // borderRadius: BorderRadius.circular(12.0),
+                        boxShadow: [
                           BoxShadow(
                             color: Colors.black,
-                            blurRadius: 5,
+                            blurRadius: 1,
                             offset: Offset(0, 0),
                           ),
                         ],
@@ -196,12 +196,37 @@ class HomeTabView extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          ...movimientosCards.map((card) => _CardType1(
+                          if (productList != null)
+                            ...?productList?.expand((card) {
+                              // Ordenar las actividades por fecha antes de mapearlas
+
+                              final limitedActivities = card.activities.take(4);
+
+                              return limitedActivities.map((activity) {
+                                return _CardType1(
+                                  elevation: 0,
+                                  label: activity['transaction_type'],
+                                  paymentName: activity['amount'],
+                                  date: activity['payment_date'],
+                                  entidad: activity['payment_name'],
+                                );
+                              }).toList();
+                            }).toList()
+                              ?..sort((a, b) {
+                                // Ordenar la lista de widgets de mayor a menor por la fecha de pago (payment_date)
+                                String dateA = (a.date);
+                                String dateB = (b.date);
+
+                                return dateB.compareTo(dateA);
+                              })
+                          else
+                            const _CardType1(
                               elevation: 0,
-                              label: card['label'],
-                              paymentName: card['paymentName'],
-                              date: card['date'],
-                              entidad: card['entidad'])),
+                              label: 'Necesitas productos para operar',
+                              paymentName: '',
+                              date: '',
+                              entidad: '',
+                            ),
                         ],
                       ),
                     ),
