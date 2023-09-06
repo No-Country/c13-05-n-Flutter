@@ -22,7 +22,7 @@ class CardsView extends StatefulWidget {
 
 class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
   int currentIndex = 0;
-
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     CardModel singleProduct;
@@ -41,20 +41,52 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                 itemBuilder: ((context, index) {
                   CardModel product = widget.productList![index];
 
-                  return Padding(
-                    padding: const EdgeInsets.all(.0),
-                    child: CardsActive(
-                      cardData: product,
-                      owner: widget.user?.name,
-                      tabFromPayment: widget.tabFromPayment,
-                      function: () {
-                        setState(() {
-                          singleProduct = product;
-                        });
-                        print(product);
-                      },
+                  Color getColor(Set<MaterialState> states) {
+                    const Set<MaterialState> interactiveStates =
+                        <MaterialState>{
+                      MaterialState.pressed,
+                      MaterialState.hovered,
+                      MaterialState.focused,
+                    };
+                    if (states.any(interactiveStates.contains)) {
+                      return Colors.blue;
+                    }
+                    return Colors.red;
+                  }
+
+                  return Stack(children: [
+                    Padding(
+                      padding: const EdgeInsets.all(.0),
+                      child: CardsActive(
+                        cardData: product,
+                        owner: widget.user?.name,
+                        tabFromPayment: widget.tabFromPayment,
+                        function: () {
+                          setState(() {
+                            singleProduct = product;
+                          });
+                        },
+                      ),
                     ),
-                  );
+                    if (widget.tabFromPayment!)
+                      Align(
+                        alignment: AlignmentDirectional.topEnd,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Checkbox(
+                            checkColor: Colors.white,
+                            fillColor:
+                                MaterialStateProperty.resolveWith(getColor),
+                            value: isChecked,
+                            onChanged: (bool? value) {
+                              setState(() {
+                                isChecked = value!;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                  ]);
                 }),
               ),
             ),
@@ -64,7 +96,8 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                   const SizedBox(height: 250),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: NavigationButton.navigationButton(const AmountInputView(), context),
+                    child: NavigationButton.navigationButton(
+                        const AmountInputView(), context),
                   ),
                 ],
               ),
