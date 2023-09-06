@@ -31,13 +31,20 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
         child: Column(
           children: [
             SizedBox(
-              height: 210,
+              height: 230,
               width: double.infinity,
               child: Swiper(
                 scale: 1,
                 loop: false,
                 viewportFraction: 0.9,
-                itemCount: widget.productList!.length,
+                pagination: const SwiperPagination(
+                    margin: EdgeInsets.only(top: 200),
+                    builder: DotSwiperPaginationBuilder(
+                        color: Colors.black12,
+                        activeColor: Colors.grey,
+                        space: 2.0)),
+                itemCount:
+                    widget.productList != null ? widget.productList!.length : 1,
                 itemBuilder: ((context, index) {
                   CardModel product = widget.productList![index];
 
@@ -55,18 +62,15 @@ class _CardsViewState extends State<CardsView> with TickerProviderStateMixin {
                   }
 
                   return Stack(children: [
-                    Padding(
-                      padding: const EdgeInsets.all(.0),
-                      child: CardsActive(
-                        cardData: product,
-                        owner: widget.user?.name,
-                        tabFromPayment: widget.tabFromPayment,
-                        function: () {
-                          setState(() {
-                            singleProduct = product;
-                          });
-                        },
-                      ),
+                    CardsActive(
+                      cardData: product,
+                      owner: widget.user?.name,
+                      tabFromPayment: widget.tabFromPayment,
+                      function: () {
+                        setState(() {
+                          singleProduct = product;
+                        });
+                      },
                     ),
                     if (widget.tabFromPayment!)
                       Align(

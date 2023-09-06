@@ -125,13 +125,39 @@ class HomeTabView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    child: CardsView(
-                      user: user,
-                      productList: productList,
-                      tabFromPayment: false,
-                    ),
+                    child: productList == null
+                        ? Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/Card.png',
+                                fit: BoxFit.contain,
+                                scale: 0.5,
+                              ),
+                              const Text(
+                                'No hay informacion para mostrar',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          )
+                        : CardsView(
+                            user: user,
+                            productList: productList,
+                            tabFromPayment: false,
+                          ),
                   ),
                 ]),
+                // const Text(Asocia un nuevo producto para comenzar',
+                // style: TextStyle(fontSize: 18, fontFamily: 'Roboto')),
+                productList == null
+                    ? const Text('no productos aun')
+                    : const SizedBox(
+                        height: 5,
+                      ),
                 Container(
                   height: height * 0.06,
                   width: width * 0.95,
