@@ -44,7 +44,7 @@ class _MenuViewState extends State<MenuView> {
       MenuData(
         buttonName: 'Historial\n financiero',
         icono: Icons.bar_chart_rounded,
-        route: TransferenceView(user: widget.user),
+        route: TransferenceView(user: widget.user, productList: widget.productList),
       ),
     ];
 

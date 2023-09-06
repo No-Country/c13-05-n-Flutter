@@ -150,6 +150,7 @@ Future<UserModel> getUser(String userEmail) async {
       user['type'],
       user['profileStatus'],
       user['products'] ?? [],
+      user['beneficiaries'] ?? [],
     ));
   }
   UserModel mainUser = usersList.where((user) => user.email == userEmail).first;

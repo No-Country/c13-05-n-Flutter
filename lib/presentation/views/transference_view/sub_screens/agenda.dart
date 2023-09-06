@@ -18,6 +18,24 @@ class _AgendaState extends State<Agenda> {
   String dropdownValue = list.first;
   @override
   Widget build(BuildContext context) {
+    List<UserModel> beneficiariesList= [];
+
+    for (var beneficiary in widget.user!.beneficiaries) {
+      beneficiariesList.add(UserModel(
+        beneficiary["_id"],
+        beneficiary['name'],
+        beneficiary['age'],
+        beneficiary['email'],
+        beneficiary['address'],
+        beneficiary['secretPin'],
+        beneficiary['phone'],
+        beneficiary['type'],
+        beneficiary['profileStatus'],
+        beneficiary['products'] ?? [],
+        beneficiary['beneficiaries'] ?? [],
+      ));
+    }
+
     print("From agenda: ${widget.productList}");
     return Padding(
       padding: const EdgeInsets.all(15.0),
@@ -79,12 +97,12 @@ class _AgendaState extends State<Agenda> {
               ),
               onSelected: (String? value) {
                 setState(() {
-                  dropdownValue = value!;
+                  // dropdownValue = value!;
                 });
               },
               dropdownMenuEntries:
-                  list.map<DropdownMenuEntry<String>>((String value) {
-                return DropdownMenuEntry<String>(value: value, label: value);
+              beneficiariesList.map<DropdownMenuEntry<String>>((item) {
+                return DropdownMenuEntry<String>(value: item.name, label: item.name);
               }).toList(),
             ),
             const Text(

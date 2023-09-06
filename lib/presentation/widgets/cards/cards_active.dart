@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/card_model.dart';
+import 'package:multi_bank/presentation/views/home_view/sub_screens/cards_view.dart';
 
 import '../../views/activities_view/activities_view.dart';
 
 class CardsActive extends StatefulWidget {
-  CardsActive({super.key, required this.cardData, this.owner});
+  CardsActive({super.key, required this.cardData, this.owner, this.tabFromPayment, this.function});
 
   CardModel cardData;
   String? owner;
+  bool? tabFromPayment;
+  PrintFunction? function;
 
   @override
   State<CardsActive> createState() => _CardsActiveState();
@@ -20,9 +23,15 @@ class _CardsActiveState extends State<CardsActive> {
     return SizedBox(
       child: InkWell(
         onTap: () => {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  ActivitiesView(widget.cardData?.activities, widget.cardData)))
+          if(widget.tabFromPayment == true){
+            widget.function!(),
+          }else{
+    Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) =>
+    ActivitiesView(widget.cardData?.activities, widget.cardData),
+    ),
+    ),
+    }
         },
         child: Card(
           // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

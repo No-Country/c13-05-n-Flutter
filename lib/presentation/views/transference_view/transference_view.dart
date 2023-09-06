@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/presentation/views/transference_view/sub_screens/agenda.dart';
+import 'package:multi_bank/presentation/views/transference_view/sub_screens/transference_accounts_view.dart';
 import '../../../models/card_model.dart';
 import '../../../models/user_models.dart';
 
@@ -56,7 +57,7 @@ class TransferenceView extends StatelessWidget {
                 child: Text("Nuevo destino"),
               ),
               Center(
-                child: Agenda(user: user, productList: productList),
+                child: TransferenceAccountsView(user: user, productList: productList,),
               ),
             ]),
           ),

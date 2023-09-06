@@ -128,6 +128,7 @@ class HomeTabView extends StatelessWidget {
                     child: CardsView(
                       user: user,
                       productList: productList,
+                      tabFromPayment: false,
                     ),
                   ),
                 ]),

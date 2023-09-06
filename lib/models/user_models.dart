@@ -9,9 +9,10 @@ class UserModel {
   final String type;
   final bool profileStatus;
   final List<dynamic> products;
+  final List<dynamic> beneficiaries;
 
   UserModel(this.id, this.name, this.age, this.email, this.address,
-      this.secretPin, this.phone, this.type, this.profileStatus, this.products);
+      this.secretPin, this.phone, this.type, this.profileStatus, this.products,this.beneficiaries);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -25,6 +26,7 @@ class UserModel {
       json['type'],
       json['profileStatus'],
       json['products'] ?? [],
+      json['beneficiaries'] ?? [],
     );
   }
 }
