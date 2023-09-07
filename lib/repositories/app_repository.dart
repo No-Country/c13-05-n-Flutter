@@ -112,6 +112,11 @@ class AppRepository {
 
     storage.getItem('user');
   }
+
+  Future<void> updateProduct(
+      String userId, String productId, dynamic object) async {
+    ApiCalls().updateProduct(userId, productId, object);
+  }
 }
 
 Future<List<CardModel>> productList(String customerId) async {

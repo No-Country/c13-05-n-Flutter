@@ -71,7 +71,7 @@ class HomeTabView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final color = Theme.of(context).colorScheme;
-    print(productList);
+
     return Scaffold(
         appBar: AppBar(
           leading: Padding(
@@ -125,39 +125,14 @@ class HomeTabView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-                    child: productList == null
-                        ? Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Image.asset(
-                                'assets/images/Card.png',
-                                fit: BoxFit.contain,
-                                scale: 0.5,
-                              ),
-                              const Text(
-                                'No hay informacion para mostrar',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          )
-                        : CardsView(
-                            user: user,
-                            productList: productList,
-                            tabFromPayment: false,
-                          ),
+                    child: CardsView(
+                      user: user,
+                      productList: productList,
+                      tabFromPayment: false,
+                      tabFromPaymentInput: false,
+                    ),
                   ),
                 ]),
-                // const Text(Asocia un nuevo producto para comenzar',
-                // style: TextStyle(fontSize: 18, fontFamily: 'Roboto')),
-                productList == null
-                    ? const Text('no productos aun')
-                    : const SizedBox(
-                        height: 5,
-                      ),
                 Container(
                   height: height * 0.06,
                   width: width * 0.95,
@@ -208,13 +183,13 @@ class HomeTabView extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Container(
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
-                        // borderRadius: BorderRadius.circular(12.0),
-                        boxShadow: [
+                        borderRadius: BorderRadius.circular(12.0),
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black,
-                            blurRadius: 1,
+                            blurRadius: 5,
                             offset: Offset(0, 0),
                           ),
                         ],
@@ -222,37 +197,12 @@ class HomeTabView extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (productList != null)
-                            ...?productList?.expand((card) {
-                              // Ordenar las actividades por fecha antes de mapearlas
-
-                              final limitedActivities = card.activities.take(4);
-
-                              return limitedActivities.map((activity) {
-                                return _CardType1(
-                                  elevation: 0,
-                                  label: activity['transaction_type'],
-                                  paymentName: activity['amount'],
-                                  date: activity['payment_date'],
-                                  entidad: activity['payment_name'],
-                                );
-                              }).toList();
-                            }).toList()
-                              ?..sort((a, b) {
-                                // Ordenar la lista de widgets de mayor a menor por la fecha de pago (payment_date)
-                                String dateA = (a.date);
-                                String dateB = (b.date);
-
-                                return dateB.compareTo(dateA);
-                              })
-                          else
-                            const _CardType1(
+                          ...movimientosCards.map((card) => _CardType1(
                               elevation: 0,
-                              label: 'Necesitas productos para operar',
-                              paymentName: '',
-                              date: '',
-                              entidad: '',
-                            ),
+                              label: card['label'],
+                              paymentName: card['paymentName'],
+                              date: card['date'],
+                              entidad: card['entidad'])),
                         ],
                       ),
                     ),

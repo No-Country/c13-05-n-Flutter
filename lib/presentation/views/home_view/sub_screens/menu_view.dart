@@ -31,10 +31,11 @@ class _MenuViewState extends State<MenuView> {
         icono: Icons.credit_card_outlined,
         route: SettingsView(),
       ),
-      const MenuData(
+      MenuData(
         buttonName: 'Transferencia\n de dinero ',
         icono: Icons.send,
-        route: SettingsView(),
+        route: TransferenceView(
+            user: widget.user, productList: widget.productList),
       ),
       MenuData(
         buttonName: 'Pedir\n dinero',
@@ -44,7 +45,8 @@ class _MenuViewState extends State<MenuView> {
       MenuData(
         buttonName: 'Historial\n financiero',
         icono: Icons.bar_chart_rounded,
-        route: TransferenceView(user: widget.user, productList: widget.productList),
+        route: TransferenceView(
+            user: widget.user, productList: widget.productList),
       ),
     ];
 

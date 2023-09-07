@@ -45,6 +45,7 @@ dependencies:
   localstorage: ^4.0.1+4
   animate_do: ^3.0.2
   card_swiper: ^3.0.1
+  flutter_otp_text_field: ^1.1.1
 
 dev_dependencies:
   flutter_test:

@@ -1,33 +1,13 @@
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [Checkbox].
-
-void main() => runApp(const CheckboxExampleApp());
-
-class CheckboxExampleApp extends StatelessWidget {
-  const CheckboxExampleApp({super.key});
+class CustomCheckBox extends StatefulWidget {
+  const CustomCheckBox({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Checkbox Sample')),
-        body: const Center(
-          child: CheckboxExample(),
-        ),
-      ),
-    );
-  }
+  State<CustomCheckBox> createState() => _CustomCheckBoxState();
 }
 
-class CheckboxExample extends StatefulWidget {
-  const CheckboxExample({super.key});
-
-  @override
-  State<CheckboxExample> createState() => _CheckboxExampleState();
-}
-
-class _CheckboxExampleState extends State<CheckboxExample> {
+class _CustomCheckBoxState extends State<CustomCheckBox> {
   bool isChecked = false;
 
   @override

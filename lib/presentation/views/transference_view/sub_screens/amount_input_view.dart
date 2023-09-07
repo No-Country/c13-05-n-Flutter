@@ -1,21 +1,42 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:multi_bank/presentation/views/transference_view/sub_screens/payment_summary_view.dart';
+
+import '../../../../models/card_model.dart';
+import '../../../../models/user_models.dart';
+import '../../../widgets/navigation_button/navigation_button.dart';
 
 class AmountInputView extends StatefulWidget {
-  const AmountInputView({super.key});
-
+  const AmountInputView({super.key, this.user, this.productList, this.product});
+  final UserModel? user;
+  final List<CardModel>? productList;
+  final CardModel? product;
   @override
   State<AmountInputView> createState() => _AmountInputViewState();
 }
 
 class _AmountInputViewState extends State<AmountInputView> {
-TextEditingController textController = TextEditingController();
-List<String> concepts = ["Varios, Remesa, Ahorro"];
+  TextEditingController textController = TextEditingController();
+  String concept = "";
+  List<String> concepts = ["Varios", "Remesa", "Ahorro"];
+  CardModel paymentFrom = CardModel("", "", 0, true, "", 0, "", []);
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
+
+  void setProduct(CardModel product) {
+    setState(() {
+      paymentFrom = product;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.grey[200],
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text("Cuentas propias"),
@@ -34,10 +55,11 @@ List<String> concepts = ["Varios, Remesa, Ahorro"];
               ),
             ),
             TextField(
+              keyboardType: TextInputType.number,
               controller: textController,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: 'Introducir un monto',
+                hintText: 'Introducir un monto \$',
               ),
             ),
             const Text(
@@ -49,7 +71,7 @@ List<String> concepts = ["Varios, Remesa, Ahorro"];
             ),
             const SizedBox(height: 20),
             const Text(
-              "Agenda de contactos",
+              "Concepto",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
@@ -65,11 +87,11 @@ List<String> concepts = ["Varios, Remesa, Ahorro"];
               ),
               onSelected: (String? value) {
                 setState(() {
-                  // dropdownValue = value!;
+                  concept = value!;
                 });
               },
               dropdownMenuEntries:
-              concepts.map<DropdownMenuEntry<String>>((item) {
+                  concepts.map<DropdownMenuEntry<String>>((item) {
                 return DropdownMenuEntry<String>(value: item, label: item);
               }).toList(),
             ),
@@ -80,6 +102,15 @@ List<String> concepts = ["Varios, Remesa, Ahorro"];
                 fontSize: 13,
               ),
             ),
+            const SizedBox(height: 270),
+            NavigationButton.navigationButton(
+                PaymentSummaryView(
+                    user: widget.user,
+                    productList: widget.productList,
+                    product: widget.product,
+                    amount: textController.text,
+                    concept: concept),
+                context),
           ],
         ),
       ),

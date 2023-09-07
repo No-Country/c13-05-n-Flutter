@@ -81,7 +81,6 @@ class TransferenceAccountsView extends StatelessWidget {
                             Text("Agenda de contactos"),
                           ],
                         ),
-
                         Icon(Icons.arrow_forward_ios_rounded),
                       ],
                     ),
@@ -92,6 +91,6 @@ class TransferenceAccountsView extends StatelessWidget {
           ],
         ),
       ),
-    );;
+    );
   }
 }
