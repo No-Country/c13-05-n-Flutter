@@ -69,30 +69,22 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
               ),
               SearchAnchor(
                   builder: (BuildContext context, SearchController controller) {
-                return SearchBar(
-                  controller: controller,
-                  padding: const MaterialStatePropertyAll<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 16.0)),
-                  onTap: () {
-                    controller.openView();
-                  },
-                  onChanged: (_) {
-                    controller.openView();
-                  },
-                  leading: const Icon(Icons.search),
-                  trailing: <Widget>[
-                    Tooltip(
-                      message: 'Change brightness mode',
-                      child: IconButton(
-                        isSelected: null,
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        icon: const Icon(Icons.wb_sunny_outlined),
-                        selectedIcon: const Icon(Icons.brightness_2_outlined),
-                      ),
-                    )
-                  ],
+                return Center(
+                  child: SizedBox(
+                    width: width * 0.7,
+                    child: SearchBar(
+                      controller: controller,
+                      padding: const MaterialStatePropertyAll<EdgeInsets>(
+                          EdgeInsets.symmetric(horizontal: 16.0)),
+                      onTap: () {
+                        controller.openView();
+                      },
+                      onChanged: (_) {
+                        controller.openView();
+                      },
+                      leading: const Icon(Icons.search),
+                    ),
+                  ),
                 );
               }, suggestionsBuilder:
                       (BuildContext context, SearchController controller) {
@@ -138,86 +130,77 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
             }).toList(),
           ),
           const SizedBox(height: 10.0),
-          // Text(
-          //   'Looking for: ${filters.map((String e) => paymentMethods.where((element) => element == e)).join(', ')}',
-          // ),
-          const SizedBox(height: 20),
           if (!isFiltered)
-            Center(
-              child: Container(
-                height: 500,
-                width: 400,
-                decoration: const BoxDecoration(
-                    color: Color(0xffffffff),
-                    borderRadius: BorderRadius.all(Radius.circular(16))),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ListView.builder(
-                    itemCount: widget.allActivities?.length,
-                    itemBuilder: (context, index) {
-                      ActivitiesModel? singleActivity =
-                          widget.allActivities?[index];
+            Container(
+              height: 490,
+              width: 400,
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(16))),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ListView.builder(
+                  itemCount: widget.allActivities?.length,
+                  itemBuilder: (context, index) {
+                    ActivitiesModel? singleActivity =
+                        widget.allActivities?[index];
 
-                      return SizedBox(
-                        width: 286,
-                        height: 50,
-                        child: InkWell(
-                          onTap: () {
-                            PaymentBill.showBill(
-                                context, widget.allActivities![index]);
-                          },
-                          child: Card(
-                            surfaceTintColor: Colors.white,
-                            shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.zero),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 8, right: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.shopping_bag_rounded,
-                                        color: Color(0xff323232),
-                                        size: 26,
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(singleActivity!.transactionType),
-                                          Text(singleActivity.paymentName),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(width: 50),
-                                  Column(
-                                    children: [
-                                      Text(singleActivity.amount),
-                                      Text(singleActivity.paymentDate),
-                                    ],
-                                  )
-                                ],
-                              ),
+                    return SizedBox(
+                      width: 286,
+                      height: 50,
+                      child: InkWell(
+                        onTap: () {
+                          PaymentBill.showBill(
+                              context, widget.allActivities![index]);
+                        },
+                        child: Card(
+                          surfaceTintColor: Colors.white,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.shopping_bag_rounded,
+                                      color: Color(0xff323232),
+                                      size: 26,
+                                    ),
+                                    const SizedBox(width: 20),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(singleActivity!.transactionType),
+                                        Text(singleActivity.paymentName),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(width: 50),
+                                Column(
+                                  children: [
+                                    Text(singleActivity.amount),
+                                    Text(singleActivity.paymentDate),
+                                  ],
+                                )
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             )
           else
             Container(
-              height: 500,
+              height: 490,
               width: 400,
               decoration: const BoxDecoration(
-                  color: Color(0xffffffff),
                   borderRadius: BorderRadius.all(Radius.circular(16))),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

@@ -7,7 +7,7 @@ import '../../../models/activities_model.dart';
 import '../../../models/card_model.dart';
 import '../../../models/user_models.dart';
 import '../profile_view/profile_view.dart';
-import '../settings_view/settings_view.dart';
+import '../support_view/settings_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key, this.user, this.productList, this.allActivities});

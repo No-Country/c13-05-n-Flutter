@@ -10,6 +10,7 @@ class AddProductView extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final controller = TextEditingController();
     String value = controller.text;
+    final color = Theme.of(context).colorScheme;
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -58,7 +59,7 @@ class AddProductView extends StatelessWidget {
                     height: height * 0.06,
                     width: width * 0.95,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF113CB1),
+                      color: color.primary,
                       borderRadius: BorderRadius.circular(
                           8), // Ajusta el valor según tus preferencias
                     ),
