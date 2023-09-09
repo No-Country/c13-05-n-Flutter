@@ -17,7 +17,27 @@ Un proyecto realizado por
   ##### Equipo de trabajo:
 
 <p>
- Gabriel Iciarte - Flutter dev
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/gabriel-iciarte/)
+ Ana Colorado - PM
 
+<!-- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/TU LINKEDIN AQUI/) -->
+</p>
+<p>
+ Mailen Moran - UX/UI
+
+<!-- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/TU LINKEDIN AQUI/) -->
+</p>
+<p>
+ Viviana Vallejos - UX/UI
+
+<!-- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/TU LINKEDIN AQUI/) -->
+ </p>
+ <p>
+ Adonis Paniagua - Flutter dev
+
+<!-- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/TU LINKEDIN AQUI/) -->
+</p>
+<p>
+ Gabriel Iciarte - Flutter dev
+
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/gabriel-iciarte/)
 </p>
