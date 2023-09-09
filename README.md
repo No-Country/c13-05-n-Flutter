@@ -10,7 +10,7 @@
 
 ## Diseño:
 
- <a href="https://www.figma.com/file/oB7ngcThS1mvfNxasSbVeL/Dise%C3%B1o-UI?node-id=35%3A258&mode=dev/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="65" height="65"/>  </a>
+ <a href="https://www.figma.com/file/oB7ngcThS1mvfNxasSbVeL/Dise%C3%B1o-UI?type=design&node-id=35%3A258&mode=design&t=yhEGjRCwmwqg3INk-1" > <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="65" height="65"/>  </a>
 Mockup
 
 ## Equipo:
