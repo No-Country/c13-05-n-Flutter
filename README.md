@@ -17,5 +17,6 @@ Un proyecto realizado por
   ##### Equipo de trabajo:
 
 <p>
- (https://img.shields.io/badge/-Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabriel-iciarte/)(https://www.linkedin.com/in/gabriel-iciarte/)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/gabriel-iciarte/)
+
 </p>
