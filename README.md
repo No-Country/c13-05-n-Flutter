@@ -8,14 +8,18 @@
 
 ...link del proyecto...
 
-  
+## Diseño:
+
+ <a href="https://www.figma.com/file/oB7ngcThS1mvfNxasSbVeL/Dise%C3%B1o-UI?node-id=35%3A258&mode=dev/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="65" height="65"/>  </a>
+Mockup
 
 ## Equipo:
+
 ### PM
 | Ana Colorado - PM :briefcase: |
 |:-----------------------------:|
 | ![Tu nombre](ruta a foto de perfil) | 
-| [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/usuario linkedin/)   [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/usuario github ) | [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/usuario linkedin/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/usuario github ) |
+| [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/usuario linkedin/)   [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/usuario github ) |
 
 ### UX/UI
 | Viviana Vallejos - UX/UI :art: | Mailen Moran - UX/UI :art: |
