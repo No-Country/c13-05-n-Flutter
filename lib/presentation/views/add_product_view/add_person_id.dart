@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:multi_bank/presentation/views/add_product_view/add_date.dart';
-import 'package:multi_bank/presentation/views/add_product_view/add_name.dart';
-import 'package:multi_bank/presentation/views/add_product_view/confirm_new_product.dart';
+
+import 'confirm_new_product.dart';
 
 class AddPersonIDView extends StatelessWidget {
-  const AddPersonIDView({super.key});
+  final dynamic cardNumber;
+
+  const AddPersonIDView({Key? key, required this.cardNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final controller = TextEditingController();
-    String value = controller.text;
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -24,14 +23,29 @@ class AddPersonIDView extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            Container(
-              height: 176,
-              width: 350,
-              decoration: const BoxDecoration(
-                color: Colors.black38,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
+            SizedBox(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(
+                    'assets/images/Card.png',
+                    fit: BoxFit.contain,
+                    scale: 0.5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          cardNumber.toString(),
+                          style: const TextStyle(
+                              fontFamily: "monospace", fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
             Center(
@@ -46,9 +60,9 @@ class AddPersonIDView extends StatelessWidget {
                       fontSize: 18,
                     ),
                   ),
-                  // Note: Same code is applied for the TextFormField as well
                   TextField(
-                    controller: controller,
+                    controller:
+                        TextEditingController(), // Debes utilizar el controlador adecuado aquí
                     decoration: const InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(width: 2, color: Colors.grey),
@@ -61,8 +75,7 @@ class AddPersonIDView extends StatelessWidget {
                     width: width * 0.95,
                     decoration: BoxDecoration(
                       color: const Color(0xFF113CB1),
-                      borderRadius: BorderRadius.circular(
-                          8), // Ajusta el valor según tus preferencias
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: MaterialButton(
                       onPressed: () {

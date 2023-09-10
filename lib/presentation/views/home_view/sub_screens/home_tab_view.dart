@@ -1,64 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:multi_bank/models/activities_model.dart';
+
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/add_product_view/add_product_view.dart';
 import 'package:multi_bank/presentation/views/views.dart';
-import 'package:multi_bank/presentation/widgets/widgets.dart';
-import 'package:multi_bank/repositories/app_repository.dart';
-import 'package:multi_bank/models/card_model.dart';
-import '../../../../apis/api_rest.dart';
-import 'cards_view.dart';
 
-const movimientosCards = <Map<String, dynamic>>[
-  {
-    'paymentName': '-2500',
-    'transactionType': 'Elevation 0',
-    'elevation': 1.0,
-    'label': 'Pago con QR',
-    'date': 'ayer',
-    'entidad': 'La estrella',
-  },
-  {
-    'paymentName': '-5500',
-    'transactionType': 'Elevation 1',
-    'elevation': 2.0,
-    'label': 'Pago con QR',
-    'date': 'ayer',
-    'entidad': 'el jevi',
-  },
-  {
-    'paymentName': '+600',
-    'transactionType': 'Elevation 2',
-    'elevation': 3.0,
-    'label': 'Transferencia de dinero',
-    'date': 'ayer',
-    'entidad': 'big pizza',
-  },
-  {
-    'paymentName': '-250',
-    'transactionType': 'Elevation 3',
-    'elevation': 4.0,
-    'label': 'Pago con QR',
-    'date': 'ayer',
-    'entidad': 'el jevi',
-  },
-  {
-    'paymentName': '+15000',
-    'transactionType': 'Elevation 4',
-    'elevation': 5.0,
-    'label': 'Ingreso de dinero',
-    'date': 'ayer',
-    'entidad': 'Alquiler',
-  },
-  {
-    'paymentName': '-620',
-    'transactionType': 'Elevation 5',
-    'elevation': 6.0,
-    'label': 'Pago con QR',
-    'entidad': 'el jevi',
-    'date': 'ayer',
-  },
-];
+import 'package:multi_bank/models/card_model.dart';
+
+import 'cards_view.dart';
 
 class HomeTabView extends StatelessWidget {
   static const name = 'main';
@@ -77,7 +25,8 @@ class HomeTabView extends StatelessWidget {
           leading: Padding(
             padding: const EdgeInsets.all(4.0),
             child: IconButton(
-              icon: const Icon(Icons.person_outline, color: Colors.white),
+              icon: const Icon(Icons.person_outline_outlined,
+                  color: Colors.white),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProfileView(
@@ -88,18 +37,8 @@ class HomeTabView extends StatelessWidget {
             ),
           ),
           backgroundColor: color.primary,
-          title:
-              // TextButton(
-              //   onPressed: () {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (context) => ProfileView(
-              //         user: user!,
-              //       ),
-              //     ));
-              //   },
-              //   child:
-              Text(user?.name != null ? "Hola, ${user?.name}" : 'Bienvenido',
-                  style: const TextStyle(color: Colors.white)),
+          title: Text(user?.name != null ? "Hola, ${user?.name}" : 'Bienvenido',
+              style: const TextStyle(color: Colors.white)),
           // ),
           centerTitle: false,
         ),

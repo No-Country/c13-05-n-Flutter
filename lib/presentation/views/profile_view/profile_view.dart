@@ -3,12 +3,17 @@ import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/views.dart';
 import 'package:multi_bank/repositories/app_repository.dart';
 
+import '../../../models/card_model.dart';
+import '../home_view/sub_screens/home_tab_view.dart';
+
 class ProfileView extends StatelessWidget {
   static const name = 'perfil';
-  const ProfileView({super.key, required this.user});
+  const ProfileView({super.key, required this.user, this.productList});
   final UserModel? user;
+  final List<CardModel>? productList;
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -66,51 +71,45 @@ class ProfileView extends StatelessWidget {
                     const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ),
               const SizedBox(height: 10),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const SettingsView(),
+              SizedBox(
+                width: width / 1.5,
+                height: 48,
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.settings_outlined,
+                      size: 40,
                     ),
-                  );
-                },
-                child: const SizedBox(
-                  width: 293,
-                  height: 48,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.settings_outlined,
-                        size: 40,
-                      ),
-                      SizedBox(width: 20),
-                      Text(
-                        "Configuración",
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(width: 90),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 24,
-                      ),
-                    ],
-                  ),
+                    SizedBox(width: 20),
+                    Text(
+                      "Configuración",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 24,
+                    ),
+                  ],
                 ),
+                // ),
               ),
               const SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const PersonalInfoView(),
+                      builder: (context) => HomeTabView(
+                        user: user,
+                      ),
                     ),
                   );
                 },
-                child: const SizedBox(
-                  width: 293,
+                child: SizedBox(
+                  width: width / 1.5,
                   height: 48,
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -122,7 +121,7 @@ class ProfileView extends StatelessWidget {
                         "Datos personales",
                         style: TextStyle(fontSize: 16),
                       ),
-                      SizedBox(width: 65),
+                      Spacer(),
                       Icon(
                         Icons.arrow_forward_ios_outlined,
                         size: 24,
@@ -136,21 +135,21 @@ class ProfileView extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const TransferenceView(),
+                      builder: (context) => const SettingsView(),
                     ),
                   );
                 },
-                child: const SizedBox(
-                  width: 293,
+                child: SizedBox(
+                  width: width / 1.5,
                   height: 48,
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.help_outline_outlined,
                         size: 40,
                       ),
-                      SizedBox(width: 20),
+                      Spacer(),
                       Text(
                         "Ayuda",
                         style: TextStyle(fontSize: 16),

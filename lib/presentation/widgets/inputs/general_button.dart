@@ -12,7 +12,7 @@ import 'package:multi_bank/repositories/app_repository.dart';
 import '../modals/alert.dart';
 
 class LoginBottom extends StatelessWidget {
-  const LoginBottom({
+  LoginBottom({
     super.key,
     required this.savedSession,
     required this.loginCubit,
@@ -20,6 +20,7 @@ class LoginBottom extends StatelessWidget {
     required this.email,
     required this.password,
     required this.messageButton,
+    required this.isLoading,
   });
 
   final bool savedSession;
@@ -28,6 +29,7 @@ class LoginBottom extends StatelessWidget {
   final Email email;
   final Password password;
   final String messageButton;
+  bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -53,11 +55,13 @@ class LoginBottom extends StatelessWidget {
         onPressed: loginCubit.state.isValid == false
             ? null
             : () {
+                isLoading = true;
                 try {
                   if (validatePassword(password.value) &&
                       password.value.length >= 6) {
                     BlocProvider.of<LoginBloc>(context).add(Login(user,
                         savedSession, email.value, password.value, context));
+                    isLoading = false;
                   } else {
                     Alert.runAlert(
                         "Por favor introduzca una contraseña que "

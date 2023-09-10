@@ -22,7 +22,7 @@ class _SplashViewState extends State<SplashView>
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (_) => const LoginView(),
       ));
@@ -45,11 +45,12 @@ class _SplashViewState extends State<SplashView>
   }
 
   Widget _viewBuilder() {
+    final color = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blue, Colors.purple],
+          colors: [color.primary, color.secondary],
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
         ),
@@ -64,10 +65,12 @@ class _SplashViewState extends State<SplashView>
           ),
           SizedBox(height: 20),
           Text(
-            "Texto",
+            "NoContry Bank",
             style: TextStyle(
               color: Colors.white,
               fontSize: 32,
+              letterSpacing: 2,
+              decoration: TextDecoration.none,
             ),
           )
         ],

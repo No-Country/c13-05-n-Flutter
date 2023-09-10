@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:multi_bank/infrastructure/modules/login/login_bloc/login_bloc.dart';
 import 'package:multi_bank/infrastructure/modules/login/login_cubit.dart';
 import 'package:multi_bank/models/user_models.dart';
@@ -19,6 +20,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   var savedSession = false;
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +95,7 @@ class _LoginViewState extends State<LoginView> {
                       email: email,
                       password: password,
                       messageButton: 'Iniciar',
+                      isLoading: false,
                     ),
                     const SizedBox(height: 20),
                     CheckboxListTile(

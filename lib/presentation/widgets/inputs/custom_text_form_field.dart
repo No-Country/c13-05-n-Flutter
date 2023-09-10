@@ -8,6 +8,8 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final IconData? icon;
+  final IconData? icon2;
+  final bool? isPhone;
 
   const CustomTextFormField({
     super.key,
@@ -18,6 +20,8 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.controller,
     this.icon,
+    this.icon2,
+    this.isPhone,
   });
 
   @override
@@ -30,10 +34,12 @@ class CustomTextFormField extends StatelessWidget {
 
     return TextFormField(
       onChanged: onChanged,
+      keyboardType: isPhone != null ? TextInputType.number : TextInputType.text,
       validator: validator,
       controller: controller,
       decoration: InputDecoration(
         prefixIcon: Icon(icon, color: colorHint),
+        suffixIcon: Icon(icon2, color: colorHint),
         enabledBorder: border,
         focusedBorder: border.copyWith(
             borderSide: BorderSide(

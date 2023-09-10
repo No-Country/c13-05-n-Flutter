@@ -1,8 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/presentation/views/add_product_view/add_person_id.dart';
 
-class AddProductView extends StatelessWidget {
-  const AddProductView({super.key});
+import '../../widgets/inputs/custom_text_form_field.dart';
+
+class AddProductView extends StatefulWidget {
+  const AddProductView({Key? key});
+
+  @override
+  State<AddProductView> createState() => _AddProductViewState();
+}
+
+class _AddProductViewState extends State<AddProductView> {
+  final TextEditingController _controller = TextEditingController();
+  bool isButtonEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
+      final text = _controller.text;
+
+      if (text.length > 8) {
+        setState(() {
+          isButtonEnabled = true;
+        });
+      } else {
+        setState(() {
+          isButtonEnabled = false;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,33 +79,33 @@ class AddProductView extends StatelessWidget {
                       fontSize: 18,
                     ),
                   ),
-                  // Note: Same code is applied for the TextFormField as well
-                  TextField(
-                    controller: controller,
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 2, color: Colors.grey),
-                      ),
-                    ),
+                  // Integra el CustomTextFormField aquí
+                  CustomTextFormField(
+                    icon2: Icons.cancel,
+                    hint: 'Ingresael numero de tu tarjeta',
+                    controller: _controller,
                   ),
                   const SizedBox(height: 30),
                   Container(
                     height: height * 0.06,
                     width: width * 0.95,
                     decoration: BoxDecoration(
-                      color: color.primary,
-                      borderRadius: BorderRadius.circular(
-                          8), // Ajusta el valor según tus preferencias
+                      color: isButtonEnabled ? color.primary : Colors.grey,
+                      borderRadius: BorderRadius.circular(8),
                     ),
                     child: MaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const AddPersonIDView(),
-                          ),
-                        );
-                      },
-                      child: const Text('+ Asociar un nuevo producto',
+                      onPressed: isButtonEnabled
+                          ? () {
+                              print('mayor');
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => AddPersonIDView(
+                                      cardNumber: controller.value),
+                                ),
+                              );
+                            }
+                          : null,
+                      child: const Text('Siguiente',
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,
@@ -83,6 +117,74 @@ class AddProductView extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CustomTextFormField extends StatefulWidget {
+  final IconData icon2;
+  final String hint;
+  final TextEditingController controller;
+
+  const CustomTextFormField({
+    Key? key,
+    required this.icon2,
+    required this.hint,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
+}
+
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  bool isCheckIcon = false;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(() {
+      final text = widget.controller.text;
+      if (text.length > 8) {
+        setState(() {
+          isCheckIcon = true;
+        });
+      } else {
+        setState(() {
+          isCheckIcon = false;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    widget.controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+    final border = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(8),
+    );
+    const colorHint = Color.fromRGBO(102, 112, 133, 1);
+    return TextFormField(
+      controller: widget.controller,
+      keyboardType: TextInputType.number, // Solo permite números
+      decoration: InputDecoration(
+        hintText: widget.hint,
+        suffixIcon: Icon(
+          isCheckIcon ? Icons.check : widget.icon2,
+          color: isCheckIcon ? Colors.green : colorHint, // Color del icono
+        ),
+        enabledBorder: border,
+        focusedBorder: border.copyWith(
+            borderSide: BorderSide(
+          color: color.secondary,
+        )),
       ),
     );
   }

@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_bank/presentation/views/home_view/sub_screens/general_activities_view.dart';
 import 'package:multi_bank/presentation/views/home_view/sub_screens/home_tab_view.dart';
+import 'package:multi_bank/presentation/views/transference_view/transference_view.dart';
+import 'package:multi_bank/presentation/widgets/qr_scanner/qr_scaner.dart';
 
 import '../../../models/activities_model.dart';
 import '../../../models/card_model.dart';
@@ -30,20 +32,37 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
     final List<Widget> mainTabs = [
       HomeTabView(
         user: widget.user,
         productList: widget.productList,
       ),
-      ProfileView(user: widget.user),
+      TransferenceView(user: widget.user, productList: widget.productList),
       GeneralActivitiesView(
         allActivities: widget.allActivities,
       ),
-      const SettingsView()
+      ProfileView(user: widget.user),
+      // const SettingsView()
     ];
 
     return Scaffold(
       body: mainTabs.elementAt(currentIndex),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) =>
+                  const QRViewExample(), // Aquí se inicia la pantalla de escaneo
+            ),
+          );
+        },
+        shape: const CircleBorder(),
+        backgroundColor: color.secondary,
+        elevation: 0,
+        child: const Icon(Icons.qr_code),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         // selectedItemColor: const Color(0xff8F0000),
@@ -57,10 +76,8 @@ class _MainViewState extends State<MainView> {
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.wallet_rounded,
-            ),
-            label: 'Billetera',
+            icon: Icon(Icons.compare_arrows_sharp, size: 25),
+            label: 'Transferir',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -69,8 +86,8 @@ class _MainViewState extends State<MainView> {
             label: 'Actividad',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu),
-            label: 'Mas',
+            icon: Icon(Icons.person_outline),
+            label: 'Perfil',
           ),
         ],
       ),
