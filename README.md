@@ -15,11 +15,11 @@ Nuestro proyecto de billetera virtual te permite realizar pagos de forma rápida
 
 ## Equipo:
 
-### PM
+### Project Manager 
 | Ana Colorado - PM :briefcase: |
 |:-----------------------------:|
-| ![Tu nombre](ruta a foto de perfil) | 
-| [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/usuario linkedin/)   [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/usuario github ) |
+| ![Ana Maria Colorado](https://media.licdn.com/dms/image/D4E03AQFnMCqvy99zMw/profile-displayphoto-shrink_800_800/0/1691626769745?e=1700092800&v=beta&t=hnx2Iw3OIMLp5Z6cMOexrTBtDP-rjffGJwQd8IUwCow) | 
+| [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/ana-cbedoya/)   [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/AnaColorado) |
 
 ### UX/UI
 | Viviana Vallejos - UX/UI :art: | Mailen Moran - UX/UI :art: |
