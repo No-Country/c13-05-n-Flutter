@@ -1,7 +1,7 @@
 # Multi-Bank :classical_building:
 
 
-...aqui descripcion del proyecto...
+Nuestro proyecto de billetera virtual te permite realizar pagos de forma rápida, segura y conveniente desde tu dispositivo móvil. Con nuestra aplicación, podrás almacenar tus tarjetas de crédito, débito y otros métodos de pago en un solo lugar, olvidándote de llevar efectivo o tarjetas físicas contigo. Además, podrás realizar transferencias entre usuarios de manera instantánea y realizar seguimiento de tus gastos con funciones intuitivas. Simplifica tu vida financiera con nuestra billetera virtual y disfruta de la comodidad en tus transacciones diarias.
 
 ## Instalacion:
 ### App
