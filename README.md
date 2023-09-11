@@ -24,8 +24,8 @@ Nuestro proyecto de billetera virtual te permite realizar pagos de forma rápida
 ### UX/UI
 | Viviana Vallejos - UX/UI :art: | Mailen Moran - UX/UI :art: |
 |:--------------------------------:|:----------------------------------------:|
-| ![Tu nombre](ruta a foto de perfil) | ![Tu nombre](ruta a foto de perfil) |
-| [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/usuario linkedin/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/usuario github ) |  [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/usuario linkedin/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/usuario github ) 
+| ![Tu nombre](ruta a foto de perfil) | ![Mailen Moran](https://ca.slack-edge.com/T02KS88FB0E-U044QEQ33GS-d44b89ec1c5e-512) |
+| [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/usuario linkedin/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/usuario github ) |  [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/mailen-moran/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/KityMai ) 
 
 
 ### Desarrollo
