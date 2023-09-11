@@ -18,7 +18,7 @@ Nuestro proyecto de billetera virtual te permite realizar pagos de forma rápida
 ### Project Manager 
 | Ana Colorado - PM :briefcase: |
 |:-----------------------------:|
-| ![Ana Maria Colorado](https://media.licdn.com/dms/image/D4E03AQFnMCqvy99zMw/profile-displayphoto-shrink_800_800/0/1691626769745?e=1700092800&v=beta&t=hnx2Iw3OIMLp5Z6cMOexrTBtDP-rjffGJwQd8IUwCow) | 
+| ![Ana Maria Colorado](https://media.licdn.com/dms/image/D4E03AQFnMCqvy99zMw/profile-displayphoto-shrink_?s=200/0/1691626769745?e=1700092800&v=beta&t=hnx2Iw3OIMLp5Z6cMOexrTBtDP-rjffGJwQd8IUwCow) | 
 | [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/ana-cbedoya/)   [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/AnaColorado) |
 
 ### UX/UI
