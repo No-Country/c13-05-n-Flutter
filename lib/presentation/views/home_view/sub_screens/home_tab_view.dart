@@ -31,6 +31,7 @@ class HomeTabView extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProfileView(
                     user: user!,
+                    productList: productList!,
                   ),
                 ));
               },

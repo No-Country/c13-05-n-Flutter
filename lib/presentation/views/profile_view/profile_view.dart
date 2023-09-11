@@ -18,6 +18,12 @@ class ProfileView extends StatelessWidget {
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
           automaticallyImplyLeading: false,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
           title: const Text("Mi perfil"),
           backgroundColor: Colors.white,
           actions: [
@@ -101,7 +107,7 @@ class ProfileView extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => HomeTabView(
+                      builder: (context) => PersonalInfoView(
                         user: user,
                       ),
                     ),
