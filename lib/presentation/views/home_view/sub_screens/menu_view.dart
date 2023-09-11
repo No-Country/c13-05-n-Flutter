@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/activities_model.dart';
 import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/views.dart';
+import 'package:multi_bank/presentation/views/home_view/sub_screens/general_activities_view.dart';
 
 import '../../../../models/card_model.dart';
 import '../../../../repositories/app_repository.dart';
 
 class MenuView extends StatefulWidget {
   static const name = 'menu';
-  const MenuView({super.key, this.user, this.productList});
+  const MenuView({super.key, this.user, this.productList, this.allActivities});
   final UserModel? user;
   final List<CardModel>? productList;
+  final List<ActivitiesModel>? allActivities;
   @override
   State<MenuView> createState() => _MenuViewState();
 }
@@ -40,17 +43,18 @@ class _MenuViewState extends State<MenuView> {
             user: widget.user, productList: widget.productList),
         alertMessage: '',
       ),
-      MenuData(
+      const MenuData(
           buttonName: 'Pedir\n dinero',
           icono: Icons.monetization_on_outlined,
-          route: ProfileView(user: widget.user),
-          alertMessage: ''),
+          // route: ProfileView(user: widget.user),
+          alertMessage: 'Proximamente podras pedir dinero a tus contactos'),
       MenuData(
           buttonName: 'Historial\n financiero',
           icono: Icons.bar_chart_rounded,
-          route: TransferenceView(
-              user: widget.user, productList: widget.productList),
-          alertMessage: ''),
+          route: widget.allActivities != null
+              ? GeneralActivitiesView(allActivities: widget.allActivities)
+              : null,
+          alertMessage: 'En reparacion'),
     ];
 
     return SizedBox(
@@ -63,7 +67,8 @@ class _MenuViewState extends State<MenuView> {
             itemCount: menuItems.length,
             separatorBuilder: (context, index) {
               // Agregar un espacio entre los elementos
-              return SizedBox(width: 5); // Ajusta el ancho según tu preferencia
+              return const SizedBox(
+                  width: 5); // Ajusta el ancho según tu preferencia
             },
             itemBuilder: (context, index) {
               final menuItem = menuItems[index];
@@ -132,14 +137,14 @@ class CustomMenu extends StatelessWidget {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: Text('Próximamente'),
+                    title: const Text('Próximamente'),
                     content: Text(alertMessage),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: Text('Cerrar'),
+                        child: const Text('Cerrar'),
                       ),
                     ],
                   );

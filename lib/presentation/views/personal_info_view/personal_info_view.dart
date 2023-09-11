@@ -168,11 +168,8 @@ class _RegisterForm extends StatelessWidget {
                                 actions: <Widget>[
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.of(context)
-                                          .push(MaterialPageRoute(
-                                        builder: (context) =>
-                                            ProfileView(user: user),
-                                      ));
+                                      Navigator.of(context).pop();
+                                      Navigator.of(context).pop();
                                     },
                                     child: const Text('Cerrar'),
                                   ),
