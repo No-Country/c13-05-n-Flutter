@@ -13,6 +13,9 @@ Nuestro proyecto de billetera virtual te permite realizar pagos de forma rápida
  <a href="https://www.figma.com/file/oB7ngcThS1mvfNxasSbVeL/Dise%C3%B1o-UI?type=design&node-id=35%3A258&mode=design&t=yhEGjRCwmwqg3INk-1"  target="_blank" > <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="65" height="65"/> Mockup
  </a>
 
+ Diseño UX/UI
+La interfaz de usuario (UI) y el prototipo de No Country Wallet fueron construidos íntegramente y desde cero en Figma, la herramienta colaborativa de diseño. Inicialmente, se acordó trabajar a partir del sistema de diseño de Google, Material Design, para asegurar las buenas prácticas, ya que el producto fue pensado para el sistema operativo Android de la misma compañía. Para elaborar la experiencia de usuario (UX), iniciamos una investigación sobre productos existentes bancarios y no bancarios similares que actualmente cumplen con los mismos objetivos de negocio y trabajan con una serie de funcionalidades específicas que se repiten en este tipo de apps. Una vez concluida esta etapa, ya estuvo lista la estructura de trabajo y la arquitectura de la información para iniciar el diseño de la UI. Para esta fase del proyecto se hicieron pruebas de colores y estilos, tipografía, tamaño y tipo de los elementos para mejor accesibilidad y se definieron estos fundamentos. Luego de una serie de iteraciones se elaboró la documentación de diseño, que incluyó el UI kit y el inventario completo de los componentes utilizados: tipo de grillas, íconos, tipografía, campos de texto, logo, botones, barras de búsqueda, barra de navegación, colores y sombras, etc.
+
 ## Equipo:
 
 ### Project Manager 
