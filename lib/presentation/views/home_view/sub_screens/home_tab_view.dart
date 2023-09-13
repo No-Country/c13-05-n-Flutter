@@ -32,6 +32,7 @@ class HomeTabView extends StatelessWidget {
                   builder: (context) => ProfileView(
                     user: user!,
                     productList: productList!,
+                    tapFromHome: true,
                   ),
                 ));
               },

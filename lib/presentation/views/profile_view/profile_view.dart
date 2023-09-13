@@ -8,22 +8,22 @@ import '../home_view/sub_screens/home_tab_view.dart';
 
 class ProfileView extends StatelessWidget {
   static const name = 'perfil';
-  const ProfileView({super.key, required this.user, this.productList});
+  const ProfileView(
+      {super.key, required this.user, this.productList, this.tapFromHome});
   final UserModel? user;
   final List<CardModel>? productList;
+  final bool? tapFromHome;
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+          automaticallyImplyLeading: tapFromHome == true
+              ? true
+              : tapFromHome == null
+                  ? false
+                  : false,
           title: const Text("Mi perfil"),
           backgroundColor: Colors.white,
           actions: [
