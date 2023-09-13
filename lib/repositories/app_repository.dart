@@ -163,3 +163,23 @@ Future<UserModel> getUser(String userEmail) async {
 }
 
 class FireBaseServices {}
+
+double autoWidth(width, context) {
+  var screenSize = MediaQuery.of(context).size;
+  double n = (width / 430);
+  int totalWidth = 0;
+
+  totalWidth = (screenSize.width * n).round();
+
+  return totalWidth.toDouble();
+}
+
+double autoHeight(height, context) {
+  var screenSize = MediaQuery.of(context).size;
+  double n = (height / 932);
+  int totalHeight = 0;
+
+  totalHeight = (screenSize.height * n).round();
+
+  return totalHeight.toDouble();
+}

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/card_model.dart';
 import 'package:multi_bank/presentation/views/home_view/sub_screens/cards_view.dart';
+import 'package:multi_bank/repositories/app_repository.dart';
 
 import '../../views/activities_view/activities_view.dart';
 
@@ -59,8 +60,8 @@ class _CardsActiveState extends State<CardsActive> {
                 TextButton(
                   style: ButtonStyle(
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
-                    fixedSize:
-                        MaterialStateProperty.all(const Size.fromWidth(130)),
+                    fixedSize: MaterialStateProperty.all(
+                        Size.fromWidth(autoWidth(142, context))),
                   ),
                   onPressed: () {
                     setState(() {

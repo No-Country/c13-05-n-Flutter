@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_bank/models/activities_model.dart';
+import 'package:multi_bank/repositories/app_repository.dart';
 
 import '../../widgets/modals/payment_bill.dart';
 
@@ -44,11 +45,11 @@ class NewActivities extends StatelessWidget {
             children: [
               Text("Numero de producto: ${cardData?.productNumber}"),
               Text("Balance actual: \$${cardData?.balance}"),
-              const SizedBox(height: 20),
+              SizedBox(height: autoHeight(20, context)),
               const Text("Actividades"),
-              const SizedBox(height: 20),
+              SizedBox(height: autoHeight(20, context)),
               Container(
-                height: 700,
+                height: autoHeight(700, context),
                 width: 400,
                 decoration: const BoxDecoration(
                     color: Color(0xffffffff),
@@ -68,7 +69,7 @@ class NewActivities extends StatelessWidget {
                       );
                       return SizedBox(
                         width: 286,
-                        height: 50,
+                        height: autoHeight(58, context),
                         child: InkWell(
                           onTap: () {
                             PaymentBill.showBill(context, singleActivity);

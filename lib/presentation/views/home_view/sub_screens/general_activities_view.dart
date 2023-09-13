@@ -146,7 +146,7 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
 
                     return SizedBox(
                       width: 286,
-                      height: 50,
+                      height: 53,
                       child: InkWell(
                         onTap: () {
                           PaymentBill.showBill(
@@ -224,7 +224,7 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                         ? Column(children: [
                             SizedBox(
                               width: 400,
-                              height: 50,
+                              height: 55,
                               child: InkWell(
                                 onTap: () {
                                   PaymentBill.showBill(
@@ -279,7 +279,7 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                             ),
                             SizedBox(
                               width: 400,
-                              height: 50,
+                              height: 55,
                               child: InkWell(
                                 onTap: () {
                                   PaymentBill.showBill(
@@ -334,7 +334,7 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                             ),
                             SizedBox(
                               width: 400,
-                              height: 50,
+                              height: 55,
                               child: InkWell(
                                 onTap: () {
                                   PaymentBill.showBill(
