@@ -72,6 +72,27 @@ class ApiCalls {
     } catch (error) {
       print(error);
     }
-    ;
+  }
+
+  Future<dynamic> updateProfile(String userId, dynamic object) async {
+    final String apiEndpoint =
+        "https://blue-naughty-chimpanzee.cyclic.app/api/customers/$userId";
+    final uri = Uri.parse(apiEndpoint);
+    var payload = json.encode(object);
+
+    final response = await http.put(
+      uri,
+      body: payload,
+      headers: {"Content-Type": "application/json"},
+    );
+
+    try {
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        print(response.body);
+        return response.body;
+      }
+    } catch (error) {
+      print(error);
+    }
   }
 }
