@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multi_bank/presentation/views/add_product_view/add_person_id.dart';
-
-import '../../widgets/inputs/custom_text_form_field.dart';
+import 'package:multi_bank/presentation/views/add_product_view/add_name.dart';
 
 class AddProductView extends StatefulWidget {
   const AddProductView({Key? key});
@@ -42,8 +40,6 @@ class _AddProductViewState extends State<AddProductView> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final controller = TextEditingController();
-    String value = controller.text;
     final color = Theme.of(context).colorScheme;
 
     return Scaffold(
@@ -96,11 +92,11 @@ class _AddProductViewState extends State<AddProductView> {
                     child: MaterialButton(
                       onPressed: isButtonEnabled
                           ? () {
-                              print('mayor');
+                              print('mayor ${_controller.value}');
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => AddPersonIDView(
-                                      cardNumber: controller.value),
+                                  builder: (context) => AddNameView(
+                                      cardNumber: _controller.value.text),
                                 ),
                               );
                             }

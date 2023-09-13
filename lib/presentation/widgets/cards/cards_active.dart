@@ -72,8 +72,10 @@ class _CardsActiveState extends State<CardsActive> {
                     children: [
                       const Row(
                         children: [
+                          SizedBox(height: 20),
                           Text("Saldo :",
                               style: TextStyle(
+                                fontFamily: "Roboto",
                                 fontSize: 19,
                                 color: Colors.black,
                               )),
@@ -83,7 +85,7 @@ class _CardsActiveState extends State<CardsActive> {
                         children: [
                           Text(
                               style: const TextStyle(
-                                fontSize: 19,
+                                fontSize: 20,
                                 color: Colors.black,
                               ),
                               showBalance
@@ -103,7 +105,7 @@ class _CardsActiveState extends State<CardsActive> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Text(
                   insertDashesInNumber(widget.cardData!.productNumber),
                   style: const TextStyle(fontFamily: "monospace", fontSize: 20),

@@ -21,7 +21,7 @@ class _MenuViewState extends State<MenuView> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final containerWidth = width / 5;
+    final containerWidth = width;
 
     final List<MenuData> menuItems = [
       const MenuData(
@@ -37,7 +37,7 @@ class _MenuViewState extends State<MenuView> {
           // route: SettingsView(),
           alertMessage: 'Esta función estará disponible próximamente.'),
       MenuData(
-        buttonName: 'Transferencia\n de dinero ',
+        buttonName: 'Enviar\n dinero ',
         icono: Icons.send,
         route: TransferenceView(
             user: widget.user, productList: widget.productList),
@@ -60,8 +60,7 @@ class _MenuViewState extends State<MenuView> {
     return SizedBox(
         height: 120,
         width: width,
-        child: Padding(
-          padding: const EdgeInsets.all(2.0),
+        child: Center(
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: menuItems.length,
@@ -70,6 +69,8 @@ class _MenuViewState extends State<MenuView> {
               return const SizedBox(
                   width: 5); // Ajusta el ancho según tu preferencia
             },
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               final menuItem = menuItems[index];
               return CustomMenu(
@@ -155,24 +156,27 @@ class CustomMenu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.2), // Color de la sombra
-                  spreadRadius: 1, // Extensión de la sombra
-                  blurRadius: 3, // Difuminación de la sombra
-                  offset: const Offset(0, 3), // Desplazamiento de la sombra
-                ),
-              ],
-            ),
-            padding: const EdgeInsets.all(5),
-            child: Icon(
-              icono,
-              color: const Color.fromARGB(137, 0, 0, 0),
-              size: 30,
+          Align(
+            alignment: Alignment.center,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2), // Color de la sombra
+                    spreadRadius: 1, // Extensión de la sombra
+                    blurRadius: 3, // Difuminación de la sombra
+                    offset: const Offset(0, 3), // Desplazamiento de la sombra
+                  ),
+                ],
+              ),
+              padding: const EdgeInsets.all(5),
+              child: Icon(
+                icono,
+                color: const Color.fromARGB(137, 0, 0, 0),
+                size: 30,
+              ),
             ),
           ),
           const SizedBox(

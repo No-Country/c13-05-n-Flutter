@@ -25,7 +25,7 @@ class _RegisterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
+    return SafeArea(
       top: true,
       child: SingleChildScrollView(
         child: Padding(
@@ -33,9 +33,16 @@ class _RegisterView extends StatelessWidget {
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              FlutterLogo(size: 100),
-              _RegisterForm(),
-              SizedBox(height: 20),
+              Center(
+                child: Image.asset(
+                  'assets/images/Logo.png',
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              const _RegisterForm(),
+              const SizedBox(height: 20),
             ],
           ),
         ),

@@ -57,8 +57,16 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Center(
+                      child: Image.asset(
+                        'assets/images/Logo.png',
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
                     const HeadingMessage(
-                      message: 'Iniciar sesión! ',
+                      message: 'Iniciar sesión ',
                     ),
                     const SizedBox(
                       height: 25,
@@ -85,19 +93,6 @@ class _LoginViewState extends State<LoginView> {
                       onChanged: loginCubit.passwordChanged,
                       errorMessage: password.errorMessage,
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    LoginBottom(
-                      savedSession: savedSession,
-                      loginCubit: loginCubit,
-                      user: widget.user,
-                      email: email,
-                      password: password,
-                      messageButton: 'Iniciar',
-                      isLoading: false,
-                    ),
-                    const SizedBox(height: 20),
                     CheckboxListTile(
                       contentPadding: const EdgeInsets.symmetric(
                           horizontal: -10, vertical: 0),
@@ -107,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
                           const Text('Recordarme', textAlign: TextAlign.start),
                           TextButton(
                             onPressed: () {},
-                            child: const Text('Forgot Password?'),
+                            child: const Text('¿Olvidaste la contraseña?'),
                           ),
                         ],
                       ),
@@ -119,10 +114,20 @@ class _LoginViewState extends State<LoginView> {
                         });
                       },
                     ),
+                    const SizedBox(height: 50),
+                    LoginBottom(
+                      savedSession: savedSession,
+                      loginCubit: loginCubit,
+                      user: widget.user,
+                      email: email,
+                      password: password,
+                      messageButton: 'Iniciar',
+                      isLoading: false,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('No tienes una cuenta? '),
+                        const Text('¿No tienes una cuenta? '),
                         TextButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(

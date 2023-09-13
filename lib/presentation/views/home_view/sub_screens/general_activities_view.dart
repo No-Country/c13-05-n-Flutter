@@ -64,27 +64,40 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
                 height: height * 0.05,
                 color: color.primary,
                 child: const Padding(
-                  padding: EdgeInsets.fromLTRB(20, 8, 0, 0),
+                  padding: EdgeInsets.fromLTRB(20, 30, 0, 0),
                 ),
               ),
               SearchAnchor(
                   builder: (BuildContext context, SearchController controller) {
                 return Center(
-                  child: SizedBox(
-                    width: width * 0.7,
-                    child: SearchBar(
-                      controller: controller,
-                      padding: const MaterialStatePropertyAll<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 16.0)),
-                      onTap: () {
-                        controller.openView();
-                      },
-                      onChanged: (_) {
-                        controller.openView();
-                      },
-                      leading: const Icon(Icons.search),
-                    ),
-                  ),
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 20, 0, 0),
+                          child: SizedBox(
+                            width: width * 0.8,
+                            height: 40,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+                              child: SearchBar(
+                                controller: controller,
+                                padding:
+                                    const MaterialStatePropertyAll<EdgeInsets>(
+                                        EdgeInsets.symmetric(horizontal: 16.0)),
+                                onTap: () {
+                                  controller.openView();
+                                },
+                                onChanged: (_) {
+                                  controller.openView();
+                                },
+                                leading: const Icon(Icons.search),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Icon(Icons.settings_rounded),
+                      ]),
                 );
               }, suggestionsBuilder:
                       (BuildContext context, SearchController controller) {
@@ -103,14 +116,15 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
             ],
           ),
           const SizedBox(height: 20),
-          const Text(
-            "Filtrar pago por: ",
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+          // const Text(
+          //   "Filtrar pago por: ",
+          //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          // ),
           Wrap(
             spacing: 5.0,
             children: ["QR", "MasterCard", "visaCard"].map((activity) {
               return FilterChip(
+                // shape: ,
                 label: Text(activity),
                 selected: filters.contains(activity),
                 onSelected: (bool selected) {
@@ -135,7 +149,8 @@ class _GeneralActivitiesViewState extends State<GeneralActivitiesView> {
               height: 490,
               width: 400,
               decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(16))),
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ListView.builder(

@@ -50,21 +50,23 @@ class _SplashViewState extends State<SplashView>
       width: double.infinity,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [color.primary, color.secondary],
+          colors: [Colors.black, color.secondary],
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
         ),
       ),
-      child: const Column(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.monetization_on,
-            size: 80,
-            color: Colors.white,
+          Center(
+            child: Image.asset(
+              'assets/images/Logo.png',
+            ),
           ),
-          SizedBox(height: 20),
-          Text(
+          const SizedBox(
+            height: 25,
+          ),
+          const Text(
             "NoContry Bank",
             style: TextStyle(
               color: Colors.white,

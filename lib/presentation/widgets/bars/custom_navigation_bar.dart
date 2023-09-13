@@ -37,6 +37,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
         BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: 'Home'),
         BottomNavigationBarItem(
             icon: Icon(Icons.wallet_rounded), label: 'Actividad'),
+        BottomNavigationBarItem(icon: Icon(Icons.qr_code_rounded), label: 'qr'),
         BottomNavigationBarItem(
             icon: Icon(Icons.supervised_user_circle_rounded),
             label: ProfileView.name),

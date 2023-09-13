@@ -149,11 +149,11 @@ class HomeTabView extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12.0),
                     boxShadow: const [
-                      BoxShadow(
-                        color: Colors.black,
-                        blurRadius: 5,
-                        offset: Offset(0, 0),
-                      ),
+                      // BoxShadow(
+                      //   color: Colors.black,
+                      //   blurRadius: 5,
+                      //   offset: Offset(0, 0),
+                      // ),
                     ],
                   ),
                   child: Column(
@@ -218,7 +218,7 @@ class _CardType1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Card(
-      shadowColor: Colors.black.withOpacity(0.2),
+      // shadowColor: Colors.black.withOpacity(0.5),
       //  blurRadius: 8,
       //  offset: const Offset(3, 3),
 

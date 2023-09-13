@@ -39,6 +39,7 @@ class _MainViewState extends State<MainView> {
         productList: widget.productList,
       ),
       TransferenceView(user: widget.user, productList: widget.productList),
+      const QRViewExample(),
       GeneralActivitiesView(
         allActivities: widget.allActivities,
       ),
@@ -48,44 +49,58 @@ class _MainViewState extends State<MainView> {
 
     return Scaffold(
       body: mainTabs.elementAt(currentIndex),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) =>
-                  const QRViewExample(), // Aquí se inicia la pantalla de escaneo
-            ),
-          );
-        },
-        shape: const CircleBorder(),
-        backgroundColor: color.secondary,
-        elevation: 0,
-        child: const Icon(Icons.qr_code),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).push(
+      //       MaterialPageRoute(
+      //         builder: (context) =>
+      //             const QRViewExample(), // Aquí se inicia la pantalla de escaneo
+      //       ),
+      //     );
+      //   },
+      //   shape: const CircleBorder(),
+      //   backgroundColor: color.secondary,
+      //   elevation: 0,
+      //   child: const Icon(Icons.qr_code),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         // selectedItemColor: const Color(0xff8F0000),
         currentIndex: currentIndex,
         onTap: onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
+        items: [
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.home_filled,
             ),
             label: 'Inicio',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.compare_arrows_sharp, size: 25),
             label: 'Transferir',
           ),
           BottomNavigationBarItem(
+            label: '',
+            icon: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: color.secondary,
+                ),
+                child: const Icon(
+                  Icons.qr_code_rounded,
+                  color: Colors.white,
+                )),
+          ),
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.trending_up_outlined,
             ),
             label: 'Actividad',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: 'Perfil',
           ),
