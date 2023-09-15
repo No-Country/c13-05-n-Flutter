@@ -6,7 +6,14 @@ Nuestro proyecto de billetera virtual te permite realizar pagos de forma rápida
 ## Instalacion:
 ### App
 
-...link del proyecto...
+Qr si deseas Bajarte la App a tu celular.
+
+![QR para descargar el proyecto](https://github.com/No-Country/c13-05-n-Flutter/blob/alternateBranch/assets/images/multi-bank-QR.png)
+
+link para visualizar la App: 
+
+https://drive.google.com/file/d/12NMPVOETlG1ItySM3cszIRZL_1HqEc7X/view?usp=drive_link
+
 
 ### Diseño:
 
