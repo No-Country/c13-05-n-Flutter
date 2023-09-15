@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/card_model.dart';
+import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/add_product_view/add_person_id.dart';
 
 class AddDateView extends StatefulWidget {
   const AddDateView(
-      {Key? key, required this.cardNumber, required this.cardName})
+      {Key? key,
+      required this.cardNumber,
+      required this.cardName,
+      this.user,
+      this.productList})
       : super(key: key);
   final String cardNumber;
   final String cardName;
+  final UserModel? user;
+  final List<CardModel>? productList;
 
   @override
   State<AddDateView> createState() => _AddDateViewState();
@@ -169,10 +177,13 @@ class _AddDateViewState extends State<AddDateView> {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (context) => AddPersonIDView(
-                                        cardNumber: cardNumber,
-                                        cardName: cardName,
-                                        expire: _expiryController.value.text,
-                                        cvv: _cvvController.value.text),
+                                      cardNumber: cardNumber,
+                                      cardName: cardName,
+                                      expire: _expiryController.value.text,
+                                      cvv: _cvvController.value.text,
+                                      user: widget.user,
+                                      productList: widget.productList,
+                                    ),
                                   ),
                                 );
                               }
@@ -219,7 +230,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     super.initState();
     widget.controller.addListener(() {
       final text = widget.controller.text;
-      if (text.length > 3) {
+      if (text.length >= 3) {
         setState(() {
           isCheckIcon = true;
         });

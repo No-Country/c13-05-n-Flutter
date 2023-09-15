@@ -52,19 +52,18 @@ class ProfileView extends StatelessWidget {
                       height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(200),
-                        child: Expanded(
-                          child: Image.network(
-                            "https://picsum.photos/200",
-                            fit: BoxFit.cover,
-                            height: 120,
-                            width: 120,
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          width: 120,
+                          height: 120,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(200),
+                            child: Image.asset(
+                              'assets/images/perfil_mesi.jpg',
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
+                        )),
                     const SizedBox(
                       height: 10,
                     ),

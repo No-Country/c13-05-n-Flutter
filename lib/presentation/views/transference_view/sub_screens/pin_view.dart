@@ -29,7 +29,13 @@ class PinView extends StatefulWidget {
 
 class _PinViewState extends State<PinView> {
   int newAmount = 0;
-  bool isConfirmed = false;
+  bool isButtonEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isButtonEnabled = false;
+  }
 
   void setNewAmount() {
     setState(() {
@@ -39,6 +45,10 @@ class _PinViewState extends State<PinView> {
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
@@ -69,7 +79,7 @@ class _PinViewState extends State<PinView> {
               clearText: true,
               obscureText: true,
               numberOfFields: 4,
-              borderColor: const Color(0xff8F0000),
+              focusedBorderColor: color.secondary,
               fillColor: Colors.white,
               filled: true,
 
@@ -90,11 +100,28 @@ class _PinViewState extends State<PinView> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return const AlertDialog(
-                          title: Text("Codigo de verificacion"),
-                          content: Text(
-                              'PIN Verificado, puede continuar con la trasnferencia'),
-                        );
+                        return AlertDialog(
+                            title: const Text("Codigo de verificacion"),
+                            content: const Text(
+                                'PIN Verificado, puede continuar con la trasnferencia'),
+                            actions: [
+                              TextButton(
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all(color.primary),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  setState(() {
+                                    isButtonEnabled = true;
+                                  });
+                                },
+                                child: const Text(
+                                  'Cerrar',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ]);
                       });
                 } else {
                   showModalBottomSheet<void>(
@@ -124,17 +151,18 @@ class _PinViewState extends State<PinView> {
             ),
             const SizedBox(height: 250),
             NavigationButton.navigationButton(
-                color: isConfirmed ? const Color(0xff8F0000) : Colors.grey,
-                ReceiptView(
-                  amount: widget.amount,
-                  user: widget.user,
-                  paymentTo: widget.paymentTo,
-                  concept: widget.concept,
-                  paymentFrom: widget.paymentFrom,
-                  productList: widget.productList,
-                ),
-                context,
-                text: "Confirmar")
+              color: isButtonEnabled ? color.primary : Colors.grey,
+              ReceiptView(
+                amount: widget.amount,
+                user: widget.user,
+                paymentTo: widget.paymentTo,
+                concept: widget.concept,
+                paymentFrom: widget.paymentFrom,
+                productList: widget.productList,
+              ),
+              context,
+              text: "Confirmar",
+            )
           ],
         ),
       ),

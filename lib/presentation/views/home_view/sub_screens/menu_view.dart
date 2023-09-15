@@ -120,6 +120,7 @@ class CustomMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme;
     return TextButton(
       style: ButtonStyle(
         shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -142,10 +143,14 @@ class CustomMenu extends StatelessWidget {
                     content: Text(alertMessage),
                     actions: <Widget>[
                       TextButton(
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(color.primary)),
                         onPressed: () {
                           Navigator.of(context).pop();
                         },
-                        child: const Text('Cerrar'),
+                        child: const Text('Cerrar',
+                            style: TextStyle(color: Colors.white)),
                       ),
                     ],
                   );

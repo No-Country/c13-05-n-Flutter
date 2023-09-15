@@ -44,29 +44,12 @@ class _MainViewState extends State<MainView> {
         allActivities: widget.allActivities,
       ),
       ProfileView(user: widget.user),
-      // const SettingsView()
     ];
 
     return Scaffold(
       body: mainTabs.elementAt(currentIndex),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.of(context).push(
-      //       MaterialPageRoute(
-      //         builder: (context) =>
-      //             const QRViewExample(), // Aquí se inicia la pantalla de escaneo
-      //       ),
-      //     );
-      //   },
-      //   shape: const CircleBorder(),
-      //   backgroundColor: color.secondary,
-      //   elevation: 0,
-      //   child: const Icon(Icons.qr_code),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        // selectedItemColor: const Color(0xff8F0000),
         currentIndex: currentIndex,
         onTap: onItemTapped,
         items: [

@@ -107,7 +107,8 @@ class HomeTabView extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const AddProductView(),
+                      builder: (context) =>
+                          AddProductView(user: user, productList: productList),
                     ),
                   );
                 },
@@ -148,21 +149,13 @@ class HomeTabView extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12.0),
-                    boxShadow: const [
-                      // BoxShadow(
-                      //   color: Colors.black,
-                      //   blurRadius: 5,
-                      //   offset: Offset(0, 0),
-                      // ),
-                    ],
+                    boxShadow: const [],
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (productList != null)
                         ...?productList?.expand((card) {
-                          // Ordenar las actividades por fecha antes de mapearlas
-
                           final limitedActivities = card.activities.take(4);
 
                           return limitedActivities.map((activity) {
@@ -218,10 +211,6 @@ class _CardType1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
     return Card(
-      // shadowColor: Colors.black.withOpacity(0.5),
-      //  blurRadius: 8,
-      //  offset: const Offset(3, 3),
-
       color: Colors.white,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(8)),

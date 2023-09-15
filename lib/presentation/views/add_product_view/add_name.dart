@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/card_model.dart';
+import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/add_product_view/add_date.dart';
-import 'package:multi_bank/presentation/views/add_product_view/add_person_id.dart';
-
-import '../../widgets/inputs/custom_text_form_field.dart';
 
 class AddNameView extends StatefulWidget {
-  const AddNameView({Key? key, required this.cardNumber}) : super(key: key);
+  const AddNameView(
+      {Key? key, required this.cardNumber, this.user, this.productList})
+      : super(key: key);
+  final UserModel? user;
+  final List<CardModel>? productList;
   final String cardNumber;
 
   @override
@@ -120,11 +123,16 @@ class _AddNameViewState extends State<AddNameView> {
                             ? () {
                                 print('mayor ${_controller.value}');
                                 Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => AddDateView(
-                                        cardNumber: cardNumber,
-                                        cardName: _controller.value.text),
-                                  ),
+                                  MaterialPageRoute(builder: (context) {
+                                    final cardName = _controller.value.text;
+
+                                    return AddDateView(
+                                      cardNumber: cardNumber,
+                                      cardName: cardName,
+                                      user: widget.user,
+                                      productList: widget.productList,
+                                    );
+                                  }),
                                 );
                               }
                             : null,

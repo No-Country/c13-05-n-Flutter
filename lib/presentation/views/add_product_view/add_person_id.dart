@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:multi_bank/presentation/views/add_product_view/add_person_id.dart';
+import 'package:multi_bank/models/card_model.dart';
+import 'package:multi_bank/models/user_models.dart';
+
+import 'package:multi_bank/presentation/views/add_product_view/confirm_new_product.dart';
 
 class AddPersonIDView extends StatefulWidget {
   const AddPersonIDView(
@@ -7,12 +10,16 @@ class AddPersonIDView extends StatefulWidget {
       required this.cardNumber,
       required this.cardName,
       required this.cvv,
-      required this.expire})
+      required this.expire,
+      this.user,
+      this.productList})
       : super(key: key);
   final String cardNumber;
   final String cardName;
   final String cvv;
   final String expire;
+  final UserModel? user;
+  final List<CardModel>? productList;
 
   @override
   State<AddPersonIDView> createState() => _AddPersonIDViewState();
@@ -21,6 +28,7 @@ class AddPersonIDView extends StatefulWidget {
 class _AddPersonIDViewState extends State<AddPersonIDView> {
   final TextEditingController _idController = TextEditingController();
   bool isButtonEnabled = false;
+  String? _selectedOption;
 
   @override
   void initState() {
@@ -31,7 +39,7 @@ class _AddPersonIDViewState extends State<AddPersonIDView> {
   void _checkButtonState() {
     final idText = _idController.text;
 
-    if (idText.length >= 9) {
+    if (idText.length >= 7) {
       setState(() {
         isButtonEnabled = true;
       });
@@ -57,7 +65,7 @@ class _AddPersonIDViewState extends State<AddPersonIDView> {
     final cardNumber = widget.cardNumber;
     final cardName = widget.cardName;
     final expire = widget.expire;
-    final cvv = widget.cvv;
+    // final cvv = widget.cvv;
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
@@ -87,7 +95,16 @@ class _AddPersonIDViewState extends State<AddPersonIDView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 30),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+                              child: Image.asset(
+                                'assets/images/Visa.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
@@ -96,12 +113,48 @@ class _AddPersonIDViewState extends State<AddPersonIDView> {
                                   fontFamily: "monospace", fontSize: 20),
                             ),
                           ),
-                          const SizedBox(height: 40),
+                          const SizedBox(height: 20),
                           Text(
                             cardName,
                             style: const TextStyle(
-                                fontFamily: "monospace", fontSize: 20),
+                                fontFamily: "monospace", fontSize: 22),
                           ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'expire',
+                            style: TextStyle(
+                                fontFamily: "monospace", fontSize: 13),
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: expire.substring(0, 2),
+                                  style: const TextStyle(
+                                    fontFamily: "monospace",
+                                    fontSize: 13,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                const TextSpan(
+                                  text: "/",
+                                  style: TextStyle(
+                                    fontFamily: "monospace",
+                                    fontSize: 13,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: expire.substring(2),
+                                  style: const TextStyle(
+                                    fontFamily: "monospace",
+                                    fontSize: 13,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -120,27 +173,50 @@ class _AddPersonIDViewState extends State<AddPersonIDView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                "Numero de documento",
+                                "Tipo de documento",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
                                 ),
                               ),
                               const SizedBox(width: 10),
-                              CustomTextFormField(
-                                icon2: Icons.cancel,
-                                hint: 'documento',
-                                controller: _idController,
+                              DropdownButtonFormField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color: color
+                                            .secondary), // Cambia el color del borde al verde deseado cuando está enfocado
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                value: _selectedOption,
+                                items: ["DNI", "CI", "CUIL"]
+                                    .map((String value) =>
+                                        DropdownMenuItem<String>(
+                                          value: value,
+                                          child: Text(value),
+                                        ))
+                                    .toList(),
+                                onChanged: (String? newValue) {
+                                  setState(() {
+                                    _selectedOption =
+                                        newValue; // Actualiza la opción seleccionada
+                                  });
+                                },
                               ),
                             ],
                           ),
                         ),
+                        const SizedBox(width: 20),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                "Tipo de documento",
+                                "Nro de documento",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
@@ -168,16 +244,16 @@ class _AddPersonIDViewState extends State<AddPersonIDView> {
                       child: MaterialButton(
                         onPressed: isButtonEnabled
                             ? () {
-                                print('mayor ${_idController.value}');
-                                // Navigator.of(context).push(
-                                //   MaterialPageRoute(
-                                //     builder: (context) => AddPersonIDView(
-                                //         cardNumber: cardNumber,
-                                //         cardName: cardName,
-                                //         expire: _expiryController.value.text,
-                                //         cvv: _cvvController.value.text),
-                                //   ),
-                                // );
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => ConfirmProductView(
+                                            cardNumber: cardNumber,
+                                            cardName: cardName,
+                                            expire: expire,
+                                            user: widget.user,
+                                            productList: widget.productList,
+                                          )),
+                                );
                               }
                             : null,
                         child: const Text('Siguiente',
@@ -222,7 +298,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     super.initState();
     widget.controller.addListener(() {
       final text = widget.controller.text;
-      if (text.length > 3) {
+      if (text.length >= 7) {
         setState(() {
           isCheckIcon = true;
         });

@@ -17,6 +17,7 @@ class TransferenceView extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.grey[200],
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             title: const Text(
               "Transferir dinero",
@@ -29,7 +30,7 @@ class TransferenceView extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      "Nuevo destino",
+                      "Agenda",
                       style: TextStyle(fontSize: 18),
                     ),
                     SizedBox(
@@ -40,7 +41,7 @@ class TransferenceView extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      "Agenda",
+                      "Nuevo destino",
                       style: TextStyle(fontSize: 18),
                     ),
                     SizedBox(
@@ -53,11 +54,14 @@ class TransferenceView extends StatelessWidget {
           ),
           body: Center(
             child: TabBarView(children: [
+              Center(
+                child: TransferenceAccountsView(
+                  user: user,
+                  productList: productList,
+                ),
+              ),
               const Center(
                 child: Text("Nuevo destino"),
-              ),
-              Center(
-                child: TransferenceAccountsView(user: user, productList: productList,),
               ),
             ]),
           ),

@@ -22,9 +22,9 @@ class PaymentBill {
                         SizedBox(
                           height: 65,
                           width: 65,
-                          child: Image.network(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaO71OBlcDuI10mkTzSd9KXgQ_Y279buEPyfSYBl2CWQ&s",
-                          ),
+                         child: Image.asset(
+              'assets/images/Logo.png',
+            ),
                         ),
                         SizedBox(width: 10),
                         Text("No \ncountry \nwallet")

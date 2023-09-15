@@ -53,10 +53,21 @@ class _CardsActiveState extends State<CardsActive> {
             scale: 0.5,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 15, 20, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 20, 10, 0),
+                    child: Image.asset(
+                      'assets/images/Visa.png',
+                      fit: BoxFit.contain,
+                      scale: 1,
+                    ),
+                  ),
+                ),
                 TextButton(
                   style: ButtonStyle(
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
@@ -72,7 +83,7 @@ class _CardsActiveState extends State<CardsActive> {
                     children: [
                       const Row(
                         children: [
-                          SizedBox(height: 20),
+                          SizedBox(height: 18),
                           Text("Saldo :",
                               style: TextStyle(
                                 fontFamily: "Roboto",
@@ -85,7 +96,7 @@ class _CardsActiveState extends State<CardsActive> {
                         children: [
                           Text(
                               style: const TextStyle(
-                                fontSize: 20,
+                                fontSize: 19,
                                 color: Colors.black,
                               ),
                               showBalance
@@ -105,12 +116,12 @@ class _CardsActiveState extends State<CardsActive> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 3),
                 Text(
                   insertDashesInNumber(widget.cardData!.productNumber),
                   style: const TextStyle(fontFamily: "monospace", fontSize: 20),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 8),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [

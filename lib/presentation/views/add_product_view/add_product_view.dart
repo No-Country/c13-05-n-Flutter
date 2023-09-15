@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:multi_bank/models/card_model.dart';
+import 'package:multi_bank/models/user_models.dart';
 import 'package:multi_bank/presentation/views/add_product_view/add_name.dart';
 
 class AddProductView extends StatefulWidget {
-  const AddProductView({Key? key});
+  const AddProductView({
+    super.key,
+    this.user,
+    this.productList,
+  });
+  final UserModel? user;
+  final List<CardModel>? productList;
 
   @override
   State<AddProductView> createState() => _AddProductViewState();
@@ -96,7 +104,10 @@ class _AddProductViewState extends State<AddProductView> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => AddNameView(
-                                      cardNumber: _controller.value.text),
+                                    cardNumber: _controller.value.text,
+                                    user: widget.user,
+                                    productList: widget.productList,
+                                  ),
                                 ),
                               );
                             }
