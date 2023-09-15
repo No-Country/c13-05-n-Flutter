@@ -36,7 +36,7 @@ La interfaz de usuario (UI) y el prototipo de No Country Wallet fueron construid
  Adonis Paniagua - Flutter dev :computer: | Gabriel Iciarte - Flutter dev :computer: |
 :----------------------------------------:|:----------------------------------------:|
 | ![ Adonis Paniagua ](https://avatars.githubusercontent.com/u/77471071?s=200&v=4) | ![Gabriel Iciarte](https://avatars.githubusercontent.com/u/89669517?s=200&u=2617b95f5cc81b1b675b2e634261762017d39073&v=4) |
- [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/tu usuario/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/darkendord) | [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/ciarte/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/ciarte) |
+ [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/adonis-paniagua/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/darkendord) | [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/ciarte/) [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=GitHub)](https://github.com/ciarte) |
 
 <p align="center"> 
  
@@ -46,6 +46,7 @@ La interfaz de usuario (UI) y el prototipo de No Country Wallet fueron construid
  
 </p>
  <p align="center"> 
+  <a href="https://nodejs.org/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" alt="node" width="65" height="65"/>   </a>
  <a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="65" height="65"/>   </a>
  <a href="https://postman.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="65" height="65"/>   </a>
  <a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="65" height="65"/>   </a>
